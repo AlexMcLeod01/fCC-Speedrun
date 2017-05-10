@@ -1,5 +1,6 @@
 import React from "react";
 import {render} from "react-dom";
+import DocumentTitle from "react-document-title";
 
 var Carousel = require('nuka-carousel');
 
@@ -102,7 +103,7 @@ class List extends React.Component {
 };
 
 class App extends React.Component {
-    render () {
+    render () {        
         const style = {
             backgroundColor: 'teal',
             height: '200vh',
@@ -110,13 +111,15 @@ class App extends React.Component {
             color: 'white'
         }
         return (
-            <div style={style}>
-                <Pics/>
-                <Title/>
-                <Description/>
-                <List/>
-                <Link/>
-            </div>
+            <DocumentTitle title="Tribute to O'ahu">
+                <div style={style}>
+                    <Pics/>
+                    <Title/>
+                    <Description/>
+                    <List/>
+                    <Link/>
+                </div>
+            </DocumentTitle>
             
         );
     }

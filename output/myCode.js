@@ -10138,6 +10138,8 @@ var _Tribute = __webpack_require__(197);
 
 var _RandQuote = __webpack_require__(198);
 
+var _Weather = __webpack_require__(238);
+
 var _reactRouterDom = __webpack_require__(222);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -10184,7 +10186,7 @@ var Header = function (_React$Component) {
                         { style: liStyle },
                         _react2.default.createElement(
                             _reactRouterDom.Link,
-                            { exact: true, to: "/", activeClassName: "active" },
+                            { exact: true, to: "/", activeClassName: ".active" },
                             "Home"
                         )
                     ),
@@ -10193,7 +10195,16 @@ var Header = function (_React$Component) {
                         { style: liStyle },
                         _react2.default.createElement(
                             _reactRouterDom.Link,
-                            { to: "/randquote", activeClassName: "active" },
+                            { to: "/weather", activeClassName: ".active" },
+                            "Weather"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: "/randquote", activeClassName: ".active" },
                             "Quote"
                         )
                     ),
@@ -10202,7 +10213,7 @@ var Header = function (_React$Component) {
                         { style: liStyle },
                         _react2.default.createElement(
                             _reactRouterDom.Link,
-                            { to: "/tribute", activeClassName: "active" },
+                            { to: "/tribute", activeClassName: ".active" },
                             "Tribute"
                         )
                     )
@@ -10235,17 +10246,38 @@ var Main = function (_React$Component2) {
                     _react2.default.createElement(
                         _reactRouterDom.Route,
                         { exact: true, path: "/" },
-                        _react2.default.createElement(_RandQuote.RandQuote, null)
+                        _react2.default.createElement(
+                            _reactDocumentTitle2.default,
+                            { title: "Alex McLeod's Portfolio" },
+                            _react2.default.createElement(_Weather.Weather, null)
+                        )
                     ),
                     _react2.default.createElement(
                         _reactRouterDom.Route,
                         { path: "/index.html" },
-                        _react2.default.createElement(_RandQuote.RandQuote, null)
+                        _react2.default.createElement(
+                            _reactDocumentTitle2.default,
+                            { title: "Alex McLeod's Portfolio" },
+                            _react2.default.createElement(_Weather.Weather, null)
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _reactRouterDom.Route,
+                        { path: "/weather" },
+                        _react2.default.createElement(
+                            _reactDocumentTitle2.default,
+                            { title: "Local Weather" },
+                            _react2.default.createElement(_Weather.Weather, null)
+                        )
                     ),
                     _react2.default.createElement(
                         _reactRouterDom.Route,
                         { path: "/randquote" },
-                        _react2.default.createElement(_RandQuote.RandQuote, null)
+                        _react2.default.createElement(
+                            _reactDocumentTitle2.default,
+                            { title: "Random Quote Machine" },
+                            _react2.default.createElement(_RandQuote.RandQuote, null)
+                        )
                     ),
                     _react2.default.createElement(
                         _reactRouterDom.Route,
@@ -25224,6 +25256,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(51);
 
+var _Title = __webpack_require__(239);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25261,43 +25295,8 @@ var Pics = _react2.default.createClass({
     }
 });
 
-var Title = function (_React$Component) {
-    _inherits(Title, _React$Component);
-
-    function Title() {
-        _classCallCheck(this, Title);
-
-        return _possibleConstructorReturn(this, (Title.__proto__ || Object.getPrototypeOf(Title)).apply(this, arguments));
-    }
-
-    _createClass(Title, [{
-        key: "render",
-        value: function render() {
-            var style = {
-                fontFamily: 'Verdana',
-                fontSize: "28px",
-                textAlign: 'center'
-            };
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "h1",
-                    { style: style },
-                    "Tribute to O'ahu!"
-                )
-            );
-        }
-    }]);
-
-    return Title;
-}(_react2.default.Component);
-
-;
-
-var Description = function (_React$Component2) {
-    _inherits(Description, _React$Component2);
+var Description = function (_React$Component) {
+    _inherits(Description, _React$Component);
 
     function Description() {
         _classCallCheck(this, Description);
@@ -25327,8 +25326,8 @@ var Description = function (_React$Component2) {
 
 ;
 
-var Link = function (_React$Component3) {
-    _inherits(Link, _React$Component3);
+var Link = function (_React$Component2) {
+    _inherits(Link, _React$Component2);
 
     function Link() {
         _classCallCheck(this, Link);
@@ -25364,8 +25363,8 @@ var Link = function (_React$Component3) {
 
 ;
 
-var List = function (_React$Component4) {
-    _inherits(List, _React$Component4);
+var List = function (_React$Component3) {
+    _inherits(List, _React$Component3);
 
     function List() {
         _classCallCheck(this, List);
@@ -25434,8 +25433,8 @@ var List = function (_React$Component4) {
 
 ;
 
-var Tribute = exports.Tribute = function (_React$Component5) {
-    _inherits(Tribute, _React$Component5);
+var Tribute = exports.Tribute = function (_React$Component4) {
+    _inherits(Tribute, _React$Component4);
 
     function Tribute() {
         _classCallCheck(this, Tribute);
@@ -25449,7 +25448,7 @@ var Tribute = exports.Tribute = function (_React$Component5) {
             return _react2.default.createElement(
                 "div",
                 null,
-                _react2.default.createElement(Title, null),
+                _react2.default.createElement(_Title.Title, { text: "Tribute to O'ahu!" }),
                 _react2.default.createElement(Pics, null),
                 _react2.default.createElement(Description, null),
                 _react2.default.createElement(List, null),
@@ -25480,6 +25479,8 @@ var _react = __webpack_require__(20);
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(51);
+
+var _Title = __webpack_require__(239);
 
 var _jquery = __webpack_require__(237);
 
@@ -25514,7 +25515,7 @@ var RandQuote = exports.RandQuote = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 { style: style },
-                _react2.default.createElement(Title, null),
+                _react2.default.createElement(_Title.Title, { text: "Random Quote Generator" }),
                 _react2.default.createElement(Container, null),
                 _react2.default.createElement(ButtonHolder, null)
             );
@@ -25524,39 +25525,8 @@ var RandQuote = exports.RandQuote = function (_React$Component) {
     return RandQuote;
 }(_react2.default.Component);
 
-var Title = function (_React$Component2) {
-    _inherits(Title, _React$Component2);
-
-    function Title() {
-        _classCallCheck(this, Title);
-
-        return _possibleConstructorReturn(this, (Title.__proto__ || Object.getPrototypeOf(Title)).apply(this, arguments));
-    }
-
-    _createClass(Title, [{
-        key: "render",
-        value: function render() {
-            var style = {
-                textAlign: "center",
-                marginTop: '50px'
-            };
-            return _react2.default.createElement(
-                "div",
-                { style: style },
-                _react2.default.createElement(
-                    "h2",
-                    null,
-                    "Random Quote Generator"
-                )
-            );
-        }
-    }]);
-
-    return Title;
-}(_react2.default.Component);
-
-var Container = function (_React$Component3) {
-    _inherits(Container, _React$Component3);
+var Container = function (_React$Component2) {
+    _inherits(Container, _React$Component2);
 
     function Container() {
         _classCallCheck(this, Container);
@@ -25598,8 +25568,8 @@ var Container = function (_React$Component3) {
     return Container;
 }(_react2.default.Component);
 
-var ButtonHolder = function (_React$Component4) {
-    _inherits(ButtonHolder, _React$Component4);
+var ButtonHolder = function (_React$Component3) {
+    _inherits(ButtonHolder, _React$Component3);
 
     function ButtonHolder() {
         _classCallCheck(this, ButtonHolder);
@@ -25608,6 +25578,16 @@ var ButtonHolder = function (_React$Component4) {
     }
 
     _createClass(ButtonHolder, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            (0, _jquery2.default)("#getQuote").on("click", function () {
+                //Function to change the html and display the quote
+                var newQuote = randQuote();
+                (0, _jquery2.default)(".message").html(newQuote);
+                (0, _jquery2.default)(".twitter-share-button").attr("href", 'https://twitter.com/intent/tweet?text=' + newQuote);
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             var style = {
@@ -25629,8 +25609,8 @@ var ButtonHolder = function (_React$Component4) {
     return ButtonHolder;
 }(_react2.default.Component);
 
-var Button = function (_React$Component5) {
-    _inherits(Button, _React$Component5);
+var Button = function (_React$Component4) {
+    _inherits(Button, _React$Component4);
 
     function Button() {
         _classCallCheck(this, Button);
@@ -25674,8 +25654,8 @@ var Button = function (_React$Component5) {
     return Button;
 }(_react2.default.Component);
 
-var Tweet = function (_React$Component6) {
-    _inherits(Tweet, _React$Component6);
+var Tweet = function (_React$Component5) {
+    _inherits(Tweet, _React$Component5);
 
     function Tweet() {
         _classCallCheck(this, Tweet);
@@ -25702,30 +25682,15 @@ var Tweet = function (_React$Component6) {
 }(_react2.default.Component);
 
 //Code reused from first pass thru of fCC
-//Random number generator
-
-
-function getRandNum(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
 
 //Function to generate a random quote
+
+
 function randQuote() {
     var quotes = ["Fear is the path to the dark side...-Yoda", "Anger, fear, aggression...the dark side of the Force are they. -Yoda", "No! Try not! Do...or do not. There is no try. -Yoda", "A good speach is comparatively the same like a miniskirt: it must be long enough to cover the important things and short enough to keep things interesting. -Sifu Wong", "And this is very important: smile from your heart... -Sifu Wong", "In my experience, there is no such thing as luck. -Obi Wan Kenobi", "There can be only one. -Christopher Lambert", "Everything is hard before it is easy. -Goethe", "That feeling of 'us', it buffers many people from their psychological demons. -Sebastian Junger", "If you earn $68K per year, then globally speaking, you are the 1%. -Will MacAskill", "I wanna be, the very best. Like no one ever was. -Pokemon Theme Song", "I am an old man and have known a great many troubles, but most of them never happened. -Mark Twain"];
-    var str = quotes[getRandNum(0, quotes.length)];
+    var str = quotes[Math.floor(Math.random() * quotes.length)];
     return str;
 }
-
-//This waits for the document to load
-(0, _jquery2.default)(document).ready(function () {
-    //Gets the quote when clicked
-    (0, _jquery2.default)("#getQuote").on("click", function () {
-        //Function to change the html and display the quote
-        var newQuote = randQuote();
-        (0, _jquery2.default)(".message").html(newQuote);
-        (0, _jquery2.default)(".twitter-share-button").attr("href", 'https://twitter.com/intent/tweet?text=' + newQuote);
-    });
-});
 
 /***/ }),
 /* 199 */
@@ -39195,6 +39160,271 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Weather = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(51);
+
+var _jquery = __webpack_require__(237);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _Title = __webpack_require__(239);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Weather = exports.Weather = function (_React$Component) {
+    _inherits(Weather, _React$Component);
+
+    function Weather() {
+        _classCallCheck(this, Weather);
+
+        return _possibleConstructorReturn(this, (Weather.__proto__ || Object.getPrototypeOf(Weather)).apply(this, arguments));
+    }
+
+    _createClass(Weather, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            getLocation();
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(_Title.Title, { text: "Local Weather" }),
+                _react2.default.createElement(Icon, null),
+                _react2.default.createElement(Temperature, null),
+                _react2.default.createElement(Location, null)
+            );
+        }
+    }]);
+
+    return Weather;
+}(_react2.default.Component);
+
+var Icon = function (_React$Component2) {
+    _inherits(Icon, _React$Component2);
+
+    function Icon() {
+        _classCallCheck(this, Icon);
+
+        return _possibleConstructorReturn(this, (Icon.__proto__ || Object.getPrototypeOf(Icon)).apply(this, arguments));
+    }
+
+    _createClass(Icon, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                display: 'block',
+                textAlign: 'center',
+                marginTop: '60px'
+            };
+
+            return _react2.default.createElement("div", { id: "weather-icon", style: style });
+        }
+    }]);
+
+    return Icon;
+}(_react2.default.Component);
+
+var Temperature = function (_React$Component3) {
+    _inherits(Temperature, _React$Component3);
+
+    function Temperature() {
+        _classCallCheck(this, Temperature);
+
+        return _possibleConstructorReturn(this, (Temperature.__proto__ || Object.getPrototypeOf(Temperature)).apply(this, arguments));
+    }
+
+    _createClass(Temperature, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                textAlign: 'center',
+                marginTop: '60px',
+                fontSize: '30px'
+            };
+
+            return _react2.default.createElement("div", { id: "current-temp", style: style });
+        }
+    }]);
+
+    return Temperature;
+}(_react2.default.Component);
+
+var Location = function (_React$Component4) {
+    _inherits(Location, _React$Component4);
+
+    function Location() {
+        _classCallCheck(this, Location);
+
+        return _possibleConstructorReturn(this, (Location.__proto__ || Object.getPrototypeOf(Location)).apply(this, arguments));
+    }
+
+    _createClass(Location, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                textAlign: 'center',
+                marginTop: '20px',
+                fontSize: '30px'
+            };
+
+            return _react2.default.createElement("div", { id: "location", style: style });
+        }
+    }]);
+
+    return Location;
+}(_react2.default.Component);
+
+/*
+    The following is code from the first time
+    doing the Weather API project.
+    
+    I may or may not have changed some of it by the time this project gets uploaded
+*/
+
+
+function kelvinToCel(kel) {
+    return Math.round(10 * (kel - 273.15)) / 10;
+}
+function kelvinToFah(kel) {
+    return Math.round(10 * (kelvinToCel(kel) * 1.8 + 32)) / 10;
+}
+
+var getLocation = function getLocation() {
+    var zip, country, city, region;
+    var data = _jquery2.default.getJSON("http://freegeoip.net/json/", function (data) {
+        city = data.city;
+        region = data.region_code;
+        zip = data.zip_code;
+        country = data.country_code;
+        //add location to page, to make sure it's right
+        (0, _jquery2.default)("#location").html(city + ", " + region);
+        var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "," + country + "&APPID=e36e63677b6306e1f0fb7c631c2cc092";
+        _jquery2.default.getJSON(url, function (dat) {
+            var icon, temp, weather, stat;
+            //get weather icon
+            icon = "http://openweathermap.org/img/w/" + dat.weather[0].icon;
+            //add icon to page
+            (0, _jquery2.default)("#weather-icon").html("<img src=\"" + icon + ".png\">");
+            //get temperature
+            stat = true;
+            temp = dat.main.temp;
+            //set temperature
+            function updateTemp() {
+                if (stat) {
+                    (0, _jquery2.default)("#current-temp").html(kelvinToFah(temp) + "&deg;F");
+                } else {
+                    (0, _jquery2.default)("#current-temp").html(kelvinToCel(temp) + "&deg;C");
+                }
+            }
+            updateTemp();
+            //if temp clicked, change to celcius
+            (0, _jquery2.default)("#current-temp").on("click", function () {
+                if (stat) {
+                    stat = false;
+                } else {
+                    stat = true;
+                }
+                updateTemp();
+            });
+            //get current weather
+            weather = dat.weather[0].main;
+            //add weather to page
+            (0, _jquery2.default)("#current-weather").html(weather);
+            //alert(kelvinToCel(temp));
+        });
+    });
+};
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Title = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(51);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Title = exports.Title = function (_React$Component) {
+    _inherits(Title, _React$Component);
+
+    function Title() {
+        _classCallCheck(this, Title);
+
+        return _possibleConstructorReturn(this, (Title.__proto__ || Object.getPrototypeOf(Title)).apply(this, arguments));
+    }
+
+    _createClass(Title, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                fontFamily: 'Verdana',
+                fontSize: "28px",
+                textAlign: 'center',
+                marginTop: '20px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h1",
+                    { style: style },
+                    this.props.text
+                )
+            );
+        }
+    }]);
+
+    return Title;
+}(_react2.default.Component);
+
+;
 
 /***/ })
 /******/ ]);

@@ -3,6 +3,7 @@ import {render} from "react-dom";
 import DocumentTitle from "react-document-title";
 import {Tribute} from "./Tribute.jsx";
 import {RandQuote} from "./RandQuote.jsx";
+import {Weather} from "./Weather.jsx";
 import { BrowserRouter as Router,
         Route,
         Link,
@@ -28,9 +29,10 @@ class Header extends React.Component {
         return (
             <div>
                 <ul style={style}>
-                    <li style={liStyle}><Link exact to="/" activeClassName="active">Home</Link></li>
-                    <li style={liStyle}><Link to="/randquote" activeClassName="active">Quote</Link></li>
-                    <li style={liStyle}><Link to="/tribute" activeClassName="active">Tribute</Link></li>
+                    <li style={liStyle}><Link exact to="/" activeClassName='.active'>Home</Link></li>
+                    <li style={liStyle}><Link to="/weather" activeClassName='.active'>Weather</Link></li>
+                    <li style={liStyle}><Link to="/randquote" activeClassName='.active'>Quote</Link></li>
+                    <li style={liStyle}><Link to="/tribute" activeClassName='.active'>Tribute</Link></li>
                 </ul>
             </div>
         );
@@ -43,13 +45,24 @@ class Main extends React.Component {
             <div>
                 <Switch>
                     <Route exact path='/'>
-                        <RandQuote/>
+                        <DocumentTitle title="Alex McLeod's Portfolio">
+                            <Weather/>
+                        </DocumentTitle>
                     </Route>
                     <Route path='/index.html'>
-                        <RandQuote/>
+                        <DocumentTitle title="Alex McLeod's Portfolio">
+                            <Weather/>
+                        </DocumentTitle>
+                    </Route>
+                    <Route path='/weather'>
+                        <DocumentTitle title="Local Weather">
+                            <Weather/>
+                        </DocumentTitle>
                     </Route>
                     <Route path='/randquote'>
-                        <RandQuote/>
+                        <DocumentTitle title="Random Quote Machine">
+                            <RandQuote/>
+                        </DocumentTitle>
                     </Route>
                     <Route path='/tribute'>
                         <DocumentTitle title="Tribute to O'ahu!">

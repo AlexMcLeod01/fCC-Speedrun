@@ -1,5 +1,6 @@
 import React from "react";
 import {render} from "react-dom";
+import {Title} from "./Title.jsx";
 import $ from "jquery";
 
 export class RandQuote extends React.Component {
@@ -12,24 +13,10 @@ export class RandQuote extends React.Component {
         }
         return (
             <div style={style}>
-                <Title/>
+                <Title text="Random Quote Generator"/>
                 <Container/>
                 <ButtonHolder/>
             </div>            
-        );
-    }
-}
-
-class Title extends React.Component {
-    render () {
-        const style = {
-            textAlign: "center",
-            marginTop: '50px'
-        }
-        return (
-            <div style={style}>
-                <h2>Random Quote Generator</h2>
-            </div>
         );
     }
 }
@@ -63,6 +50,15 @@ class Container extends React.Component {
 }
 
 class ButtonHolder extends React.Component {
+    componentDidMount() {
+        $("#getQuote").on("click", function() {
+            //Function to change the html and display the quote
+            var newQuote = randQuote();
+            $(".message").html(newQuote);
+            $(".twitter-share-button").attr("href", 'https://twitter.com/intent/tweet?text=' + newQuote);
+        });
+    }
+    
     render () {
         const style = {
             display: 'block',
@@ -80,8 +76,8 @@ class ButtonHolder extends React.Component {
     }
 }
 
-class Button extends React.Component {
-    render () {
+class Button extends React.Component {    
+    render () {        
         const style = {
             height: '30px',
             width: '100px',
@@ -123,14 +119,10 @@ class Tweet extends React.Component {
 }
 
 //Code reused from first pass thru of fCC
-//Random number generator
-function getRandNum(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
 
 //Function to generate a random quote
-function randQuote() {
-  var quotes = [
+function randQuote() {    
+    var quotes = [
     "Fear is the path to the dark side...-Yoda",
     "Anger, fear, aggression...the dark side of the Force are they. -Yoda",
     "No! Try not! Do...or do not. There is no try. -Yoda",
@@ -144,17 +136,6 @@ function randQuote() {
     "I wanna be, the very best. Like no one ever was. -Pokemon Theme Song",
     "I am an old man and have known a great many troubles, but most of them never happened. -Mark Twain"
   ];
-    var str = quotes[getRandNum(0, quotes.length)];
+    var str = quotes[Math.floor(Math.random() * (quotes.length))];
   return str;
 }
-
-//This waits for the document to load
-$(document).ready(function() {
-  //Gets the quote when clicked
-  $("#getQuote").on("click", function() {
-    //Function to change the html and display the quote
-    var newQuote = randQuote();
-    $(".message").html(newQuote);
-    $(".twitter-share-button").attr("href", 'https://twitter.com/intent/tweet?text=' + newQuote);
-  });
-});

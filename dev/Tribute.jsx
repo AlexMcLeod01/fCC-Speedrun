@@ -1,5 +1,6 @@
 import React from "react";
 import {render} from "react-dom";
+import {Title} from "./Title.jsx";
 
 var Carousel = require('nuka-carousel');
 
@@ -27,22 +28,6 @@ const Pics = React.createClass ({
         )
     }
 });
-
-class Title extends React.Component {
-    render () {
-        const style = {
-            fontFamily: 'Verdana',
-            fontSize: "28px",
-            textAlign: 'center'
-        }
-        
-        return (
-            <div>
-                <h1 style={style}>Tribute to O'ahu!</h1>
-            </div>
-        );
-    }
-};
 
 class Description extends React.Component {
     render () {
@@ -106,7 +91,7 @@ export class Tribute extends React.Component {
     render () {        
         return (
             <div>
-                <Title/>
+                <Title text="Tribute to O'ahu!"/>
                 <Pics/>
                 <Description/>
                 <List/>

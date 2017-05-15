@@ -1,6 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import {Title} from "./Title.jsx";
+import {Button, ButtonLink} from "./Button.jsx";
 import $ from "jquery";
 
 export class RandQuote extends React.Component {
@@ -67,52 +68,11 @@ class ButtonHolder extends React.Component {
             marginRight: 'auto',
             width: '350px'
         };
+        
         return (
             <div style={style}>
                 <Button id="getQuote" text="Get Quote!" float="left"/>
-                <Tweet float="right"/>
-            </div>
-        );
-    }
-}
-
-class Button extends React.Component {    
-    render () {        
-        const style = {
-            height: '30px',
-            width: '100px',
-            backgroundColor: '#00A0A0',
-            border: '2px solid',
-            borderRadius: '50px',
-            textAlign: 'center',
-            font: 'bold 3.2em/100px',
-            display: 'table',
-            cursor: 'pointer',
-            float: this.props.float
-        };
-        
-        const text = {
-            display: 'table-cell',
-            verticalAlign: 'middle'
-        };
-        
-        return (
-            <div style={style} id={this.props.id}>
-                <div style={text}>
-                    {this.props.text}
-                </div>
-            </div>
-        );
-    }
-}
-
-class Tweet extends React.Component {
-    render () {
-        return (
-            <div>
-                <a className="twitter-share-button" href="https://twitter.com/intent/tweet/?text=">
-                    <Button text="Tweet!" id="twitter-share-button" float={this.props.float}/>
-                </a>
+                <ButtonLink link="https://twitter.com/intent/tweet/?text=" text="Tweet!" linkClass="twitter-share-button" float="right"/>
             </div>
         );
     }

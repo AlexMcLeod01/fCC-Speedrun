@@ -10140,6 +10140,10 @@ var _RandQuote = __webpack_require__(198);
 
 var _Weather = __webpack_require__(238);
 
+var _Wikipedia = __webpack_require__(240);
+
+var _Twitch = __webpack_require__(242);
+
 var _reactRouterDom = __webpack_require__(222);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -10188,6 +10192,24 @@ var Header = function (_React$Component) {
                             _reactRouterDom.Link,
                             { exact: true, to: "/", activeClassName: ".active" },
                             "Home"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: "/twitch", activeClassName: ".active" },
+                            "Twitch"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: "/wiki", activeClassName: ".active" },
+                            "Wiki"
                         )
                     ),
                     _react2.default.createElement(
@@ -10249,7 +10271,7 @@ var Main = function (_React$Component2) {
                         _react2.default.createElement(
                             _reactDocumentTitle2.default,
                             { title: "Alex McLeod's Portfolio" },
-                            _react2.default.createElement(_Weather.Weather, null)
+                            _react2.default.createElement(_Twitch.Twitch, null)
                         )
                     ),
                     _react2.default.createElement(
@@ -10258,7 +10280,25 @@ var Main = function (_React$Component2) {
                         _react2.default.createElement(
                             _reactDocumentTitle2.default,
                             { title: "Alex McLeod's Portfolio" },
-                            _react2.default.createElement(_Weather.Weather, null)
+                            _react2.default.createElement(_Twitch.Twitch, null)
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _reactRouterDom.Route,
+                        { path: "/twitch" },
+                        _react2.default.createElement(
+                            _reactDocumentTitle2.default,
+                            { title: "Twitch TV Viewer" },
+                            _react2.default.createElement(_Twitch.Twitch, null)
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _reactRouterDom.Route,
+                        { path: "/wiki" },
+                        _react2.default.createElement(
+                            _reactDocumentTitle2.default,
+                            { title: "Alex McLeod's Portfolio" },
+                            _react2.default.createElement(_Wikipedia.Wikipedia, null)
                         )
                     ),
                     _react2.default.createElement(
@@ -25284,7 +25324,7 @@ var Pics = _react2.default.createClass({
 
         return _react2.default.createElement(
             Carousel,
-            { style: style },
+            { style: style, ref: "carousel", data: this.setCarouselData.bind(this, 'carousel') },
             _react2.default.createElement("img", { style: style, src: "http://i345.photobucket.com/albums/p379/AlexMcLeod01/20170426_084844_zpskf4fe31g.jpg" }),
             _react2.default.createElement("img", { style: style, src: "http://i345.photobucket.com/albums/p379/AlexMcLeod01/20170426_101108_zpsmsgiv75o.jpg" }),
             _react2.default.createElement("img", { style: style, src: "http://i345.photobucket.com/albums/p379/AlexMcLeod01/20170426_101214_01_zpsawtptzdj.jpg" }),
@@ -25482,6 +25522,8 @@ var _reactDom = __webpack_require__(51);
 
 var _Title = __webpack_require__(239);
 
+var _Button = __webpack_require__(241);
+
 var _jquery = __webpack_require__(237);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -25597,88 +25639,17 @@ var ButtonHolder = function (_React$Component3) {
                 marginRight: 'auto',
                 width: '350px'
             };
+
             return _react2.default.createElement(
                 "div",
                 { style: style },
-                _react2.default.createElement(Button, { id: "getQuote", text: "Get Quote!", float: "left" }),
-                _react2.default.createElement(Tweet, { float: "right" })
+                _react2.default.createElement(_Button.Button, { id: "getQuote", text: "Get Quote!", float: "left" }),
+                _react2.default.createElement(_Button.ButtonLink, { link: "https://twitter.com/intent/tweet/?text=", text: "Tweet!", linkClass: "twitter-share-button", float: "right" })
             );
         }
     }]);
 
     return ButtonHolder;
-}(_react2.default.Component);
-
-var Button = function (_React$Component4) {
-    _inherits(Button, _React$Component4);
-
-    function Button() {
-        _classCallCheck(this, Button);
-
-        return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
-    }
-
-    _createClass(Button, [{
-        key: "render",
-        value: function render() {
-            var style = {
-                height: '30px',
-                width: '100px',
-                backgroundColor: '#00A0A0',
-                border: '2px solid',
-                borderRadius: '50px',
-                textAlign: 'center',
-                font: 'bold 3.2em/100px',
-                display: 'table',
-                cursor: 'pointer',
-                float: this.props.float
-            };
-
-            var text = {
-                display: 'table-cell',
-                verticalAlign: 'middle'
-            };
-
-            return _react2.default.createElement(
-                "div",
-                { style: style, id: this.props.id },
-                _react2.default.createElement(
-                    "div",
-                    { style: text },
-                    this.props.text
-                )
-            );
-        }
-    }]);
-
-    return Button;
-}(_react2.default.Component);
-
-var Tweet = function (_React$Component5) {
-    _inherits(Tweet, _React$Component5);
-
-    function Tweet() {
-        _classCallCheck(this, Tweet);
-
-        return _possibleConstructorReturn(this, (Tweet.__proto__ || Object.getPrototypeOf(Tweet)).apply(this, arguments));
-    }
-
-    _createClass(Tweet, [{
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "a",
-                    { className: "twitter-share-button", href: "https://twitter.com/intent/tweet/?text=" },
-                    _react2.default.createElement(Button, { text: "Tweet!", id: "twitter-share-button", float: this.props.float })
-                )
-            );
-        }
-    }]);
-
-    return Tweet;
 }(_react2.default.Component);
 
 //Code reused from first pass thru of fCC
@@ -39406,7 +39377,7 @@ var Title = exports.Title = function (_React$Component) {
                 fontFamily: 'Verdana',
                 fontSize: "28px",
                 textAlign: 'center',
-                marginTop: '20px'
+                marginTop: '30px'
             };
 
             return _react2.default.createElement(
@@ -39425,6 +39396,598 @@ var Title = exports.Title = function (_React$Component) {
 }(_react2.default.Component);
 
 ;
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Wikipedia = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(51);
+
+var _jquery = __webpack_require__(237);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _Title = __webpack_require__(239);
+
+var _Button = __webpack_require__(241);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Wikipedia = exports.Wikipedia = function (_React$Component) {
+    _inherits(Wikipedia, _React$Component);
+
+    function Wikipedia() {
+        _classCallCheck(this, Wikipedia);
+
+        return _possibleConstructorReturn(this, (Wikipedia.__proto__ || Object.getPrototypeOf(Wikipedia)).apply(this, arguments));
+    }
+
+    _createClass(Wikipedia, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(_Title.Title, { text: "Wikipedia Viewer" }),
+                _react2.default.createElement(Results, null),
+                _react2.default.createElement(Input, null),
+                _react2.default.createElement(ButtonHolder, null)
+            );
+        }
+    }]);
+
+    return Wikipedia;
+}(_react2.default.Component);
+
+var Results = function (_React$Component2) {
+    _inherits(Results, _React$Component2);
+
+    function Results() {
+        _classCallCheck(this, Results);
+
+        return _possibleConstructorReturn(this, (Results.__proto__ || Object.getPrototypeOf(Results)).apply(this, arguments));
+    }
+
+    _createClass(Results, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                textAlign: 'center'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement("div", { id: "first" }),
+                _react2.default.createElement("div", { id: "second" }),
+                _react2.default.createElement("div", { id: "third" })
+            );
+        }
+    }]);
+
+    return Results;
+}(_react2.default.Component);
+
+var Input = function (_React$Component3) {
+    _inherits(Input, _React$Component3);
+
+    function Input() {
+        _classCallCheck(this, Input);
+
+        return _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).apply(this, arguments));
+    }
+
+    _createClass(Input, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                fontColor: 'black',
+                boxSizing: 'border-box',
+                border: '2px solid #ccc',
+                borderRadius: '4px',
+                fontSize: '16px',
+                backgroundColor: 'white',
+                backgroundPosition: '10px 10px',
+                backgroundRepeat: 'no-repeat',
+                padding: '12px 20px 12px 40px',
+                width: '100%'
+            };
+
+            var sty = {
+                width: '30vw',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '50px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: sty },
+                _react2.default.createElement("input", { style: style, type: "text", id: "text-input", name: "search", placeholder: "Search..." })
+            );
+        }
+    }]);
+
+    return Input;
+}(_react2.default.Component);
+
+var ButtonHolder = function (_React$Component4) {
+    _inherits(ButtonHolder, _React$Component4);
+
+    function ButtonHolder() {
+        _classCallCheck(this, ButtonHolder);
+
+        return _possibleConstructorReturn(this, (ButtonHolder.__proto__ || Object.getPrototypeOf(ButtonHolder)).apply(this, arguments));
+    }
+
+    _createClass(ButtonHolder, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            //Gets the search info when clicked
+            (0, _jquery2.default)("#search").on('click', getPage);
+            (0, _jquery2.default)("#text-input").on('keypress', function (e) {
+                if (e.which == 13) {
+                    (0, _jquery2.default)('#search').click();
+                }
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var style = {
+                display: 'block',
+                marginTop: '30px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '350px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(_Button.Button, { id: "search", text: "Search", float: "left" }),
+                _react2.default.createElement(_Button.ButtonLink, { link: "https://en.wikipedia.org/wiki/Special:Random", id: "random", text: "Random", float: "right" })
+            );
+        }
+    }]);
+
+    return ButtonHolder;
+}(_react2.default.Component);
+
+//Original code from first run through
+
+
+function getPage() {
+    var search = document.getElementById('text-input').value;
+
+    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&datatype=jsonp&search=" + search + "&limit=3&callback=?";
+    var result = [],
+        summary = [],
+        link = [];
+    _jquery2.default.ajax({
+        type: "GET",
+        url: url,
+        dataType: 'jsonp',
+        success: function success(data) {
+            for (var i = 0; i < data[1].length; i++) {
+                result.push(data[1][i]);
+            }
+            for (var j = 0; j < data[2].length; j++) {
+                summary.push(data[2][j]);
+            }
+            for (var k = 0; k < data[3].length; k++) {
+                link.push(data[3][k]);
+            }
+            (0, _jquery2.default)("#first").html("\<h5\>\<a href=\"" + link[0] + "\"\>" + result[0] + "\<\/a\>\<\/h5\>\n\<p\>" + summary[0] + "\<\/p\>");
+            (0, _jquery2.default)("#second").html("\<h5\>\<a href=\"" + link[1] + "\"\>" + result[1] + "\<\/a\>\<\/h5\>\n\<p\>" + summary[1] + "\<\/p\>");
+            (0, _jquery2.default)("#third").html("\<h5\>\<a href=\"" + link[2] + "\"\>" + result[2] + "\<\/a\>\<\/h5\>\n\<p\>" + summary[2] + "\<\/p\>");
+        }
+    });
+
+    return;
+}
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ButtonLink = exports.Button = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(51);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Button = exports.Button = function (_React$Component) {
+    _inherits(Button, _React$Component);
+
+    function Button() {
+        _classCallCheck(this, Button);
+
+        return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
+    }
+
+    _createClass(Button, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                height: '30px',
+                width: '100px',
+                backgroundColor: '#0000FF',
+                border: '2px solid',
+                borderRadius: '50px',
+                textAlign: 'center',
+                font: 'bold 3.2em/100px',
+                display: 'table',
+                cursor: 'pointer',
+                float: this.props.float
+            };
+
+            var text = {
+                display: 'table-cell',
+                verticalAlign: 'middle'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style, id: this.props.id, className: this.props.class },
+                _react2.default.createElement(
+                    "div",
+                    { style: text },
+                    this.props.text
+                )
+            );
+        }
+    }]);
+
+    return Button;
+}(_react2.default.Component);
+
+var ButtonLink = exports.ButtonLink = function (_React$Component2) {
+    _inherits(ButtonLink, _React$Component2);
+
+    function ButtonLink() {
+        _classCallCheck(this, ButtonLink);
+
+        return _possibleConstructorReturn(this, (ButtonLink.__proto__ || Object.getPrototypeOf(ButtonLink)).apply(this, arguments));
+    }
+
+    _createClass(ButtonLink, [{
+        key: "render",
+        value: function render() {
+            var link = {
+                textDecoration: 'none',
+                color: 'white'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "a",
+                    { href: this.props.link, style: link, className: this.props.linkClass },
+                    _react2.default.createElement(Button, { text: this.props.text, id: this.props.id, float: this.props.float, "class": this.props.class })
+                )
+            );
+        }
+    }]);
+
+    return ButtonLink;
+}(_react2.default.Component);
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Twitch = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(51);
+
+var _Title = __webpack_require__(239);
+
+var _jquery = __webpack_require__(237);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Twitch = exports.Twitch = function (_React$Component) {
+    _inherits(Twitch, _React$Component);
+
+    function Twitch() {
+        _classCallCheck(this, Twitch);
+
+        return _possibleConstructorReturn(this, (Twitch.__proto__ || Object.getPrototypeOf(Twitch)).apply(this, arguments));
+    }
+
+    _createClass(Twitch, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            for (var i = 0; i < 6; i++) {
+                populateIt(i);
+            }
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(_Title.Title, { text: "Currently Twitching" }),
+                _react2.default.createElement(Container, null),
+                _react2.default.createElement(_Title.Title, { text: "Note: Twitch changed their API, and I'm not registering for a Client ID." })
+            );
+        }
+    }]);
+
+    return Twitch;
+}(_react2.default.Component);
+
+var Container = function (_React$Component2) {
+    _inherits(Container, _React$Component2);
+
+    function Container() {
+        _classCallCheck(this, Container);
+
+        return _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).apply(this, arguments));
+    }
+
+    _createClass(Container, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                backgroundColor: '#333',
+                height: '700px',
+                width: '500px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                alignItems: 'center'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(Channel, { id: "one", src: "https://static-cdn.jtvnw.net/jtv_user_pictures/freecodecamp-profile_image-d9514f2df0962329-300x300.png", text: "FreeCodeCamp" }),
+                _react2.default.createElement(Channel, { id: "two", src: "https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg", text: "ESL_SC2" }),
+                _react2.default.createElement(Channel, { id: "three", src: "https://static-cdn.jtvnw.net/jtv_user_pictures/ogamingsc2-profile_image-9021dccf9399929e-300x300.jpeg", text: "OgamingSC2" }),
+                _react2.default.createElement(Channel, { id: "four", src: "https://static-cdn.jtvnw.net/jtv_user_pictures/cretetion-profile_image-12bae34d9765f222-300x300.jpeg", text: "cretetion" }),
+                _react2.default.createElement(Channel, { id: "five", src: "https://static-cdn.jtvnw.net/jtv_user_pictures/storbeck-profile_image-7ab13c2f781b601d-300x300.jpeg", text: "storbeck" }),
+                _react2.default.createElement(Channel, { id: "six", src: "http://brokensink.com/images/dead_link.png", text: "comster" })
+            );
+        }
+    }]);
+
+    return Container;
+}(_react2.default.Component);
+
+var Channel = function (_React$Component3) {
+    _inherits(Channel, _React$Component3);
+
+    function Channel() {
+        _classCallCheck(this, Channel);
+
+        return _possibleConstructorReturn(this, (Channel.__proto__ || Object.getPrototypeOf(Channel)).apply(this, arguments));
+    }
+
+    _createClass(Channel, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                backgroundColor: 'teal',
+                height: '100px',
+                width: '75%',
+                borderStyle: 'solid',
+                borderColor: 'white'
+            };
+
+            var aSty = {
+                textDecoration: 'none'
+            };
+
+            var innerSty = {
+                height: '100px',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-around'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style, id: this.props.id },
+                _react2.default.createElement(
+                    "a",
+                    { style: aSty, id: this.props.id + "a" },
+                    _react2.default.createElement(
+                        "div",
+                        { style: innerSty },
+                        _react2.default.createElement(Icon, { id: this.props.id + "-pic", src: this.props.src }),
+                        _react2.default.createElement(Info, { id: this.props.id + "-channel", text: this.props.text }),
+                        _react2.default.createElement(Status, { id: this.props.id + "-status" })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Channel;
+}(_react2.default.Component);
+
+var Icon = function (_React$Component4) {
+    _inherits(Icon, _React$Component4);
+
+    function Icon() {
+        _classCallCheck(this, Icon);
+
+        return _possibleConstructorReturn(this, (Icon.__proto__ || Object.getPrototypeOf(Icon)).apply(this, arguments));
+    }
+
+    _createClass(Icon, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                borderRadius: '50%',
+                width: '50px',
+                marginLeft: '20px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { id: this.props.id },
+                _react2.default.createElement("img", { src: this.props.src, style: style })
+            );
+        }
+    }]);
+
+    return Icon;
+}(_react2.default.Component);
+
+var Info = function (_React$Component5) {
+    _inherits(Info, _React$Component5);
+
+    function Info() {
+        _classCallCheck(this, Info);
+
+        return _possibleConstructorReturn(this, (Info.__proto__ || Object.getPrototypeOf(Info)).apply(this, arguments));
+    }
+
+    _createClass(Info, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                color: 'white',
+                marginRight: '100px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style, id: this.props.id },
+                this.props.text
+            );
+        }
+    }]);
+
+    return Info;
+}(_react2.default.Component);
+
+var Status = function (_React$Component6) {
+    _inherits(Status, _React$Component6);
+
+    function Status() {
+        _classCallCheck(this, Status);
+
+        return _possibleConstructorReturn(this, (Status.__proto__ || Object.getPrototypeOf(Status)).apply(this, arguments));
+    }
+
+    _createClass(Status, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                color: 'white',
+                width: '100px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style, id: this.props.id },
+                "Offline"
+            );
+        }
+    }]);
+
+    return Status;
+}(_react2.default.Component);
+
+function fillIt(num, data) {
+    if (data.stream != null) {
+        (0, _jquery2.default)("#" + num + "-status").html(data.stream.game);
+    } else {
+        (0, _jquery2.default)("#" + num + "-status").html("Offline");
+    }
+}
+
+function setLink(num, data) {
+    if (data.status === 422) {
+        (0, _jquery2.default)("#" + num + "-status").html("User does not exist");
+    } else {
+        (0, _jquery2.default)("#" + num + "a").attr("href", data._links.self);
+    }
+}
+
+function populateIt(twit) {
+    var twitchers = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion", "storbeck", "comster404"];
+    var nums = ["one", "two", "three", "four", "five", "six"];
+
+    var URL = "https://wind-bow.gomix.me/twitch-api/";
+    var url = "";
+    url = URL + "streams/" + twitchers[twit] + "?callback=?";
+    _jquery2.default.getJSON(url, function (data) {
+        fillIt(nums[twit], data);
+    });
+    url = URL + "users/" + twitchers[twit] + "?callback=?";
+    _jquery2.default.getJSON(url, function (data) {
+        setLink(nums[twit], data);
+    });
+}
 
 /***/ })
 /******/ ]);

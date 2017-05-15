@@ -39965,11 +39965,11 @@ function fillIt(num, data) {
     }
 }
 
-function setLink(num, data) {
+function setLink(num, data, twit) {
     if (data.status === 422) {
         (0, _jquery2.default)("#" + num + "-status").html("User does not exist");
     } else {
-        (0, _jquery2.default)("#" + num + "a").attr("href", data._links.self);
+        (0, _jquery2.default)("#" + num + "a").attr("href", "https://www.twitch.tv/" + twit);
     }
 }
 
@@ -39985,7 +39985,7 @@ function populateIt(twit) {
     });
     url = URL + "users/" + twitchers[twit] + "?callback=?";
     _jquery2.default.getJSON(url, function (data) {
-        setLink(nums[twit], data);
+        setLink(nums[twit], data, twitchers[twit]);
     });
 }
 

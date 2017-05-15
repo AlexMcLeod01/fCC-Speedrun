@@ -138,11 +138,11 @@ function fillIt(num, data) {
   }
 }
 
-function setLink(num, data) {
+function setLink(num, data, twit) {
   if (data.status === 422) {
     $("#"+num+"-status").html("User does not exist");
   } else {
-    $("#"+num+"a").attr("href", data._links.self);
+    $("#"+num+"a").attr("href", "https://www.twitch.tv/" + twit);
   }
 }
 
@@ -158,6 +158,6 @@ var URL = "https://wind-bow.gomix.me/twitch-api/";
   });
   url = URL + "users/" + twitchers[twit] + "?callback=?";
   $.getJSON(url, function(data) {
-    setLink(nums[twit], data);
+    setLink(nums[twit], data, twitchers[twit]);
   });
 }

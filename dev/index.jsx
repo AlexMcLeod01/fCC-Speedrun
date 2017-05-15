@@ -1,47 +1,19 @@
 import React from "react";
 import {render} from "react-dom";
 import DocumentTitle from "react-document-title";
+import {Header} from "./Header.jsx";
 import {Tribute} from "./Tribute.jsx";
 import {RandQuote} from "./RandQuote.jsx";
 import {Weather} from "./Weather.jsx";
 import {Wikipedia} from "./Wikipedia.jsx";
 import {Twitch} from "./Twitch.jsx";
+import {Tic} from "./Tic.jsx";
 import { BrowserRouter as Router,
         Route,
         Link,
         IndexRoute,
         Switch,
         browserHistory } from 'react-router-dom';
-
-class Header extends React.Component {
-    render () {
-        const style = {
-            listStyleType: 'none',
-            margin: '0',
-            padding: '0',
-            overflow: 'hidden',
-            backgroundColor: '#333'
-        };
-        
-        const liStyle = {
-            float: 'left',
-            borderRight: "1px solid #bbb"
-        };
-        
-        return (
-            <div>
-                <ul style={style}>
-                    <li style={liStyle}><Link exact to="/" activeClassName='.active'>Home</Link></li>
-                    <li style={liStyle}><Link to="/twitch" activeClassName='.active'>Twitch</Link></li>
-                    <li style={liStyle}><Link to="/wiki" activeClassName='.active'>Wiki</Link></li>
-                    <li style={liStyle}><Link to="/weather" activeClassName='.active'>Weather</Link></li>
-                    <li style={liStyle}><Link to="/randquote" activeClassName='.active'>Quote</Link></li>
-                    <li style={liStyle}><Link to="/tribute" activeClassName='.active'>Tribute</Link></li>
-                </ul>
-            </div>
-        );
-    }
-}
 
 class Main extends React.Component {
     render () {
@@ -50,12 +22,17 @@ class Main extends React.Component {
                 <Switch>
                     <Route exact path='/'>
                         <DocumentTitle title="Alex McLeod's Portfolio">
-                            <Twitch/>
+                            <Tic/>
                         </DocumentTitle>
                     </Route>
                     <Route path='/index.html'>
                         <DocumentTitle title="Alex McLeod's Portfolio">
-                            <Twitch/>
+                            <Tic/>
+                        </DocumentTitle>
+                    </Route>
+                    <Route path='/tictactoe'>
+                        <DocumentTitle title="Tic Tac Toe">
+                            <Tic/>
                         </DocumentTitle>
                     </Route>
                     <Route path='/twitch'>

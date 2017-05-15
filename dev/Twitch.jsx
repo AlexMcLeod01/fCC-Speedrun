@@ -14,7 +14,6 @@ export class Twitch extends React.Component {
             <div>
                 <Title text="Currently Twitching"/>
                 <Container/>
-                <Title text="Note: Twitch changed their API, and I'm not registering for a Client ID."/>
             </div>
         );
     }

@@ -21,6 +21,8 @@ export class Header extends React.Component {
             <div>
                 <ul style={style}>
                     <li style={liStyle}><Link exact to="/" activeClassName='.active'>Home</Link></li>
+                    <li style={liStyle}><Link to="/leader" activeClassName='.active'>Leader</Link></li>
+                    <li style={liStyle}><Link to="/markdown" activeClassName='.active'>Markdown</Link></li>
                     <li style={liStyle}><Link to="/tictactoe" activeClassName='.active'>Tic Tac Toe</Link></li>
                     <li style={liStyle}><Link to="/twitch" activeClassName='.active'>Twitch</Link></li>
                     <li style={liStyle}><Link to="/wiki" activeClassName='.active'>Wiki</Link></li>

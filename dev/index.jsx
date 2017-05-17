@@ -8,6 +8,8 @@ import {Weather} from "./Weather.jsx";
 import {Wikipedia} from "./Wikipedia.jsx";
 import {Twitch} from "./Twitch.jsx";
 import {Tic} from "./Tic.jsx";
+import {Markdown} from "./Markdown.jsx";
+import {Leader} from "./Leader.jsx";
 import { BrowserRouter as Router,
         Route,
         Link,
@@ -22,12 +24,22 @@ class Main extends React.Component {
                 <Switch>
                     <Route exact path='/'>
                         <DocumentTitle title="Alex McLeod's Portfolio">
-                            <Tic/>
+                            <Leader/>
                         </DocumentTitle>
                     </Route>
                     <Route path='/index.html'>
                         <DocumentTitle title="Alex McLeod's Portfolio">
-                            <Tic/>
+                            <Leader/>
+                        </DocumentTitle>
+                    </Route>
+                    <Route path='/leader'>
+                        <DocumentTitle title="fCC Camper Leaderboard">
+                            <Leader/>
+                        </DocumentTitle>
+                    </Route>
+                    <Route path='/markdown'>
+                        <DocumentTitle title="Markdown Previewer">
+                            <Markdown/>
                         </DocumentTitle>
                     </Route>
                     <Route path='/tictactoe'>

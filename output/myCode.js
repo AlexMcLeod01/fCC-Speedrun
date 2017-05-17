@@ -42265,6 +42265,8 @@ var _reactDom = __webpack_require__(13);
 
 var _Title = __webpack_require__(22);
 
+var _Button = __webpack_require__(64);
+
 var _jquery = __webpack_require__(28);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -42280,13 +42282,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Leader = exports.Leader = function (_React$Component) {
     _inherits(Leader, _React$Component);
 
-    function Leader() {
+    function Leader(props) {
         _classCallCheck(this, Leader);
 
-        return _possibleConstructorReturn(this, (Leader.__proto__ || Object.getPrototypeOf(Leader)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Leader.__proto__ || Object.getPrototypeOf(Leader)).call(this, props));
+
+        _this.state = {
+            text: "All Time",
+            change: 1
+        };
+        _this.onClick = _this.onClick.bind(_this);
+        return _this;
     }
 
     _createClass(Leader, [{
+        key: "onClick",
+        value: function onClick() {
+            if (this.state.text == "All Time") {
+                this.setState({
+                    text: "Recent",
+                    change: 2
+                });
+            } else {
+                this.setState({
+                    text: "All Time",
+                    change: 1
+                });
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             var style = {
@@ -42294,29 +42318,27 @@ var Leader = exports.Leader = function (_React$Component) {
                 height: '1000vh'
             };
 
+            var innerSty = {
+                display: 'flex',
+                justifyContent: 'center'
+            };
+
             return _react2.default.createElement(
                 "div",
                 { style: style },
                 _react2.default.createElement(_Title.Title, { text: "fCC Leaderboard" }),
-                _react2.default.createElement(Container, null)
+                _react2.default.createElement(
+                    "div",
+                    { style: innerSty, onClick: this.onClick },
+                    _react2.default.createElement(_Button.Button, { id: "Switcher", text: this.state.text })
+                ),
+                _react2.default.createElement(Container, { change: this.state.change })
             );
         }
     }]);
 
     return Leader;
 }(_react2.default.Component);
-
-//var data = [];
-
-var fillInCampers = function fillInCampers(array) {
-    var data = [];
-    data.push(_react2.default.createElement(Row, { number: "#", name: "Camper Name", month: "Last 30 Days", allTime: "All Time Points" }));
-    for (var i = 0; i < 101; i++) {
-        var x = array[i];
-        data.push(_react2.default.createElement(Row, { key: i, number: i, name: x.username, month: x.recent, allTime: x.alltime }));
-    }
-    return data;
-};
 
 var Container = function (_React$Component2) {
     _inherits(Container, _React$Component2);
@@ -42332,55 +42354,42 @@ var Container = function (_React$Component2) {
         }
         _this2.state = {
             monthlyJSON: x,
-            allTimeJSON: x,
-            display: fillInCampers(x)
+            allTimeJSON: x
         };
-        var that = _this2;
+        _this2.fillInCampers = _this2.fillInCampers.bind(_this2);
         return _this2;
     }
 
     _createClass(Container, [{
+        key: "fillInCampers",
+        value: function fillInCampers() {
+            var array;
+            if (this.props.change == 1) {
+                array = this.state.monthlyJSON;
+            } else {
+                array = this.state.allTimeJSON;
+            }
+            var data = [],
+                x;
+            data.push(_react2.default.createElement(Row, { number: "#", name: "Camper Name", month: "Last 30 Days", allTime: "All Time Points" }));
+            for (var i = 0; i < 100; i++) {
+                x = array[i];
+                console.log(Object.keys(x));
+                data.push(_react2.default.createElement(Row, { key: "a" + i, number: i + 1, name: x.username, month: x.recent, allTime: x.alltime }));
+            }
+            return data;
+        }
+    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            that.getData().then(that.setState({
-                display: fillInCampers(that.monthlyJSON)
-            }));
-        }
-    }, {
-        key: "setMon",
-        value: function setMon(data, data2) {
-            this.setState({
-                monthlyJSON: data,
-                allTimeJSON: data2,
-                display: fillInCampers(data)
-            });
-        }
-    }, {
-        key: "getData",
-        value: function getData() {
+            var that = this;
             var url = "https://fcctop100.herokuapp.com/api/fccusers/top/recent",
                 url2 = "https://fcctop100.herokuapp.com/api/fccusers/top/alltime";
-            fetch(url).then(function (res) {
-                if (res.status !== 200) {
-                    console.error("ERROR");
-                    return;
-                }
-                res.json().then(function (dat) {
-                    that.setState({
-                        monthlyJSON: dat
-                    });
-                });
+            _jquery2.default.getJSON(url, function (response) {
+                that.setState({ monthlyJSON: response });
             });
-            fetch(url2).then(function (res) {
-                if (res.status !== 200) {
-                    console.error("ERROR");
-                    return;
-                }
-                res.json().then(function (dat) {
-                    that.setState({
-                        allTimeJSON: dat
-                    });
-                });
+            _jquery2.default.getJSON(url2, function (response) {
+                that.setState({ allTimeJSON: response });
             });
         }
     }, {
@@ -42394,15 +42403,17 @@ var Container = function (_React$Component2) {
                 fontSize: '20px',
                 marginLeft: 'auto',
                 marginRight: 'auto',
+                marginTop: '20px',
                 display: 'flex',
                 flexDirextion: 'column',
                 flexWrap: 'wrap'
             };
-            var data = fillInCampers(this.state.monthlyJSON);
+            var data = this.fillInCampers();
+
             return _react2.default.createElement(
                 "div",
                 { style: style },
-                this.state.display
+                data
             );
         }
     }]);
@@ -42413,10 +42424,10 @@ var Container = function (_React$Component2) {
 var Row = function (_React$Component3) {
     _inherits(Row, _React$Component3);
 
-    function Row() {
+    function Row(props) {
         _classCallCheck(this, Row);
 
-        return _possibleConstructorReturn(this, (Row.__proto__ || Object.getPrototypeOf(Row)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Row.__proto__ || Object.getPrototypeOf(Row)).call(this, props));
     }
 
     _createClass(Row, [{

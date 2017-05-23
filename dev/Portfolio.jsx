@@ -5,6 +5,17 @@ import { Button } from "./Button.jsx";
 
 export class Portfolio extends React.Component {
     render () {
+        return (
+            <div>
+                <Header/>
+                <Container/>
+            </div>
+        );
+    }
+}
+
+class Container extends React.Component {
+    render () {
         const linkSty = {
             color: 'white',
             textDecoration: 'none'
@@ -18,11 +29,19 @@ export class Portfolio extends React.Component {
             marginLeft: 'auto',
             marginRight: 'auto',
             display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
             width: '50vw',
             marginTop: '30px'
         };
+        
+        const flex1 = {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+        };
+        
+        const flex2 = {
+            flexFlow: 'row wrap',
+            alignItems: 'center'
+        }
         
         const middleLine = {
             border: 'solid 2px',
@@ -36,12 +55,16 @@ export class Portfolio extends React.Component {
         return (
             <div style={back}>
                 <Title/>
-                <div style={textArea}>
+                <div style={Object.assign({}, textArea, flex1)}>
                     <Image img="Boom.jpg"/>
                     <div style={middleLine}></div>
-                    <TextBox/>
+                    <TextBoxPast/>
                 </div>
-                <SkillList/>
+                <div style={Object.assign({}, textArea, flex2)}>
+                    <TextBoxPresent/>
+                    <TextBoxCTA/>
+                    <SkillList/>
+                </div>
                 <Projects/>
                 <Contact/>
             </div>
@@ -78,6 +101,7 @@ class Title extends React.Component {
         return(
             <div style={style}>
                 <h1>About Me</h1>
+                <a name="about"/>
                 <Divider/>
             </div>
         );
@@ -101,23 +125,53 @@ class Image extends React.Component {
     }
 }
 
-class TextBox extends React.Component {
+class TextBoxPast extends React.Component {
     render () {
         return (
             <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p> 
+                <p>When I was a kid, I first learned to program in Basic. In high school, I learned Science and Math by programming the concepts into my TI-83+. In the years since, I've worked in all sorts of places: a defense contractor, a BMW Megafactory, and three of the oldest companies in the country, just to name a few. I've moved around a lot, gotten married, and learned Kung Fu and Qigong from a genuine master, and the best teacher I've ever encountered. Still, I was missing the challenge of programming.</p>
             </div>
         );
     }
 }
 
+class TextBoxPresent extends React.Component {
+    render () {
+        return (
+            <div>
+                <p>To satisfy my need for programming, I started learning Full-Stack Javascript Web Development. This page is even written in a framework that some are calling the future: ReactJS. It may or may not be the future of web development, but it is a great framework for someone who thinks the way I do. It forces you to break everything into tiny pieces and build by arranging the pieces into larger more complex pieces that do more and more complex things.</p>
+            </div>
+        );
+    }
+}
+
+class TextBoxCTA extends React.Component {
+    render () {
+        const style = {
+            width: '25vw',
+            textAlign: 'left'
+        };
+        
+        const linkSty = {
+            color: 'd75e76',
+            textDecorationStyle: 'wavy'
+        };
+        
+        return (
+            <div style={style}>
+                <p>At my <a style={linkSty} href="javascriptjunky.wordpress.com">blog</a>, I break down the lessons I learn as I develop various projects, or learn about new Javascript features and frameworks. On this site, I have samples of my work. You could also <a style={linkSty} href="mailto:alexmcleod01+portfolio@gmail.com">contact</a> me if you are looking for a web developer who specializes in React.</p>
+            </div>
+        );
+    }
+}
+
+
+
 class SkillList extends React.Component {
     render () {
         const style = {
             width: '25vw',
-            textAlign: 'center',
-            marginLeft: 'auto',
-            marginRight: 'auto'
+            textAlign: 'center'
         };
         
         const listSty = {
@@ -170,6 +224,7 @@ class Projects extends React.Component {
         
         return (
             <div style={center}>
+                <a name="work"/>
                 <Divider/>
                 <h2>My Work</h2>
                 <div style={style}>
@@ -210,6 +265,7 @@ class Contact extends React.Component {
         const style = {
             marginLeft: 'auto',
             marginRight: 'auto',
+            width: '204px',
             display: 'flex',
             flexDirection: 'row',
             justfiyContent: 'center',
@@ -226,6 +282,7 @@ class Contact extends React.Component {
         
         return (
             <div style={center}>
+                <a name="contact"/>
                 <Divider/>
                 <h2>Contact Me!</h2>
                 <div style={style}>
@@ -251,6 +308,36 @@ class SocialIcon extends React.Component {
             <a href={this.props.link} style={style}>
                 <img src={this.props.img} alt={this.props.alt} style={style}/>
             </a>
+        );
+    }
+}
+
+class Header extends React.Component {
+    render () {
+        const style = {
+            listStyleType: 'none',
+            margin: '0',
+            padding: '0',
+            overflow: 'hidden',
+            backgroundColor: '#333',
+            width: '100vw',
+            position: 'fixed'
+        };
+        
+        const liStyle = {
+            float: 'left',
+            borderRight: "1px solid #bbb"
+        };
+        
+        return (
+            <div>
+                <ul style={style}>
+                    <li style={liStyle}><a href="#about" activeClassName='.active'>ABOUT</a></li>
+                    <li style={liStyle}><a href="#work" activeClassName='.active'>WORK</a></li>
+                    <li style={liStyle}><a href="#contact" activeClassName='.active'>CONTACT</a></li>
+                    <li style={liStyle}><a href="https://javascriptjunky.wordpress.com">BLOG</a></li>
+                </ul>
+            </div>
         );
     }
 }

@@ -42654,6 +42654,30 @@ var Portfolio = exports.Portfolio = function (_React$Component) {
     _createClass(Portfolio, [{
         key: "render",
         value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(Header, null),
+                _react2.default.createElement(Container, null)
+            );
+        }
+    }]);
+
+    return Portfolio;
+}(_react2.default.Component);
+
+var Container = function (_React$Component2) {
+    _inherits(Container, _React$Component2);
+
+    function Container() {
+        _classCallCheck(this, Container);
+
+        return _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).apply(this, arguments));
+    }
+
+    _createClass(Container, [{
+        key: "render",
+        value: function render() {
             var linkSty = {
                 color: 'white',
                 textDecoration: 'none'
@@ -42667,10 +42691,18 @@ var Portfolio = exports.Portfolio = function (_React$Component) {
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
                 width: '50vw',
                 marginTop: '30px'
+            };
+
+            var flex1 = {
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+            };
+
+            var flex2 = {
+                flexFlow: 'row wrap',
+                alignItems: 'center'
             };
 
             var middleLine = {
@@ -42688,23 +42720,29 @@ var Portfolio = exports.Portfolio = function (_React$Component) {
                 _react2.default.createElement(Title, null),
                 _react2.default.createElement(
                     "div",
-                    { style: textArea },
+                    { style: Object.assign({}, textArea, flex1) },
                     _react2.default.createElement(Image, { img: "Boom.jpg" }),
                     _react2.default.createElement("div", { style: middleLine }),
-                    _react2.default.createElement(TextBox, null)
+                    _react2.default.createElement(TextBoxPast, null)
                 ),
-                _react2.default.createElement(SkillList, null),
+                _react2.default.createElement(
+                    "div",
+                    { style: Object.assign({}, textArea, flex2) },
+                    _react2.default.createElement(TextBoxPresent, null),
+                    _react2.default.createElement(TextBoxCTA, null),
+                    _react2.default.createElement(SkillList, null)
+                ),
                 _react2.default.createElement(Projects, null),
                 _react2.default.createElement(Contact, null)
             );
         }
     }]);
 
-    return Portfolio;
+    return Container;
 }(_react2.default.Component);
 
-var Divider = function (_React$Component2) {
-    _inherits(Divider, _React$Component2);
+var Divider = function (_React$Component3) {
+    _inherits(Divider, _React$Component3);
 
     function Divider() {
         _classCallCheck(this, Divider);
@@ -42730,8 +42768,8 @@ var Divider = function (_React$Component2) {
     return Divider;
 }(_react2.default.Component);
 
-var Title = function (_React$Component3) {
-    _inherits(Title, _React$Component3);
+var Title = function (_React$Component4) {
+    _inherits(Title, _React$Component4);
 
     function Title() {
         _classCallCheck(this, Title);
@@ -42757,6 +42795,7 @@ var Title = function (_React$Component3) {
                     null,
                     "About Me"
                 ),
+                _react2.default.createElement("a", { name: "about" }),
                 _react2.default.createElement(Divider, null)
             );
         }
@@ -42765,8 +42804,8 @@ var Title = function (_React$Component3) {
     return Title;
 }(_react2.default.Component);
 
-var Image = function (_React$Component4) {
-    _inherits(Image, _React$Component4);
+var Image = function (_React$Component5) {
+    _inherits(Image, _React$Component5);
 
     function Image() {
         _classCallCheck(this, Image);
@@ -42795,16 +42834,16 @@ var Image = function (_React$Component4) {
     return Image;
 }(_react2.default.Component);
 
-var TextBox = function (_React$Component5) {
-    _inherits(TextBox, _React$Component5);
+var TextBoxPast = function (_React$Component6) {
+    _inherits(TextBoxPast, _React$Component6);
 
-    function TextBox() {
-        _classCallCheck(this, TextBox);
+    function TextBoxPast() {
+        _classCallCheck(this, TextBoxPast);
 
-        return _possibleConstructorReturn(this, (TextBox.__proto__ || Object.getPrototypeOf(TextBox)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (TextBoxPast.__proto__ || Object.getPrototypeOf(TextBoxPast)).apply(this, arguments));
     }
 
-    _createClass(TextBox, [{
+    _createClass(TextBoxPast, [{
         key: "render",
         value: function render() {
             return _react2.default.createElement(
@@ -42813,17 +42852,93 @@ var TextBox = function (_React$Component5) {
                 _react2.default.createElement(
                     "p",
                     null,
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc."
+                    "When I was a kid, I first learned to program in Basic. In high school, I learned Science and Math by programming the concepts into my TI-83+. In the years since, I've worked in all sorts of places: a defense contractor, a BMW Megafactory, and three of the oldest companies in the country, just to name a few. I've moved around a lot, gotten married, and learned Kung Fu and Qigong from a genuine master, and the best teacher I've ever encountered. Still, I was missing the challenge of programming."
                 )
             );
         }
     }]);
 
-    return TextBox;
+    return TextBoxPast;
 }(_react2.default.Component);
 
-var SkillList = function (_React$Component6) {
-    _inherits(SkillList, _React$Component6);
+var TextBoxPresent = function (_React$Component7) {
+    _inherits(TextBoxPresent, _React$Component7);
+
+    function TextBoxPresent() {
+        _classCallCheck(this, TextBoxPresent);
+
+        return _possibleConstructorReturn(this, (TextBoxPresent.__proto__ || Object.getPrototypeOf(TextBoxPresent)).apply(this, arguments));
+    }
+
+    _createClass(TextBoxPresent, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "To satisfy my need for programming, I started learning Full-Stack Javascript Web Development. This page is even written in a framework that some are calling the future: ReactJS. It may or may not be the future of web development, but it is a great framework for someone who thinks the way I do. It forces you to break everything into tiny pieces and build by arranging the pieces into larger more complex pieces that do more and more complex things."
+                )
+            );
+        }
+    }]);
+
+    return TextBoxPresent;
+}(_react2.default.Component);
+
+var TextBoxCTA = function (_React$Component8) {
+    _inherits(TextBoxCTA, _React$Component8);
+
+    function TextBoxCTA() {
+        _classCallCheck(this, TextBoxCTA);
+
+        return _possibleConstructorReturn(this, (TextBoxCTA.__proto__ || Object.getPrototypeOf(TextBoxCTA)).apply(this, arguments));
+    }
+
+    _createClass(TextBoxCTA, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                width: '25vw',
+                textAlign: 'left'
+            };
+
+            var linkSty = {
+                color: 'd75e76',
+                textDecorationStyle: 'wavy'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "At my ",
+                    _react2.default.createElement(
+                        "a",
+                        { style: linkSty, href: "javascriptjunky.wordpress.com" },
+                        "blog"
+                    ),
+                    ", I break down the lessons I learn as I develop various projects, or learn about new Javascript features and frameworks. On this site, I have samples of my work. You could also ",
+                    _react2.default.createElement(
+                        "a",
+                        { style: linkSty, href: "mailto:alexmcleod01+portfolio@gmail.com" },
+                        "contact"
+                    ),
+                    " me if you are looking for a web developer who specializes in React."
+                )
+            );
+        }
+    }]);
+
+    return TextBoxCTA;
+}(_react2.default.Component);
+
+var SkillList = function (_React$Component9) {
+    _inherits(SkillList, _React$Component9);
 
     function SkillList() {
         _classCallCheck(this, SkillList);
@@ -42836,9 +42951,7 @@ var SkillList = function (_React$Component6) {
         value: function render() {
             var style = {
                 width: '25vw',
-                textAlign: 'center',
-                marginLeft: 'auto',
-                marginRight: 'auto'
+                textAlign: 'center'
             };
 
             var listSty = {
@@ -42915,8 +43028,8 @@ var SkillList = function (_React$Component6) {
     return SkillList;
 }(_react2.default.Component);
 
-var Projects = function (_React$Component7) {
-    _inherits(Projects, _React$Component7);
+var Projects = function (_React$Component10) {
+    _inherits(Projects, _React$Component10);
 
     function Projects() {
         _classCallCheck(this, Projects);
@@ -42943,6 +43056,7 @@ var Projects = function (_React$Component7) {
             return _react2.default.createElement(
                 "div",
                 { style: center },
+                _react2.default.createElement("a", { name: "work" }),
                 _react2.default.createElement(Divider, null),
                 _react2.default.createElement(
                     "h2",
@@ -42968,8 +43082,8 @@ var Projects = function (_React$Component7) {
     return Projects;
 }(_react2.default.Component);
 
-var ProjectImage = function (_React$Component8) {
-    _inherits(ProjectImage, _React$Component8);
+var ProjectImage = function (_React$Component11) {
+    _inherits(ProjectImage, _React$Component11);
 
     function ProjectImage() {
         _classCallCheck(this, ProjectImage);
@@ -43001,8 +43115,8 @@ var ProjectImage = function (_React$Component8) {
     return ProjectImage;
 }(_react2.default.Component);
 
-var Contact = function (_React$Component9) {
-    _inherits(Contact, _React$Component9);
+var Contact = function (_React$Component12) {
+    _inherits(Contact, _React$Component12);
 
     function Contact() {
         _classCallCheck(this, Contact);
@@ -43016,6 +43130,7 @@ var Contact = function (_React$Component9) {
             var style = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
+                width: '204px',
                 display: 'flex',
                 flexDirection: 'row',
                 justfiyContent: 'center',
@@ -43033,6 +43148,7 @@ var Contact = function (_React$Component9) {
             return _react2.default.createElement(
                 "div",
                 { style: center },
+                _react2.default.createElement("a", { name: "contact" }),
                 _react2.default.createElement(Divider, null),
                 _react2.default.createElement(
                     "h2",
@@ -43054,8 +43170,8 @@ var Contact = function (_React$Component9) {
     return Contact;
 }(_react2.default.Component);
 
-var SocialIcon = function (_React$Component10) {
-    _inherits(SocialIcon, _React$Component10);
+var SocialIcon = function (_React$Component13) {
+    _inherits(SocialIcon, _React$Component13);
 
     function SocialIcon() {
         _classCallCheck(this, SocialIcon);
@@ -43081,6 +43197,83 @@ var SocialIcon = function (_React$Component10) {
     }]);
 
     return SocialIcon;
+}(_react2.default.Component);
+
+var Header = function (_React$Component14) {
+    _inherits(Header, _React$Component14);
+
+    function Header() {
+        _classCallCheck(this, Header);
+
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    }
+
+    _createClass(Header, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                listStyleType: 'none',
+                margin: '0',
+                padding: '0',
+                overflow: 'hidden',
+                backgroundColor: '#333',
+                width: '100vw',
+                position: 'fixed'
+            };
+
+            var liStyle = {
+                float: 'left',
+                borderRight: "1px solid #bbb"
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "ul",
+                    { style: style },
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            "a",
+                            { href: "#about", activeClassName: ".active" },
+                            "ABOUT"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            "a",
+                            { href: "#work", activeClassName: ".active" },
+                            "WORK"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            "a",
+                            { href: "#contact", activeClassName: ".active" },
+                            "CONTACT"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liStyle },
+                        _react2.default.createElement(
+                            "a",
+                            { href: "https://javascriptjunky.wordpress.com" },
+                            "BLOG"
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Header;
 }(_react2.default.Component);
 
 /***/ }),

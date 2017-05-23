@@ -5,12 +5,78 @@ import {Title} from "./Title.jsx";
 import {Header} from "./Header.jsx";
 
 export class Weather extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            lat: 0,
+            lon: 0,
+            city: 0,
+            State: 0,
+            country: 0,
+            temp: 0,
+            icon: 0
+        }
+        this.getLocation = this.getLocation.bind(this);
+        this.getCity = this.getCity.bind(this);
+        this.getWeather = this.getWeather.bind(this);
+    }
     componentDidMount() {
-        getLocation();
+        this.getLocation();
     }
     
     componentDidUpdate() {
-        getLocation();
+        if (this.state.lat === 0 && this.state.lon === 0) {
+            this.getLocation();
+        } else if (this.state.city === 0) {
+            this.getCity();
+        } else {
+            this.getWeather();
+        }
+    }
+    
+    getLocation() {
+        var GoogleAPIKey = "AIzaSyCq7nx_oYrKTed_zUceAA7Y7JOkIxC-AiU";
+        var locationURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + GoogleAPIKey;
+        var that = this;
+        fetch(locationURL, {method: 'post'})
+            .then(function(res) {return res.json();})
+            .then(function(data) {
+                that.setState({
+                    lat: data.location.lat,
+                    lon: data.location.lng
+                });
+            })
+            .catch(function(error) {
+                console.log("Request Failed", error);
+            })
+    }
+           
+    getCity() {
+        var GoogleAPIKey = "AIzaSyCzjT1ckluVgkcJ9K6UHswDzLrbINUaKYY";
+        var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+this.state.lat+","+this.state.lon+"&key="+GoogleAPIKey;
+        var that = this;
+        $.getJSON(geocodeURL, function(data) {
+            var obj = data.results[0].address_components;
+            that.setState({
+                city: obj[3].short_name,
+                State: obj[5].short_name,
+                country: obj[6].short_name
+            });
+        });
+    }
+    
+    getWeather() {
+        const API_KEY = "ac3602900b117851d300d71e6a7329ec";
+        const URL = "https://api.darksky.net/forecast/" + API_KEY + "/" + this.state.lat + "," + this.state.lon;
+        var that = this;
+        fetch(URL, {mode: 'no-cors'})
+            .then(function(res) {return res.json().then(function(data) {
+                var obj = data.currently;
+                that.setState({
+                    temp: obj.temperature,
+                    icon: obj.icon
+                })
+            })})
     }
     
     render () {        
@@ -18,9 +84,10 @@ export class Weather extends React.Component {
             <div>
                 <Header/>
                 <Title text="Local Weather"/>
-                <Icon/>
-                <Temperature/>
-                <Location/>
+                <Icon icon={this.state.icon}/>
+                <Temperature temp={this.state.temp}/>
+                <Location city={this.state.city} State={this.state.State} country={this.state.country}/>
+                <Powered/>
             </div>            
         );
     }
@@ -34,8 +101,55 @@ class Icon extends React.Component {
             marginTop: '60px'
         };
         
+        var icon;
+        switch (this.props.icon) {
+            case 'clear-day':
+                icon = "wi-day-sunny";
+                break;
+            case 'clear-night':
+                icon = "wi-night-clear";
+                break;
+            case 'rain':
+                icon = "wi-rain";
+                break;
+            case 'snow':
+                icon = "wi-snow";
+                break;
+            case 'sleet':
+                icon = "wi-sleet";
+                break;
+            case 'wind':
+                icon = "wi-strong-wind";
+                break;
+            case 'fog':
+                icon = "wi-fog";
+                break;
+            case 'cloudy':
+                icon = "wi-cloudy";
+                break;
+            case 'partly-cloudy-day':
+                icon = "wi-day-cloudy";
+                break;
+            case 'partly-cloudy-night':
+                icon = "wi-night-partly-cloudy";
+                break;
+            case 'hail':
+                icon = "wi-hail";
+                break;
+            case 'thunderstorm':
+                icon = "wi-storm-showers";
+                break;
+            case 'tornado':
+                icon = "wi-tornado";
+                break;
+            default:
+                icon = "wi-refresh";
+                break;
+        }
+        
         return (
             <div id="weather-icon" style={style}>
+                <i className={"wi " + icon}/>
             </div>
         );
     }
@@ -50,7 +164,7 @@ class Temperature extends React.Component {
         };
         
         return (
-            <div id="current-temp" style={style}>
+            <div id="current-temp" style={style}>{this.props.temp}
             </div>
         );
     }
@@ -66,7 +180,24 @@ class Location extends React.Component {
         
         return (
             <div id="location" style={style}>
+                {this.props.city + ", " + this.props.State + ", " + this.props.country}
             </div>
+        );
+    }
+}
+
+class Powered extends React.Component {
+    render () {
+        const style = {
+            fontSize: 'small',
+            marginTop: '100px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            textAlign: 'center'
+        };
+        
+        return (
+            <div><a href="https://darksky.net/poweredby/">Powered By Dark Sky</a></div>
         );
     }
 }
@@ -85,26 +216,7 @@ function kelvinToFah(kel) {
   return Math.round(10 * ((kelvinToCel(kel) * 1.8) + 32))/10;
 }
 
-var getLocation = function() {
-  var zip, country, city, region;
-  var data = $.getJSON("http://freegeoip.net/json/", function(data) {
-    city = data.city;
-    region = data.region_code;
-    zip = data.zip_code;
-    country = data.country_code;
-    //add location to page, to make sure it's right
-    $("#location").html(city + ", " + region);
-    var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "," + country + "&APPID=e36e63677b6306e1f0fb7c631c2cc092"
-    $.getJSON(url, function(dat) {
-      var icon, temp, weather, stat;
-      //get weather icon
-      icon = "http://openweathermap.org/img/w/" + dat.weather[0].icon;
-      //add icon to page
-      $("#weather-icon").html("<img src=\"" + icon + ".png\">");
-      //get temperature
-      stat = true;
-      temp = dat.main.temp;
-      //set temperature
+/*
       function updateTemp() {
         if (stat) {
           $("#current-temp").html(kelvinToFah(temp) + "&deg;F");
@@ -130,3 +242,4 @@ var getLocation = function() {
     });
   });
 }
+*/

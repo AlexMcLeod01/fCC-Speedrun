@@ -23047,21 +23047,89 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Weather = exports.Weather = function (_React$Component) {
     _inherits(Weather, _React$Component);
 
-    function Weather() {
+    function Weather(props) {
         _classCallCheck(this, Weather);
 
-        return _possibleConstructorReturn(this, (Weather.__proto__ || Object.getPrototypeOf(Weather)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Weather.__proto__ || Object.getPrototypeOf(Weather)).call(this, props));
+
+        _this.state = {
+            lat: 0,
+            lon: 0,
+            city: 0,
+            State: 0,
+            country: 0,
+            temp: 0,
+            icon: 0
+        };
+        _this.getLocation = _this.getLocation.bind(_this);
+        _this.getCity = _this.getCity.bind(_this);
+        _this.getWeather = _this.getWeather.bind(_this);
+        return _this;
     }
 
     _createClass(Weather, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            getLocation();
+            this.getLocation();
         }
     }, {
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
-            getLocation();
+            if (this.state.lat === 0 && this.state.lon === 0) {
+                this.getLocation();
+            } else if (this.state.city === 0) {
+                this.getCity();
+            } else {
+                this.getWeather();
+            }
+        }
+    }, {
+        key: "getLocation",
+        value: function getLocation() {
+            var GoogleAPIKey = "AIzaSyCq7nx_oYrKTed_zUceAA7Y7JOkIxC-AiU";
+            var locationURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + GoogleAPIKey;
+            var that = this;
+            fetch(locationURL, { method: 'post' }).then(function (res) {
+                return res.json();
+            }).then(function (data) {
+                that.setState({
+                    lat: data.location.lat,
+                    lon: data.location.lng
+                });
+            }).catch(function (error) {
+                console.log("Request Failed", error);
+            });
+        }
+    }, {
+        key: "getCity",
+        value: function getCity() {
+            var GoogleAPIKey = "AIzaSyCzjT1ckluVgkcJ9K6UHswDzLrbINUaKYY";
+            var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.state.lat + "," + this.state.lon + "&key=" + GoogleAPIKey;
+            var that = this;
+            _jquery2.default.getJSON(geocodeURL, function (data) {
+                var obj = data.results[0].address_components;
+                that.setState({
+                    city: obj[3].short_name,
+                    State: obj[5].short_name,
+                    country: obj[6].short_name
+                });
+            });
+        }
+    }, {
+        key: "getWeather",
+        value: function getWeather() {
+            var API_KEY = "ac3602900b117851d300d71e6a7329ec";
+            var URL = "https://api.darksky.net/forecast/" + API_KEY + "/" + this.state.lat + "," + this.state.lon;
+            var that = this;
+            fetch(URL, { mode: 'no-cors' }).then(function (res) {
+                return res.json().then(function (data) {
+                    var obj = data.currently;
+                    that.setState({
+                        temp: obj.temperature,
+                        icon: obj.icon
+                    });
+                });
+            });
         }
     }, {
         key: "render",
@@ -23071,9 +23139,10 @@ var Weather = exports.Weather = function (_React$Component) {
                 null,
                 _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Local Weather" }),
-                _react2.default.createElement(Icon, null),
-                _react2.default.createElement(Temperature, null),
-                _react2.default.createElement(Location, null)
+                _react2.default.createElement(Icon, { icon: this.state.icon }),
+                _react2.default.createElement(Temperature, { temp: this.state.temp }),
+                _react2.default.createElement(Location, { city: this.state.city, State: this.state.State, country: this.state.country }),
+                _react2.default.createElement(Powered, null)
             );
         }
     }]);
@@ -23099,7 +23168,57 @@ var Icon = function (_React$Component2) {
                 marginTop: '60px'
             };
 
-            return _react2.default.createElement("div", { id: "weather-icon", style: style });
+            var icon;
+            switch (this.props.icon) {
+                case 'clear-day':
+                    icon = "wi-day-sunny";
+                    break;
+                case 'clear-night':
+                    icon = "wi-night-clear";
+                    break;
+                case 'rain':
+                    icon = "wi-rain";
+                    break;
+                case 'snow':
+                    icon = "wi-snow";
+                    break;
+                case 'sleet':
+                    icon = "wi-sleet";
+                    break;
+                case 'wind':
+                    icon = "wi-strong-wind";
+                    break;
+                case 'fog':
+                    icon = "wi-fog";
+                    break;
+                case 'cloudy':
+                    icon = "wi-cloudy";
+                    break;
+                case 'partly-cloudy-day':
+                    icon = "wi-day-cloudy";
+                    break;
+                case 'partly-cloudy-night':
+                    icon = "wi-night-partly-cloudy";
+                    break;
+                case 'hail':
+                    icon = "wi-hail";
+                    break;
+                case 'thunderstorm':
+                    icon = "wi-storm-showers";
+                    break;
+                case 'tornado':
+                    icon = "wi-tornado";
+                    break;
+                default:
+                    icon = "wi-refresh";
+                    break;
+            }
+
+            return _react2.default.createElement(
+                "div",
+                { id: "weather-icon", style: style },
+                _react2.default.createElement("i", { className: "wi " + icon })
+            );
         }
     }]);
 
@@ -23124,7 +23243,11 @@ var Temperature = function (_React$Component3) {
                 fontSize: '30px'
             };
 
-            return _react2.default.createElement("div", { id: "current-temp", style: style });
+            return _react2.default.createElement(
+                "div",
+                { id: "current-temp", style: style },
+                this.props.temp
+            );
         }
     }]);
 
@@ -23149,11 +23272,50 @@ var Location = function (_React$Component4) {
                 fontSize: '30px'
             };
 
-            return _react2.default.createElement("div", { id: "location", style: style });
+            return _react2.default.createElement(
+                "div",
+                { id: "location", style: style },
+                this.props.city + ", " + this.props.State + ", " + this.props.country
+            );
         }
     }]);
 
     return Location;
+}(_react2.default.Component);
+
+var Powered = function (_React$Component5) {
+    _inherits(Powered, _React$Component5);
+
+    function Powered() {
+        _classCallCheck(this, Powered);
+
+        return _possibleConstructorReturn(this, (Powered.__proto__ || Object.getPrototypeOf(Powered)).apply(this, arguments));
+    }
+
+    _createClass(Powered, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                fontSize: 'small',
+                marginTop: '100px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                textAlign: 'center'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "a",
+                    { href: "https://darksky.net/poweredby/" },
+                    "Powered By Dark Sky"
+                )
+            );
+        }
+    }]);
+
+    return Powered;
 }(_react2.default.Component);
 
 /*
@@ -23171,51 +23333,33 @@ function kelvinToFah(kel) {
     return Math.round(10 * (kelvinToCel(kel) * 1.8 + 32)) / 10;
 }
 
-var getLocation = function getLocation() {
-    var zip, country, city, region;
-    var data = _jquery2.default.getJSON("http://freegeoip.net/json/", function (data) {
-        city = data.city;
-        region = data.region_code;
-        zip = data.zip_code;
-        country = data.country_code;
-        //add location to page, to make sure it's right
-        (0, _jquery2.default)("#location").html(city + ", " + region);
-        var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "," + country + "&APPID=e36e63677b6306e1f0fb7c631c2cc092";
-        _jquery2.default.getJSON(url, function (dat) {
-            var icon, temp, weather, stat;
-            //get weather icon
-            icon = "http://openweathermap.org/img/w/" + dat.weather[0].icon;
-            //add icon to page
-            (0, _jquery2.default)("#weather-icon").html("<img src=\"" + icon + ".png\">");
-            //get temperature
-            stat = true;
-            temp = dat.main.temp;
-            //set temperature
-            function updateTemp() {
-                if (stat) {
-                    (0, _jquery2.default)("#current-temp").html(kelvinToFah(temp) + "&deg;F");
-                } else {
-                    (0, _jquery2.default)("#current-temp").html(kelvinToCel(temp) + "&deg;C");
-                }
-            }
-            updateTemp();
-            //if temp clicked, change to celcius
-            (0, _jquery2.default)("#current-temp").on("click", function () {
-                if (stat) {
-                    stat = false;
-                } else {
-                    stat = true;
-                }
-                updateTemp();
-            });
-            //get current weather
-            weather = dat.weather[0].main;
-            //add weather to page
-            (0, _jquery2.default)("#current-weather").html(weather);
-            //alert(kelvinToCel(temp));
-        });
+/*
+      function updateTemp() {
+        if (stat) {
+          $("#current-temp").html(kelvinToFah(temp) + "&deg;F");
+        } else {
+          $("#current-temp").html(kelvinToCel(temp) + "&deg;C");
+        }
+      }
+      updateTemp();
+      //if temp clicked, change to celcius
+      $("#current-temp").on("click", function() {
+        if (stat) {
+          stat = false;
+        } else {
+          stat = true;
+        }
+        updateTemp();
+      });
+      //get current weather
+      weather = dat.weather[0].main;
+      //add weather to page
+      $("#current-weather").html(weather);
+      //alert(kelvinToCel(temp));
     });
-};
+  });
+}
+*/
 
 /***/ }),
 /* 106 */
@@ -23685,7 +23829,8 @@ var App = function (_React$Component3) {
                 backgroundColor: 'teal',
                 color: 'white',
                 height: '200vh',
-                width: '100vw'
+                width: '98.25vw',
+                fontSize: 'large'
             };
 
             return _react2.default.createElement(
@@ -42690,9 +42835,10 @@ var Container = function (_React$Component2) {
             var textArea = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
+                fontSize: 'large',
                 display: 'flex',
                 width: '50vw',
-                marginTop: '30px'
+                marginTop: '50px'
             };
 
             var flex1 = {
@@ -42702,16 +42848,17 @@ var Container = function (_React$Component2) {
 
             var flex2 = {
                 flexFlow: 'row wrap',
-                alignItems: 'center'
+                alignItems: 'center',
+                marginTop: '50px'
             };
 
             var middleLine = {
                 border: 'solid 2px',
-                height: '190px',
+                height: '200px',
                 width: '0px',
                 marginLeft: '40px',
                 marginRight: '15px',
-                marginTop: '20px'
+                marginTop: '40px'
             };
 
             return _react2.default.createElement(
@@ -42784,7 +42931,7 @@ var Title = function (_React$Component4) {
                 textAlign: 'center',
                 color: 'white',
                 fontFamily: 'Verdana',
-                paddingTop: '30px'
+                paddingTop: '50px'
             };
 
             return _react2.default.createElement(
@@ -42817,7 +42964,7 @@ var Image = function (_React$Component5) {
         key: "render",
         value: function render() {
             var style = {
-                width: '10vw',
+                width: '15vw',
                 border: 'solid 5px',
                 borderRadius: '50%',
                 marginTop: '40px'

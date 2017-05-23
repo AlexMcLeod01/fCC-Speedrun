@@ -28,9 +28,10 @@ class Container extends React.Component {
         const textArea = {
             marginLeft: 'auto',
             marginRight: 'auto',
+            fontSize: 'large',
             display: 'flex',
             width: '50vw',
-            marginTop: '30px'
+            marginTop: '50px'
         };
         
         const flex1 = {
@@ -40,16 +41,17 @@ class Container extends React.Component {
         
         const flex2 = {
             flexFlow: 'row wrap',
-            alignItems: 'center'
+            alignItems: 'center',
+            marginTop: '50px'
         }
         
         const middleLine = {
             border: 'solid 2px',
-            height: '190px',
+            height: '200px',
             width: '0px',
             marginLeft: '40px',
             marginRight: '15px',
-            marginTop: '20px'
+            marginTop: '40px'
         };
         
         return (
@@ -95,7 +97,7 @@ class Title extends React.Component {
             textAlign: 'center',
             color: 'white',
             fontFamily: 'Verdana',
-            paddingTop: '30px'
+            paddingTop: '50px'
         };
         
         return(
@@ -111,7 +113,7 @@ class Title extends React.Component {
 class Image extends React.Component {
     render () {
         const style = {
-            width: '10vw',
+            width: '15vw',
             border: 'solid 5px',
             borderRadius: '50%',
             marginTop: '40px'

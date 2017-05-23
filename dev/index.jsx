@@ -96,7 +96,8 @@ class App extends React.Component {
             backgroundColor: 'teal',
             color: 'white',
             height: '200vh',
-            width: '100vw'
+            width: '98.25vw',
+            fontSize: 'large'
         };
         
         return (

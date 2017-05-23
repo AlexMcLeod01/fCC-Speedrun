@@ -1,6 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import {Title} from "./Title.jsx";
+import {Header} from "./Header.jsx";
 import $ from "jquery";
 
 export class Twitch extends React.Component {
@@ -12,6 +13,7 @@ export class Twitch extends React.Component {
     render () {
         return (
             <div>
+                <Header/>
                 <Title text="Currently Twitching"/>
                 <Container/>
             </div>

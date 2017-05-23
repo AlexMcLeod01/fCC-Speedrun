@@ -7,7 +7,7 @@ export class Title extends React.Component {
             fontFamily: 'Verdana',
             fontSize: "28px",
             textAlign: 'center',
-            marginTop: '30px'
+            paddingTop: '30px'
         }
         
         return (

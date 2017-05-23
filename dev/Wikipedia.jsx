@@ -2,12 +2,14 @@ import React from "react";
 import {render} from "react-dom";
 import $ from "jquery";
 import {Title} from "./Title.jsx";
+import {Header} from "./Header.jsx";
 import {Button, ButtonLink} from "./Button.jsx";
 
 export class Wikipedia extends React.Component {
     render () {
         return (
             <div>
+                <Header/>
                 <Title text="Wikipedia Viewer"/>
                 <Results/>
                 <Input/>

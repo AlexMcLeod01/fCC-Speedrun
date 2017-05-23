@@ -10,6 +10,8 @@ import {Twitch} from "./Twitch.jsx";
 import {Tic} from "./Tic.jsx";
 import {Markdown} from "./Markdown.jsx";
 import {Leader} from "./Leader.jsx";
+import {Portfolio} from "./Portfolio.jsx";
+import ScrollToTop from "./ScrollToTop.jsx";
 import { BrowserRouter as Router,
         Route,
         Link,
@@ -24,12 +26,12 @@ class Main extends React.Component {
                 <Switch>
                     <Route exact path='/'>
                         <DocumentTitle title="Alex McLeod's Portfolio">
-                            <Leader/>
+                            <Portfolio/>
                         </DocumentTitle>
                     </Route>
                     <Route path='/index.html'>
                         <DocumentTitle title="Alex McLeod's Portfolio">
-                            <Leader/>
+                            <Portfolio/>
                         </DocumentTitle>
                     </Route>
                     <Route path='/leader'>
@@ -53,7 +55,7 @@ class Main extends React.Component {
                         </DocumentTitle>
                     </Route>
                     <Route path='/wiki'>
-                        <DocumentTitle title="Alex McLeod's Portfolio">
+                        <DocumentTitle title="Wikipedia Viewer">
                             <Wikipedia/>
                         </DocumentTitle>
                     </Route>
@@ -78,6 +80,16 @@ class Main extends React.Component {
     }
 }
 
+class Projects extends React.Component {
+    render () {
+        return (
+            <div>
+                <Header/>
+            </div>
+        );
+    }
+}
+
 class App extends React.Component {
     render () {
         const style = {
@@ -89,7 +101,6 @@ class App extends React.Component {
         
         return (
             <div style={style}>
-                <Header/>
                 <Main/>
             </div>
         );
@@ -98,8 +109,10 @@ class App extends React.Component {
 
 
 render(
-    <Router onUpdate={()=>window.scrollTo(0,0)} history={browserHistory}>
-        <App />
+    <Router history={browserHistory}>
+        <ScrollToTop>
+            <App />
+        </ScrollToTop>
     </Router>,
     document.getElementById('app')
 );

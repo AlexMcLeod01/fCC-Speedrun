@@ -2691,7 +2691,7 @@ var Title = exports.Title = function (_React$Component) {
                 fontFamily: 'Verdana',
                 fontSize: "28px",
                 textAlign: 'center',
-                marginTop: '30px'
+                paddingTop: '30px'
             };
 
             return _react2.default.createElement(
@@ -17736,7 +17736,7 @@ var Button = exports.Button = function (_React$Component) {
             var style = {
                 height: '30px',
                 width: '100px',
-                backgroundColor: '#0000FF',
+                backgroundColor: this.props.color,
                 border: '2px solid',
                 borderRadius: '50px',
                 textAlign: 'center',
@@ -17765,6 +17765,13 @@ var Button = exports.Button = function (_React$Component) {
 
     return Button;
 }(_react2.default.Component);
+
+Button.defaultProps = {
+    color: '#0000FF',
+    class: 'button',
+    text: 'Click',
+    float: 'left'
+};
 
 var ButtonLink = exports.ButtonLink = function (_React$Component2) {
     _inherits(ButtonLink, _React$Component2);
@@ -21649,6 +21656,8 @@ var _reactDom = __webpack_require__(13);
 
 var _Title = __webpack_require__(22);
 
+var _Header = __webpack_require__(100);
+
 var _Button = __webpack_require__(64);
 
 var _jquery = __webpack_require__(28);
@@ -21684,6 +21693,7 @@ var RandQuote = exports.RandQuote = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 { style: style },
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Random Quote Generator" }),
                 _react2.default.createElement(Container, null),
                 _react2.default.createElement(ButtonHolder, null)
@@ -21811,6 +21821,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactDom = __webpack_require__(13);
 
 var _Title = __webpack_require__(22);
+
+var _Header = __webpack_require__(100);
 
 var _jquery = __webpack_require__(28);
 
@@ -21986,14 +21998,19 @@ var Tic = exports.Tic = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        { style: style },
-        _react2.default.createElement(_Title.Title, { text: "Tic Tac Toe" }),
-        _react2.default.createElement(Choose, null),
-        _react2.default.createElement(Board, null),
+        null,
+        _react2.default.createElement(_Header.Header, null),
         _react2.default.createElement(
           "div",
-          { style: startOver, id: "start-over" },
-          "Start Over?"
+          { style: style },
+          _react2.default.createElement(_Title.Title, { text: "Tic Tac Toe" }),
+          _react2.default.createElement(Choose, null),
+          _react2.default.createElement(Board, null),
+          _react2.default.createElement(
+            "div",
+            { style: startOver, id: "start-over" },
+            "Start Over?"
+          )
         )
       );
     }
@@ -22507,6 +22524,8 @@ var _reactDom = __webpack_require__(13);
 
 var _Title = __webpack_require__(22);
 
+var _Header = __webpack_require__(100);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22697,6 +22716,7 @@ var Tribute = exports.Tribute = function (_React$Component4) {
             return _react2.default.createElement(
                 "div",
                 null,
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Tribute to O'ahu!" }),
                 _react2.default.createElement(Pics, null),
                 _react2.default.createElement(Description, null),
@@ -22730,6 +22750,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactDom = __webpack_require__(13);
 
 var _Title = __webpack_require__(22);
+
+var _Header = __webpack_require__(100);
 
 var _jquery = __webpack_require__(28);
 
@@ -22765,6 +22787,7 @@ var Twitch = exports.Twitch = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 null,
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Currently Twitching" }),
                 _react2.default.createElement(Container, null)
             );
@@ -23011,6 +23034,8 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var _Title = __webpack_require__(22);
 
+var _Header = __webpack_require__(100);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23034,11 +23059,17 @@ var Weather = exports.Weather = function (_React$Component) {
             getLocation();
         }
     }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            getLocation();
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
                 "div",
                 null,
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Local Weather" }),
                 _react2.default.createElement(Icon, null),
                 _react2.default.createElement(Temperature, null),
@@ -23212,6 +23243,8 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var _Title = __webpack_require__(22);
 
+var _Header = __webpack_require__(100);
+
 var _Button = __webpack_require__(64);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23237,6 +23270,7 @@ var Wikipedia = exports.Wikipedia = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 null,
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Wikipedia Viewer" }),
                 _react2.default.createElement(Results, null),
                 _react2.default.createElement(Input, null),
@@ -23480,6 +23514,12 @@ var _Markdown = __webpack_require__(244);
 
 var _Leader = __webpack_require__(247);
 
+var _Portfolio = __webpack_require__(308);
+
+var _ScrollToTop = __webpack_require__(309);
+
+var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
+
 var _reactRouterDom = __webpack_require__(63);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23514,7 +23554,7 @@ var Main = function (_React$Component) {
                         _react2.default.createElement(
                             _reactDocumentTitle2.default,
                             { title: "Alex McLeod's Portfolio" },
-                            _react2.default.createElement(_Leader.Leader, null)
+                            _react2.default.createElement(_Portfolio.Portfolio, null)
                         )
                     ),
                     _react2.default.createElement(
@@ -23523,7 +23563,7 @@ var Main = function (_React$Component) {
                         _react2.default.createElement(
                             _reactDocumentTitle2.default,
                             { title: "Alex McLeod's Portfolio" },
-                            _react2.default.createElement(_Leader.Leader, null)
+                            _react2.default.createElement(_Portfolio.Portfolio, null)
                         )
                     ),
                     _react2.default.createElement(
@@ -23567,7 +23607,7 @@ var Main = function (_React$Component) {
                         { path: "/wiki" },
                         _react2.default.createElement(
                             _reactDocumentTitle2.default,
-                            { title: "Alex McLeod's Portfolio" },
+                            { title: "Wikipedia Viewer" },
                             _react2.default.createElement(_Wikipedia.Wikipedia, null)
                         )
                     ),
@@ -23606,8 +23646,31 @@ var Main = function (_React$Component) {
     return Main;
 }(_react2.default.Component);
 
-var App = function (_React$Component2) {
-    _inherits(App, _React$Component2);
+var Projects = function (_React$Component2) {
+    _inherits(Projects, _React$Component2);
+
+    function Projects() {
+        _classCallCheck(this, Projects);
+
+        return _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
+    }
+
+    _createClass(Projects, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(_Header.Header, null)
+            );
+        }
+    }]);
+
+    return Projects;
+}(_react2.default.Component);
+
+var App = function (_React$Component3) {
+    _inherits(App, _React$Component3);
 
     function App() {
         _classCallCheck(this, App);
@@ -23628,7 +23691,6 @@ var App = function (_React$Component2) {
             return _react2.default.createElement(
                 "div",
                 { style: style },
-                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(Main, null)
             );
         }
@@ -23639,10 +23701,12 @@ var App = function (_React$Component2) {
 
 (0, _reactDom.render)(_react2.default.createElement(
     _reactRouterDom.BrowserRouter,
-    { onUpdate: function onUpdate() {
-            return window.scrollTo(0, 0);
-        }, history: _reactRouterDom.browserHistory },
-    _react2.default.createElement(App, null)
+    { history: _reactRouterDom.browserHistory },
+    _react2.default.createElement(
+        _ScrollToTop2.default,
+        null,
+        _react2.default.createElement(App, null)
+    )
 ), document.getElementById('app'));
 
 /***/ }),
@@ -40798,6 +40862,8 @@ var _marked = __webpack_require__(245);
 
 var _marked2 = _interopRequireDefault(_marked);
 
+var _Header = __webpack_require__(100);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40821,6 +40887,7 @@ var Markdown = exports.Markdown = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 null,
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(Container, null)
             );
         }
@@ -42267,6 +42334,8 @@ var _Title = __webpack_require__(22);
 
 var _Button = __webpack_require__(64);
 
+var _Header = __webpack_require__(100);
+
 var _jquery = __webpack_require__(28);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -42326,6 +42395,7 @@ var Leader = exports.Leader = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 { style: style },
+                _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "fCC Leaderboard" }),
                 _react2.default.createElement(
                     "div",
@@ -42479,6 +42549,602 @@ var Row = function (_React$Component3) {
 
     return Row;
 }(_react2.default.Component);
+
+/***/ }),
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Portfolio = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactRouterDom = __webpack_require__(63);
+
+var _Button = __webpack_require__(64);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Portfolio = exports.Portfolio = function (_React$Component) {
+    _inherits(Portfolio, _React$Component);
+
+    function Portfolio() {
+        _classCallCheck(this, Portfolio);
+
+        return _possibleConstructorReturn(this, (Portfolio.__proto__ || Object.getPrototypeOf(Portfolio)).apply(this, arguments));
+    }
+
+    _createClass(Portfolio, [{
+        key: "render",
+        value: function render() {
+            var linkSty = {
+                color: 'white',
+                textDecoration: 'none'
+            };
+
+            var back = {
+                backgroundColor: 'teal'
+            };
+
+            var textArea = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '50vw',
+                marginTop: '30px'
+            };
+
+            var middleLine = {
+                border: 'solid 2px',
+                height: '190px',
+                width: '0px',
+                marginLeft: '40px',
+                marginRight: '15px',
+                marginTop: '20px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: back },
+                _react2.default.createElement(Title, null),
+                _react2.default.createElement(
+                    "div",
+                    { style: textArea },
+                    _react2.default.createElement(Image, { img: "Boom.jpg" }),
+                    _react2.default.createElement("div", { style: middleLine }),
+                    _react2.default.createElement(TextBox, null)
+                ),
+                _react2.default.createElement(SkillList, null),
+                _react2.default.createElement(Projects, null),
+                _react2.default.createElement(Contact, null)
+            );
+        }
+    }]);
+
+    return Portfolio;
+}(_react2.default.Component);
+
+var Divider = function (_React$Component2) {
+    _inherits(Divider, _React$Component2);
+
+    function Divider() {
+        _classCallCheck(this, Divider);
+
+        return _possibleConstructorReturn(this, (Divider.__proto__ || Object.getPrototypeOf(Divider)).apply(this, arguments));
+    }
+
+    _createClass(Divider, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                border: 'solid 2px',
+                width: '30vw',
+                height: '0px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            };
+
+            return _react2.default.createElement("div", { style: style });
+        }
+    }]);
+
+    return Divider;
+}(_react2.default.Component);
+
+var Title = function (_React$Component3) {
+    _inherits(Title, _React$Component3);
+
+    function Title() {
+        _classCallCheck(this, Title);
+
+        return _possibleConstructorReturn(this, (Title.__proto__ || Object.getPrototypeOf(Title)).apply(this, arguments));
+    }
+
+    _createClass(Title, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                textAlign: 'center',
+                color: 'white',
+                fontFamily: 'Verdana',
+                paddingTop: '30px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(
+                    "h1",
+                    null,
+                    "About Me"
+                ),
+                _react2.default.createElement(Divider, null)
+            );
+        }
+    }]);
+
+    return Title;
+}(_react2.default.Component);
+
+var Image = function (_React$Component4) {
+    _inherits(Image, _React$Component4);
+
+    function Image() {
+        _classCallCheck(this, Image);
+
+        return _possibleConstructorReturn(this, (Image.__proto__ || Object.getPrototypeOf(Image)).apply(this, arguments));
+    }
+
+    _createClass(Image, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                width: '10vw',
+                border: 'solid 5px',
+                borderRadius: '50%',
+                marginTop: '40px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement("img", { style: style, src: "../images/" + this.props.img })
+            );
+        }
+    }]);
+
+    return Image;
+}(_react2.default.Component);
+
+var TextBox = function (_React$Component5) {
+    _inherits(TextBox, _React$Component5);
+
+    function TextBox() {
+        _classCallCheck(this, TextBox);
+
+        return _possibleConstructorReturn(this, (TextBox.__proto__ || Object.getPrototypeOf(TextBox)).apply(this, arguments));
+    }
+
+    _createClass(TextBox, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc."
+                )
+            );
+        }
+    }]);
+
+    return TextBox;
+}(_react2.default.Component);
+
+var SkillList = function (_React$Component6) {
+    _inherits(SkillList, _React$Component6);
+
+    function SkillList() {
+        _classCallCheck(this, SkillList);
+
+        return _possibleConstructorReturn(this, (SkillList.__proto__ || Object.getPrototypeOf(SkillList)).apply(this, arguments));
+    }
+
+    _createClass(SkillList, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                width: '25vw',
+                textAlign: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            };
+
+            var listSty = {
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'wrap',
+                justfiyContent: 'space-between',
+                alignItems: 'space-between',
+                height: '90px',
+                width: '25vw',
+                textAlign: 'left'
+            };
+
+            var liSty = {
+                marginBottom: '5px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "LOOK WHAT I CAN DO"
+                ),
+                _react2.default.createElement(
+                    "ul",
+                    { style: listSty },
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "HTML"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "CSS"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "JavaScript"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "ES2015"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "ReactJS"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "NodeJS"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "ExpressJS"
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { style: liSty, className: "fa fa-chevron-right" },
+                        "MongoDB"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return SkillList;
+}(_react2.default.Component);
+
+var Projects = function (_React$Component7) {
+    _inherits(Projects, _React$Component7);
+
+    function Projects() {
+        _classCallCheck(this, Projects);
+
+        return _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
+    }
+
+    _createClass(Projects, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                display: 'flex',
+                flexFlow: 'row wrap',
+                justifyContent: 'space-around'
+            };
+
+            var center = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '75vw',
+                textAlign: 'center'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: center },
+                _react2.default.createElement(Divider, null),
+                _react2.default.createElement(
+                    "h2",
+                    null,
+                    "My Work"
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { style: style },
+                    _react2.default.createElement(ProjectImage, { img: "../images/tribute.png", route: "/tribute" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/randquote.png", route: "/randquote" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/weather.png", route: "/weather" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/wiki.png", route: "/wiki" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/twitch.png", route: "/twitch" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/tic.png", route: "/tictactoe" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/leader.png", route: "/leader" }),
+                    _react2.default.createElement(ProjectImage, { img: "../images/markdown.png", route: "/markdown" })
+                )
+            );
+        }
+    }]);
+
+    return Projects;
+}(_react2.default.Component);
+
+var ProjectImage = function (_React$Component8) {
+    _inherits(ProjectImage, _React$Component8);
+
+    function ProjectImage() {
+        _classCallCheck(this, ProjectImage);
+
+        return _possibleConstructorReturn(this, (ProjectImage.__proto__ || Object.getPrototypeOf(ProjectImage)).apply(this, arguments));
+    }
+
+    _createClass(ProjectImage, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                width: '200px',
+                height: '150px',
+                paddingBottom: '15px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: this.props.route },
+                    _react2.default.createElement("img", { src: this.props.img, style: style })
+                )
+            );
+        }
+    }]);
+
+    return ProjectImage;
+}(_react2.default.Component);
+
+var Contact = function (_React$Component9) {
+    _inherits(Contact, _React$Component9);
+
+    function Contact() {
+        _classCallCheck(this, Contact);
+
+        return _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).apply(this, arguments));
+    }
+
+    _createClass(Contact, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                display: 'flex',
+                flexDirection: 'row',
+                justfiyContent: 'center',
+                alignItems: 'center'
+            };
+
+            var center = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '20px',
+                textAlign: 'center',
+                width: '30vw'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: center },
+                _react2.default.createElement(Divider, null),
+                _react2.default.createElement(
+                    "h2",
+                    null,
+                    "Contact Me!"
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { style: style },
+                    _react2.default.createElement(SocialIcon, { link: "mailto:AlexMcLeod01+portfolio@gmail.com", img: "../images/email.png", alt: "Email Me!" }),
+                    _react2.default.createElement(SocialIcon, { link: "https://github.com/AlexMcLeod01", img: "../images/Github.png", alt: "Follow me on Github!" }),
+                    _react2.default.createElement(SocialIcon, { link: "https://www.linkedin.com/pub/alex-mcleod/134/335/606", img: "../images/linkedin.png", alt: "Check me out on Linkedin" }),
+                    _react2.default.createElement(SocialIcon, { link: "http://www.facebook.com/mnkykngtrtlmstr", img: "../images/facebook.png", alt: "Follow me on Facebook" })
+                )
+            );
+        }
+    }]);
+
+    return Contact;
+}(_react2.default.Component);
+
+var SocialIcon = function (_React$Component10) {
+    _inherits(SocialIcon, _React$Component10);
+
+    function SocialIcon() {
+        _classCallCheck(this, SocialIcon);
+
+        return _possibleConstructorReturn(this, (SocialIcon.__proto__ || Object.getPrototypeOf(SocialIcon)).apply(this, arguments));
+    }
+
+    _createClass(SocialIcon, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                width: '50px',
+                height: '50px',
+                borderRadius: '5px'
+            };
+
+            return _react2.default.createElement(
+                "a",
+                { href: this.props.link, style: style },
+                _react2.default.createElement("img", { src: this.props.img, alt: this.props.alt, style: style })
+            );
+        }
+    }]);
+
+    return SocialIcon;
+}(_react2.default.Component);
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(63);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* 
+    Thanks to Sia at stackoverflow:
+   'https://stackoverflow.com/questions/34345722/enforcing-scrolltotop-behavior-using-react-router'
+*/
+var ScrollToTop = function (_Component) {
+    _inherits(ScrollToTop, _Component);
+
+    function ScrollToTop() {
+        _classCallCheck(this, ScrollToTop);
+
+        return _possibleConstructorReturn(this, (ScrollToTop.__proto__ || Object.getPrototypeOf(ScrollToTop)).apply(this, arguments));
+    }
+
+    _createClass(ScrollToTop, [{
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps) {
+            if (this.props.location !== prevProps.location) {
+                window.scrollTo(0, 0);
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                this.props.children
+            );
+        }
+    }]);
+
+    return ScrollToTop;
+}(_react.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(ScrollToTop);
 
 /***/ })
 /******/ ]);

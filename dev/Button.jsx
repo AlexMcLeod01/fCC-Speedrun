@@ -6,7 +6,7 @@ export class Button extends React.Component {
         const style = {
             height: '30px',
             width: '100px',
-            backgroundColor: '#0000FF',
+            backgroundColor: this.props.color,
             border: '2px solid',
             borderRadius: '50px',
             textAlign: 'center',
@@ -29,6 +29,12 @@ export class Button extends React.Component {
             </div>
         );
     }
+}
+Button.defaultProps = {
+    color: '#0000FF',
+    class: 'button',
+    text: 'Click',
+    float: 'left'
 }
 
 export class ButtonLink extends React.Component {

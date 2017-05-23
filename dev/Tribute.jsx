@@ -1,6 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import {Title} from "./Title.jsx";
+import {Header} from "./Header.jsx";
 
 var Carousel = require('nuka-carousel');
 
@@ -91,6 +92,7 @@ export class Tribute extends React.Component {
     render () {        
         return (
             <div>
+                <Header/>
                 <Title text="Tribute to O'ahu!"/>
                 <Pics/>
                 <Description/>

@@ -2,15 +2,21 @@ import React from "react";
 import {render} from "react-dom";
 import $ from "jquery";
 import {Title} from "./Title.jsx";
+import {Header} from "./Header.jsx";
 
 export class Weather extends React.Component {
     componentDidMount() {
         getLocation();
     }
     
+    componentDidUpdate() {
+        getLocation();
+    }
+    
     render () {        
         return (
             <div>
+                <Header/>
                 <Title text="Local Weather"/>
                 <Icon/>
                 <Temperature/>

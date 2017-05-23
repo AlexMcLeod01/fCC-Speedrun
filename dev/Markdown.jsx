@@ -1,11 +1,13 @@
 import React from "react";
 import {render} from "react-dom";
 import marked from "marked";
+import {Header} from "./Header.jsx";
 
 export class Markdown extends React.Component {
     render () {
         return (
             <div>
+                <Header/>
                 <Container/>
             </div>
         );

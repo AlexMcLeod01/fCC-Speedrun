@@ -1,6 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import {Title} from "./Title.jsx";
+import {Header} from "./Header.jsx";
 import {Button, ButtonLink} from "./Button.jsx";
 import $ from "jquery";
 
@@ -14,6 +15,7 @@ export class RandQuote extends React.Component {
         }
         return (
             <div style={style}>
+                <Header/>
                 <Title text="Random Quote Generator"/>
                 <Container/>
                 <ButtonHolder/>

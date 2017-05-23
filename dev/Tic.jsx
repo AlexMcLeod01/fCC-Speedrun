@@ -1,6 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import {Title} from "./Title.jsx";
+import {Header} from "./Header.jsx";
 import $ from "jquery";
 
 export class Tic extends React.Component {
@@ -152,11 +153,14 @@ export class Tic extends React.Component {
         };
         
         return (
-            <div style={style}>
-                <Title text="Tic Tac Toe"/>
-                <Choose/>
-                <Board/>
-                <div style={startOver} id="start-over">Start Over?</div>
+            <div>
+                <Header/>
+                <div style={style}>
+                    <Title text="Tic Tac Toe"/>
+                    <Choose/>
+                    <Board/>
+                    <div style={startOver} id="start-over">Start Over?</div>
+                </div>
             </div>
         );
     }

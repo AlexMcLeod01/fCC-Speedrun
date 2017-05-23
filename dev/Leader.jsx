@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Title } from "./Title.jsx";
 import { Button } from "./Button.jsx";
+import {Header} from "./Header.jsx";
 import $ from "jquery";
 
 export class Leader extends React.Component {
@@ -41,6 +42,7 @@ export class Leader extends React.Component {
         
         return (
             <div style={style}>
+                <Header/>
                 <Title text="fCC Leaderboard"/>
                 <div style={innerSty} onClick={this.onClick}>
                     <Button id="Switcher" text={this.state.text}/>

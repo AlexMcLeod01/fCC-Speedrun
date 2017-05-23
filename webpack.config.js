@@ -12,6 +12,7 @@ var config = {
   },
   module: {
     loaders: [{
+        test: /\.js$/,
         include: DEV,
         loader: "babel-loader",
     }]

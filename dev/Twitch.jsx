@@ -51,7 +51,7 @@ class Container extends React.Component {
 class Channel extends React.Component {
     render () {
         const style = {
-            backgroundColor: 'teal',
+            backgroundColor: '#005194',
             height: '100px',
             width: '75%',
             borderStyle: 'solid',

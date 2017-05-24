@@ -173,10 +173,14 @@ class Choose extends React.Component {
             textAlign: 'center'
         };
         
+        const font = {
+            fontFamily: 'Amita'
+        }
+        
         return (
             <div style={style} id="text">
                 <div className="X" id="X">X</div>
-                <div className="or" id="or">or</div>
+                <div className="or" id="or" style={font}>or</div>
                 <div className="O" id="O">O</div>
                 <div className="Win" id="Win"></div>
                 <div className="restart" id="restart">

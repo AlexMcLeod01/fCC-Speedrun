@@ -17,12 +17,12 @@ export class Portfolio extends React.Component {
 class Container extends React.Component {
     render () {
         const linkSty = {
-            color: 'white',
+            color: 'black',
             textDecoration: 'none'
         };
         
         const back = {
-            backgroundColor: 'teal'
+            backgroundColor: '#FFFFFF'
         };
         
         const textArea = {
@@ -34,41 +34,85 @@ class Container extends React.Component {
             marginTop: '50px'
         };
         
-        const flex1 = {
-            flexDirection: 'row',
+        const flex = {
+            flexDirection: 'column',
             justifyContent: 'space-between',
+            alignItems: 'center'
         };
         
-        const flex2 = {
-            flexFlow: 'row wrap',
+        const titleStyle = {
+            width: '98.25vw',
+            height: '75vh',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            display: 'flex',
+            flexFlow: 'row no-wrap',
+            justifyContent: 'space-around',
             alignItems: 'center',
-            marginTop: '50px'
-        }
-        
-        const middleLine = {
-            border: 'solid 2px',
-            height: '200px',
-            width: '0px',
-            marginLeft: '40px',
-            marginRight: '15px',
-            marginTop: '40px'
+            backgroundColor: '#D3D3D3',
+            background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
+            background: '-moz-linear-gradient(#d3d3d3, #545454)',
+            background: 'linear-gradient(#d3d3d3, #545454)',
         };
         
         return (
             <div style={back}>
-                <Title/>
-                <div style={Object.assign({}, textArea, flex1)}>
+                <div style={titleStyle}>
+                    <MainTitle/>
                     <Image img="Boom.jpg"/>
-                    <div style={middleLine}></div>
-                    <TextBoxPast/>
                 </div>
-                <div style={Object.assign({}, textArea, flex2)}>
+                <BlogTagline/>
+                <Title/>
+                <div style={Object.assign({}, textArea, flex)}>
+                    <TextBoxPast/>
                     <TextBoxPresent/>
                     <TextBoxCTA/>
                     <SkillList/>
                 </div>
                 <Projects/>
                 <Contact/>
+            </div>
+        );
+    }
+}
+
+class BlogTagline extends React.Component {
+    render () {
+        const style = {
+            textAlign: 'center',
+            marginTop: '40px'
+        };
+        
+        return (
+            <div style={style}>
+                <h3>Get Hooked on Javascript With Me on <a href="javascriptjunky.wordpress.com">My Blog</a></h3>
+            </div>
+        );
+    }
+}
+
+class MainTitle extends React.Component {
+    render () {
+        const style = {
+            color: 'white',
+            fontFamily: 'Amita',
+            fontSize: 'x-large'
+        };
+        
+        const left = {
+            textAlign: 'right'
+        };
+        
+        const right = {
+            textAlign: 'right'
+        }
+        
+        return (
+            <div style={style}>
+                <h1 style={left}>Alex McLeod</h1>
+                <p></p>
+                <p></p>
+                <h3 style={right}>Full-stack Web Developer Specializing in React</h3>
             </div>
         );
     }
@@ -95,8 +139,8 @@ class Title extends React.Component {
     render () {
         const style = {
             textAlign: 'center',
-            color: 'white',
-            fontFamily: 'Verdana',
+            color: 'black',
+            fontFamily: 'Amita',
             paddingTop: '50px'
         };
         
@@ -113,10 +157,8 @@ class Title extends React.Component {
 class Image extends React.Component {
     render () {
         const style = {
-            width: '15vw',
-            border: 'solid 5px',
+            width: '20vw',
             borderRadius: '50%',
-            marginTop: '40px'
         };
         
         return (
@@ -150,18 +192,13 @@ class TextBoxPresent extends React.Component {
 class TextBoxCTA extends React.Component {
     render () {
         const style = {
-            width: '25vw',
+            width: '50vw',
             textAlign: 'left'
-        };
-        
-        const linkSty = {
-            color: 'd75e76',
-            textDecorationStyle: 'wavy'
         };
         
         return (
             <div style={style}>
-                <p>At my <a style={linkSty} href="javascriptjunky.wordpress.com">blog</a>, I break down the lessons I learn as I develop various projects, or learn about new Javascript features and frameworks. On this site, I have samples of my work. You could also <a style={linkSty} href="mailto:alexmcleod01+portfolio@gmail.com">contact</a> me if you are looking for a web developer who specializes in React.</p>
+                <p>At my <a href="javascriptjunky.wordpress.com">blog</a>, I break down the lessons I learn as I develop various projects, or learn about new Javascript features and frameworks. On this site, I have samples of my work. You could also <a href="mailto:alexmcleod01+portfolio@gmail.com">contact</a> me if you are looking for a web developer who specializes in React.</p>
             </div>
         );
     }
@@ -184,7 +221,8 @@ class SkillList extends React.Component {
             alignItems: 'space-between',
             height: '90px',
             width: '25vw',
-            textAlign: 'left'
+            textAlign: 'left',
+            fontFamily: 'Advent Pro'
         }
         
         const liSty = {
@@ -271,7 +309,7 @@ class Contact extends React.Component {
             display: 'flex',
             flexDirection: 'row',
             justfiyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
         };
         
         const center = {
@@ -282,16 +320,26 @@ class Contact extends React.Component {
             width: '30vw'
         };
         
+        const back = {
+            width: '98.25vw',
+            backgroundColor: '#D3D3D3',
+            background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
+            background: '-moz-linear-gradient(#d3d3d3, #545454)',
+            background: 'linear-gradient(#d3d3d3, #545454)',
+        }
+        
         return (
-            <div style={center}>
-                <a name="contact"/>
-                <Divider/>
-                <h2>Contact Me!</h2>
-                <div style={style}>
-                    <SocialIcon link="mailto:AlexMcLeod01+portfolio@gmail.com" img="../images/email.png" alt="Email Me!"/>
-                    <SocialIcon link="https://github.com/AlexMcLeod01" img="../images/Github.png" alt="Follow me on Github!"/>
-                    <SocialIcon link="https://www.linkedin.com/pub/alex-mcleod/134/335/606" img="../images/linkedin.png" alt="Check me out on Linkedin"/>
-                    <SocialIcon link="http://www.facebook.com/mnkykngtrtlmstr" img="../images/facebook.png" alt="Follow me on Facebook"/>
+            <div style={back}>
+                <div style={center}>
+                    <a name="contact"/>
+                    <Divider/>
+                    <h2>Contact Me!</h2>
+                    <div style={style}>
+                        <SocialIcon link="mailto:AlexMcLeod01+portfolio@gmail.com" img="../images/email.png" alt="Email Me!"/>
+                        <SocialIcon link="https://github.com/AlexMcLeod01" img="../images/Github.png" alt="Follow me on Github!"/>
+                        <SocialIcon link="https://www.linkedin.com/pub/alex-mcleod/134/335/606" img="../images/linkedin.png" alt="Check me out on Linkedin"/>
+                        <SocialIcon link="http://www.facebook.com/mnkykngtrtlmstr" img="../images/facebook.png" alt="Follow me on Facebook"/>
+                    </div>
                 </div>
             </div>
         );

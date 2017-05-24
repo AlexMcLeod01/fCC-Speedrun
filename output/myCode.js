@@ -2688,7 +2688,7 @@ var Title = exports.Title = function (_React$Component) {
         key: "render",
         value: function render() {
             var style = {
-                fontFamily: 'Verdana',
+                fontFamily: 'Amita',
                 fontSize: "28px",
                 textAlign: 'center',
                 paddingTop: '30px'
@@ -17715,6 +17715,8 @@ var _reactDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -17733,19 +17735,21 @@ var Button = exports.Button = function (_React$Component) {
     _createClass(Button, [{
         key: "render",
         value: function render() {
-            var style = {
+            var _style;
+
+            var style = (_style = {
                 height: '30px',
                 width: '100px',
-                backgroundColor: this.props.color,
-                border: '2px solid',
-                borderRadius: '50px',
-                textAlign: 'center',
-                font: 'bold 3.2em/100px',
-                display: 'table',
-                cursor: 'pointer',
-                float: this.props.float
-            };
+                backgroundColor: '#D3D3D3',
+                background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#a8a8a8))'
+            }, _defineProperty(_style, "background", '-moz-linear-gradient(#d3d3d3, #a8a8a8)'), _defineProperty(_style, "background", 'linear-gradient(#d3d3d3, #a8a8a8)'), _defineProperty(_style, "borderTop", '1px solid #7e7e7e'), _defineProperty(_style, "color", 'rgba(22,33,16,1)'), _defineProperty(_style, "textAlign", 'center'), _defineProperty(_style, "display", 'table'), _defineProperty(_style, "cursor", 'pointer'), _defineProperty(_style, "float", this.props.float), _style);
 
+            /*a.forrst:active {
+                background: #3c592a;
+                background: -webkit-gradient(linear, 0 0, 0 0, from(#3c592a), to(#58853e));
+                background: -moz-linear-gradient(#3c592a, #58853e);
+                background: linear-gradient(#3c592a, #58853e); }
+              */
             var text = {
                 display: 'table-cell',
                 verticalAlign: 'middle'
@@ -21685,10 +21689,8 @@ var RandQuote = exports.RandQuote = function (_React$Component) {
         key: "render",
         value: function render() {
             var style = {
-                backgroundColor: 'teal',
                 height: '200vh',
-                width: '100vw',
-                color: 'white'
+                width: '100vw'
             };
             return _react2.default.createElement(
                 "div",
@@ -21717,7 +21719,8 @@ var Container = function (_React$Component2) {
         key: "render",
         value: function render() {
             var style = {
-                backgroundColor: '#005050',
+                backgroundColor: '#005194',
+                color: 'white',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 marginTop: '30px',
@@ -22036,6 +22039,10 @@ var Choose = function (_React$Component2) {
         textAlign: 'center'
       };
 
+      var font = {
+        fontFamily: 'Amita'
+      };
+
       return _react2.default.createElement(
         "div",
         { style: style, id: "text" },
@@ -22046,7 +22053,7 @@ var Choose = function (_React$Component2) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "or", id: "or" },
+          { className: "or", id: "or", style: font },
           "or"
         ),
         _react2.default.createElement(
@@ -22850,7 +22857,7 @@ var Channel = function (_React$Component3) {
         key: "render",
         value: function render() {
             var style = {
-                backgroundColor: 'teal',
+                backgroundColor: '#005194',
                 height: '100px',
                 width: '75%',
                 borderStyle: 'solid',
@@ -23826,11 +23833,12 @@ var App = function (_React$Component3) {
         key: "render",
         value: function render() {
             var style = {
-                backgroundColor: 'teal',
-                color: 'white',
+                backgroundColor: '#FFFFFF',
+                color: 'black',
                 height: '200vh',
                 width: '98.25vw',
-                fontSize: 'large'
+                fontSize: 'large',
+                fontFamily: 'Advent Pro'
             };
 
             return _react2.default.createElement(
@@ -42528,7 +42536,7 @@ var Leader = exports.Leader = function (_React$Component) {
         key: "render",
         value: function render() {
             var style = {
-                backgroundColor: 'teal',
+                backgroundColor: 'white',
                 height: '1000vh'
             };
 
@@ -42781,6 +42789,8 @@ var _Button = __webpack_require__(64);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -42823,13 +42833,15 @@ var Container = function (_React$Component2) {
     _createClass(Container, [{
         key: "render",
         value: function render() {
+            var _titleStyle;
+
             var linkSty = {
-                color: 'white',
+                color: 'black',
                 textDecoration: 'none'
             };
 
             var back = {
-                backgroundColor: 'teal'
+                backgroundColor: '#FFFFFF'
             };
 
             var textArea = {
@@ -42841,40 +42853,40 @@ var Container = function (_React$Component2) {
                 marginTop: '50px'
             };
 
-            var flex1 = {
-                flexDirection: 'row',
-                justifyContent: 'space-between'
+            var flex = {
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'center'
             };
 
-            var flex2 = {
-                flexFlow: 'row wrap',
+            var titleStyle = (_titleStyle = {
+                width: '98.25vw',
+                height: '75vh',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                display: 'flex',
+                flexFlow: 'row no-wrap',
+                justifyContent: 'space-around',
                 alignItems: 'center',
-                marginTop: '50px'
-            };
-
-            var middleLine = {
-                border: 'solid 2px',
-                height: '200px',
-                width: '0px',
-                marginLeft: '40px',
-                marginRight: '15px',
-                marginTop: '40px'
-            };
+                backgroundColor: '#D3D3D3',
+                background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))'
+            }, _defineProperty(_titleStyle, "background", '-moz-linear-gradient(#d3d3d3, #545454)'), _defineProperty(_titleStyle, "background", 'linear-gradient(#d3d3d3, #545454)'), _titleStyle);
 
             return _react2.default.createElement(
                 "div",
                 { style: back },
+                _react2.default.createElement(
+                    "div",
+                    { style: titleStyle },
+                    _react2.default.createElement(MainTitle, null),
+                    _react2.default.createElement(Image, { img: "Boom.jpg" })
+                ),
+                _react2.default.createElement(BlogTagline, null),
                 _react2.default.createElement(Title, null),
                 _react2.default.createElement(
                     "div",
-                    { style: Object.assign({}, textArea, flex1) },
-                    _react2.default.createElement(Image, { img: "Boom.jpg" }),
-                    _react2.default.createElement("div", { style: middleLine }),
-                    _react2.default.createElement(TextBoxPast, null)
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { style: Object.assign({}, textArea, flex2) },
+                    { style: Object.assign({}, textArea, flex) },
+                    _react2.default.createElement(TextBoxPast, null),
                     _react2.default.createElement(TextBoxPresent, null),
                     _react2.default.createElement(TextBoxCTA, null),
                     _react2.default.createElement(SkillList, null)
@@ -42888,8 +42900,93 @@ var Container = function (_React$Component2) {
     return Container;
 }(_react2.default.Component);
 
-var Divider = function (_React$Component3) {
-    _inherits(Divider, _React$Component3);
+var BlogTagline = function (_React$Component3) {
+    _inherits(BlogTagline, _React$Component3);
+
+    function BlogTagline() {
+        _classCallCheck(this, BlogTagline);
+
+        return _possibleConstructorReturn(this, (BlogTagline.__proto__ || Object.getPrototypeOf(BlogTagline)).apply(this, arguments));
+    }
+
+    _createClass(BlogTagline, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                textAlign: 'center',
+                marginTop: '40px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Get Hooked on Javascript With Me on ",
+                    _react2.default.createElement(
+                        "a",
+                        { href: "javascriptjunky.wordpress.com" },
+                        "My Blog"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return BlogTagline;
+}(_react2.default.Component);
+
+var MainTitle = function (_React$Component4) {
+    _inherits(MainTitle, _React$Component4);
+
+    function MainTitle() {
+        _classCallCheck(this, MainTitle);
+
+        return _possibleConstructorReturn(this, (MainTitle.__proto__ || Object.getPrototypeOf(MainTitle)).apply(this, arguments));
+    }
+
+    _createClass(MainTitle, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                color: 'white',
+                fontFamily: 'Amita',
+                fontSize: 'x-large'
+            };
+
+            var left = {
+                textAlign: 'right'
+            };
+
+            var right = {
+                textAlign: 'right'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: style },
+                _react2.default.createElement(
+                    "h1",
+                    { style: left },
+                    "Alex McLeod"
+                ),
+                _react2.default.createElement("p", null),
+                _react2.default.createElement("p", null),
+                _react2.default.createElement(
+                    "h3",
+                    { style: right },
+                    "Full-stack Web Developer Specializing in React"
+                )
+            );
+        }
+    }]);
+
+    return MainTitle;
+}(_react2.default.Component);
+
+var Divider = function (_React$Component5) {
+    _inherits(Divider, _React$Component5);
 
     function Divider() {
         _classCallCheck(this, Divider);
@@ -42915,8 +43012,8 @@ var Divider = function (_React$Component3) {
     return Divider;
 }(_react2.default.Component);
 
-var Title = function (_React$Component4) {
-    _inherits(Title, _React$Component4);
+var Title = function (_React$Component6) {
+    _inherits(Title, _React$Component6);
 
     function Title() {
         _classCallCheck(this, Title);
@@ -42929,8 +43026,8 @@ var Title = function (_React$Component4) {
         value: function render() {
             var style = {
                 textAlign: 'center',
-                color: 'white',
-                fontFamily: 'Verdana',
+                color: 'black',
+                fontFamily: 'Amita',
                 paddingTop: '50px'
             };
 
@@ -42951,8 +43048,8 @@ var Title = function (_React$Component4) {
     return Title;
 }(_react2.default.Component);
 
-var Image = function (_React$Component5) {
-    _inherits(Image, _React$Component5);
+var Image = function (_React$Component7) {
+    _inherits(Image, _React$Component7);
 
     function Image() {
         _classCallCheck(this, Image);
@@ -42964,10 +43061,8 @@ var Image = function (_React$Component5) {
         key: "render",
         value: function render() {
             var style = {
-                width: '15vw',
-                border: 'solid 5px',
-                borderRadius: '50%',
-                marginTop: '40px'
+                width: '20vw',
+                borderRadius: '50%'
             };
 
             return _react2.default.createElement(
@@ -42981,8 +43076,8 @@ var Image = function (_React$Component5) {
     return Image;
 }(_react2.default.Component);
 
-var TextBoxPast = function (_React$Component6) {
-    _inherits(TextBoxPast, _React$Component6);
+var TextBoxPast = function (_React$Component8) {
+    _inherits(TextBoxPast, _React$Component8);
 
     function TextBoxPast() {
         _classCallCheck(this, TextBoxPast);
@@ -43008,8 +43103,8 @@ var TextBoxPast = function (_React$Component6) {
     return TextBoxPast;
 }(_react2.default.Component);
 
-var TextBoxPresent = function (_React$Component7) {
-    _inherits(TextBoxPresent, _React$Component7);
+var TextBoxPresent = function (_React$Component9) {
+    _inherits(TextBoxPresent, _React$Component9);
 
     function TextBoxPresent() {
         _classCallCheck(this, TextBoxPresent);
@@ -43035,8 +43130,8 @@ var TextBoxPresent = function (_React$Component7) {
     return TextBoxPresent;
 }(_react2.default.Component);
 
-var TextBoxCTA = function (_React$Component8) {
-    _inherits(TextBoxCTA, _React$Component8);
+var TextBoxCTA = function (_React$Component10) {
+    _inherits(TextBoxCTA, _React$Component10);
 
     function TextBoxCTA() {
         _classCallCheck(this, TextBoxCTA);
@@ -43048,13 +43143,8 @@ var TextBoxCTA = function (_React$Component8) {
         key: "render",
         value: function render() {
             var style = {
-                width: '25vw',
+                width: '50vw',
                 textAlign: 'left'
-            };
-
-            var linkSty = {
-                color: 'd75e76',
-                textDecorationStyle: 'wavy'
             };
 
             return _react2.default.createElement(
@@ -43066,13 +43156,13 @@ var TextBoxCTA = function (_React$Component8) {
                     "At my ",
                     _react2.default.createElement(
                         "a",
-                        { style: linkSty, href: "javascriptjunky.wordpress.com" },
+                        { href: "javascriptjunky.wordpress.com" },
                         "blog"
                     ),
                     ", I break down the lessons I learn as I develop various projects, or learn about new Javascript features and frameworks. On this site, I have samples of my work. You could also ",
                     _react2.default.createElement(
                         "a",
-                        { style: linkSty, href: "mailto:alexmcleod01+portfolio@gmail.com" },
+                        { href: "mailto:alexmcleod01+portfolio@gmail.com" },
                         "contact"
                     ),
                     " me if you are looking for a web developer who specializes in React."
@@ -43084,8 +43174,8 @@ var TextBoxCTA = function (_React$Component8) {
     return TextBoxCTA;
 }(_react2.default.Component);
 
-var SkillList = function (_React$Component9) {
-    _inherits(SkillList, _React$Component9);
+var SkillList = function (_React$Component11) {
+    _inherits(SkillList, _React$Component11);
 
     function SkillList() {
         _classCallCheck(this, SkillList);
@@ -43109,7 +43199,8 @@ var SkillList = function (_React$Component9) {
                 alignItems: 'space-between',
                 height: '90px',
                 width: '25vw',
-                textAlign: 'left'
+                textAlign: 'left',
+                fontFamily: 'Advent Pro'
             };
 
             var liSty = {
@@ -43175,8 +43266,8 @@ var SkillList = function (_React$Component9) {
     return SkillList;
 }(_react2.default.Component);
 
-var Projects = function (_React$Component10) {
-    _inherits(Projects, _React$Component10);
+var Projects = function (_React$Component12) {
+    _inherits(Projects, _React$Component12);
 
     function Projects() {
         _classCallCheck(this, Projects);
@@ -43229,8 +43320,8 @@ var Projects = function (_React$Component10) {
     return Projects;
 }(_react2.default.Component);
 
-var ProjectImage = function (_React$Component11) {
-    _inherits(ProjectImage, _React$Component11);
+var ProjectImage = function (_React$Component13) {
+    _inherits(ProjectImage, _React$Component13);
 
     function ProjectImage() {
         _classCallCheck(this, ProjectImage);
@@ -43262,8 +43353,8 @@ var ProjectImage = function (_React$Component11) {
     return ProjectImage;
 }(_react2.default.Component);
 
-var Contact = function (_React$Component12) {
-    _inherits(Contact, _React$Component12);
+var Contact = function (_React$Component14) {
+    _inherits(Contact, _React$Component14);
 
     function Contact() {
         _classCallCheck(this, Contact);
@@ -43274,6 +43365,8 @@ var Contact = function (_React$Component12) {
     _createClass(Contact, [{
         key: "render",
         value: function render() {
+            var _back;
+
             var style = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
@@ -43292,23 +43385,33 @@ var Contact = function (_React$Component12) {
                 width: '30vw'
             };
 
+            var back = (_back = {
+                width: '98.25vw',
+                backgroundColor: '#D3D3D3',
+                background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))'
+            }, _defineProperty(_back, "background", '-moz-linear-gradient(#d3d3d3, #545454)'), _defineProperty(_back, "background", 'linear-gradient(#d3d3d3, #545454)'), _back);
+
             return _react2.default.createElement(
                 "div",
-                { style: center },
-                _react2.default.createElement("a", { name: "contact" }),
-                _react2.default.createElement(Divider, null),
-                _react2.default.createElement(
-                    "h2",
-                    null,
-                    "Contact Me!"
-                ),
+                { style: back },
                 _react2.default.createElement(
                     "div",
-                    { style: style },
-                    _react2.default.createElement(SocialIcon, { link: "mailto:AlexMcLeod01+portfolio@gmail.com", img: "../images/email.png", alt: "Email Me!" }),
-                    _react2.default.createElement(SocialIcon, { link: "https://github.com/AlexMcLeod01", img: "../images/Github.png", alt: "Follow me on Github!" }),
-                    _react2.default.createElement(SocialIcon, { link: "https://www.linkedin.com/pub/alex-mcleod/134/335/606", img: "../images/linkedin.png", alt: "Check me out on Linkedin" }),
-                    _react2.default.createElement(SocialIcon, { link: "http://www.facebook.com/mnkykngtrtlmstr", img: "../images/facebook.png", alt: "Follow me on Facebook" })
+                    { style: center },
+                    _react2.default.createElement("a", { name: "contact" }),
+                    _react2.default.createElement(Divider, null),
+                    _react2.default.createElement(
+                        "h2",
+                        null,
+                        "Contact Me!"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { style: style },
+                        _react2.default.createElement(SocialIcon, { link: "mailto:AlexMcLeod01+portfolio@gmail.com", img: "../images/email.png", alt: "Email Me!" }),
+                        _react2.default.createElement(SocialIcon, { link: "https://github.com/AlexMcLeod01", img: "../images/Github.png", alt: "Follow me on Github!" }),
+                        _react2.default.createElement(SocialIcon, { link: "https://www.linkedin.com/pub/alex-mcleod/134/335/606", img: "../images/linkedin.png", alt: "Check me out on Linkedin" }),
+                        _react2.default.createElement(SocialIcon, { link: "http://www.facebook.com/mnkykngtrtlmstr", img: "../images/facebook.png", alt: "Follow me on Facebook" })
+                    )
                 )
             );
         }
@@ -43317,8 +43420,8 @@ var Contact = function (_React$Component12) {
     return Contact;
 }(_react2.default.Component);
 
-var SocialIcon = function (_React$Component13) {
-    _inherits(SocialIcon, _React$Component13);
+var SocialIcon = function (_React$Component15) {
+    _inherits(SocialIcon, _React$Component15);
 
     function SocialIcon() {
         _classCallCheck(this, SocialIcon);
@@ -43346,8 +43449,8 @@ var SocialIcon = function (_React$Component13) {
     return SocialIcon;
 }(_react2.default.Component);
 
-var Header = function (_React$Component14) {
-    _inherits(Header, _React$Component14);
+var Header = function (_React$Component16) {
+    _inherits(Header, _React$Component16);
 
     function Header() {
         _classCallCheck(this, Header);

@@ -31,7 +31,7 @@ export class Leader extends React.Component {
     
     render () {
         const style = {
-            backgroundColor: 'teal',
+            backgroundColor: 'white',
             height: '1000vh',
         };
         

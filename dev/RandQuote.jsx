@@ -8,10 +8,8 @@ import $ from "jquery";
 export class RandQuote extends React.Component {
     render () {        
         const style = {
-            backgroundColor: 'teal',
             height: '200vh',
-            width: '100vw',
-            color: 'white'
+            width: '100vw'
         }
         return (
             <div style={style}>
@@ -27,7 +25,8 @@ export class RandQuote extends React.Component {
 class Container extends React.Component {
     render () {
         const style = {
-            backgroundColor: '#005050',
+            backgroundColor: '#005194',
+            color: 'white',
             marginLeft: 'auto',
             marginRight: 'auto',
             marginTop: '30px',
@@ -39,7 +38,7 @@ class Container extends React.Component {
         
         const divSty = {
             display: 'table-cell',
-            verticalAlign: 'middle'
+            verticalAlign: 'middle',
         };
         
         return (

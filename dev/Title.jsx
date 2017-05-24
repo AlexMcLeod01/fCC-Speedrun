@@ -4,7 +4,7 @@ import {render} from "react-dom";
 export class Title extends React.Component {
     render () {
         const style = {
-            fontFamily: 'Verdana',
+            fontFamily: 'Amita',
             fontSize: "28px",
             textAlign: 'center',
             paddingTop: '30px'

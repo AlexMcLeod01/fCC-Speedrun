@@ -93,11 +93,12 @@ class Projects extends React.Component {
 class App extends React.Component {
     render () {
         const style = {
-            backgroundColor: 'teal',
-            color: 'white',
+            backgroundColor: '#FFFFFF',
+            color: 'black',
             height: '200vh',
             width: '98.25vw',
-            fontSize: 'large'
+            fontSize: 'large',
+            fontFamily: 'Advent Pro'
         };
         
         return (

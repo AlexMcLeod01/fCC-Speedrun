@@ -23064,13 +23064,16 @@ var Weather = exports.Weather = function (_React$Component) {
             lon: 0,
             city: 0,
             State: 0,
-            country: 0,
             temp: 0,
-            icon: 0
+            tFah: 0,
+            tCel: 0,
+            icon: 0,
+            fahren: 1
         };
         _this.getLocation = _this.getLocation.bind(_this);
         _this.getCity = _this.getCity.bind(_this);
         _this.getWeather = _this.getWeather.bind(_this);
+        _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
 
@@ -23086,7 +23089,7 @@ var Weather = exports.Weather = function (_React$Component) {
                 this.getLocation();
             } else if (this.state.city === 0) {
                 this.getCity();
-            } else {
+            } else if (this.state.icon === 0) {
                 this.getWeather();
             }
         }
@@ -23116,9 +23119,8 @@ var Weather = exports.Weather = function (_React$Component) {
             _jquery2.default.getJSON(geocodeURL, function (data) {
                 var obj = data.results[0].address_components;
                 that.setState({
-                    city: obj[3].short_name,
-                    State: obj[5].short_name,
-                    country: obj[6].short_name
+                    city: obj[2].short_name,
+                    State: obj[5].short_name
                 });
             });
         }
@@ -23126,17 +23128,35 @@ var Weather = exports.Weather = function (_React$Component) {
         key: "getWeather",
         value: function getWeather() {
             var API_KEY = "ac3602900b117851d300d71e6a7329ec";
-            var URL = "https://api.darksky.net/forecast/" + API_KEY + "/" + this.state.lat + "," + this.state.lon;
+            var URL = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + API_KEY + "/" + this.state.lat + "," + this.state.lon;
             var that = this;
-            fetch(URL, { mode: 'no-cors' }).then(function (res) {
+            fetch(URL).then(function (res) {
                 return res.json().then(function (data) {
                     var obj = data.currently;
                     that.setState({
-                        temp: obj.temperature,
+                        temp: obj.temperature + "\xB0F",
+                        tFah: obj.temperature,
+                        tCel: fahToCel(obj.temperature),
                         icon: obj.icon
                     });
                 });
             });
+        }
+    }, {
+        key: "handleClick",
+        value: function handleClick() {
+            if (this.state.fahren === 1) {
+                var T = this.state.temp;
+                this.setState({
+                    temp: this.state.tCel + "\xB0C",
+                    fahren: 0
+                });
+            } else {
+                this.setState({
+                    temp: this.state.tFah + "\xB0F",
+                    fahren: 1
+                });
+            }
         }
     }, {
         key: "render",
@@ -23147,8 +23167,8 @@ var Weather = exports.Weather = function (_React$Component) {
                 _react2.default.createElement(_Header.Header, null),
                 _react2.default.createElement(_Title.Title, { text: "Local Weather" }),
                 _react2.default.createElement(Icon, { icon: this.state.icon }),
-                _react2.default.createElement(Temperature, { temp: this.state.temp }),
-                _react2.default.createElement(Location, { city: this.state.city, State: this.state.State, country: this.state.country }),
+                _react2.default.createElement(Temperature, { temp: this.state.temp, handleClick: this.handleClick }),
+                _react2.default.createElement(Location, { city: this.state.city, State: this.state.State }),
                 _react2.default.createElement(Powered, null)
             );
         }
@@ -23172,7 +23192,8 @@ var Icon = function (_React$Component2) {
             var style = {
                 display: 'block',
                 textAlign: 'center',
-                marginTop: '60px'
+                marginTop: '60px',
+                fontSize: '90px'
             };
 
             var icon;
@@ -23252,7 +23273,7 @@ var Temperature = function (_React$Component3) {
 
             return _react2.default.createElement(
                 "div",
-                { id: "current-temp", style: style },
+                { id: "current-temp", style: style, onClick: this.props.handleClick },
                 this.props.temp
             );
         }
@@ -23276,13 +23297,14 @@ var Location = function (_React$Component4) {
             var style = {
                 textAlign: 'center',
                 marginTop: '20px',
+                marginBottom: '50px',
                 fontSize: '30px'
             };
 
             return _react2.default.createElement(
                 "div",
                 { id: "location", style: style },
-                this.props.city + ", " + this.props.State + ", " + this.props.country
+                this.props.city + ", " + this.props.State
             );
         }
     }]);
@@ -23304,15 +23326,16 @@ var Powered = function (_React$Component5) {
         value: function render() {
             var style = {
                 fontSize: 'small',
-                marginTop: '100px',
+                marginTop: '25vh',
+                width: '25vw',
+                textAlign: 'center',
                 marginLeft: 'auto',
-                marginRight: 'auto',
-                textAlign: 'center'
+                marginRight: 'auto'
             };
 
             return _react2.default.createElement(
                 "div",
-                null,
+                { style: style },
                 _react2.default.createElement(
                     "a",
                     { href: "https://darksky.net/poweredby/" },
@@ -23333,13 +23356,10 @@ var Powered = function (_React$Component5) {
 */
 
 
-function kelvinToCel(kel) {
-    return Math.round(10 * (kel - 273.15)) / 10;
+function fahToCel(fah) {
+    console.log(fah);
+    return Math.round(10 * (fah - 32) * (5 / 9)) / 10;
 }
-function kelvinToFah(kel) {
-    return Math.round(10 * (kelvinToCel(kel) * 1.8 + 32)) / 10;
-}
-
 /*
       function updateTemp() {
         if (stat) {
@@ -42787,6 +42807,8 @@ var _reactRouterDom = __webpack_require__(63);
 
 var _Button = __webpack_require__(64);
 
+var _SmoothScroll = __webpack_require__(310);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -42833,8 +42855,6 @@ var Container = function (_React$Component2) {
     _createClass(Container, [{
         key: "render",
         value: function render() {
-            var _titleStyle;
-
             var linkSty = {
                 color: 'black',
                 textDecoration: 'none'
@@ -42859,33 +42879,16 @@ var Container = function (_React$Component2) {
                 alignItems: 'center'
             };
 
-            var titleStyle = (_titleStyle = {
-                width: '98.25vw',
-                height: '75vh',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                display: 'flex',
-                flexFlow: 'row no-wrap',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-                backgroundColor: '#D3D3D3',
-                background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))'
-            }, _defineProperty(_titleStyle, "background", '-moz-linear-gradient(#d3d3d3, #545454)'), _defineProperty(_titleStyle, "background", 'linear-gradient(#d3d3d3, #545454)'), _titleStyle);
-
             return _react2.default.createElement(
                 "div",
                 { style: back },
-                _react2.default.createElement(
-                    "div",
-                    { style: titleStyle },
-                    _react2.default.createElement(MainTitle, null),
-                    _react2.default.createElement(Image, { img: "Boom.jpg" })
-                ),
+                _react2.default.createElement(TitleBar, null),
                 _react2.default.createElement(BlogTagline, null),
                 _react2.default.createElement(Title, null),
                 _react2.default.createElement(
                     "div",
                     { style: Object.assign({}, textArea, flex) },
+                    _react2.default.createElement(Image, { img: "Boom.jpg" }),
                     _react2.default.createElement(TextBoxPast, null),
                     _react2.default.createElement(TextBoxPresent, null),
                     _react2.default.createElement(TextBoxCTA, null),
@@ -42900,8 +42903,48 @@ var Container = function (_React$Component2) {
     return Container;
 }(_react2.default.Component);
 
-var BlogTagline = function (_React$Component3) {
-    _inherits(BlogTagline, _React$Component3);
+var TitleBar = function (_React$Component3) {
+    _inherits(TitleBar, _React$Component3);
+
+    function TitleBar() {
+        _classCallCheck(this, TitleBar);
+
+        return _possibleConstructorReturn(this, (TitleBar.__proto__ || Object.getPrototypeOf(TitleBar)).apply(this, arguments));
+    }
+
+    _createClass(TitleBar, [{
+        key: "render",
+        value: function render() {
+            var titleStyle = {
+                width: '98.25vw',
+                height: '75vh',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                display: 'flex',
+                flexFlow: 'row no-wrap',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                /* Playing around with a different title bar
+                backgroundColor: '#D3D3D3',
+                background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
+                background: '-moz-linear-gradient(#d3d3d3, #545454)',
+                background: 'linear-gradient(#d3d3d3, #545454)',*/
+                backgroundImage: 'url(../images/titlepic.jpg)'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                { style: titleStyle },
+                _react2.default.createElement(MainTitle, null)
+            );
+        }
+    }]);
+
+    return TitleBar;
+}(_react2.default.Component);
+
+var BlogTagline = function (_React$Component4) {
+    _inherits(BlogTagline, _React$Component4);
 
     function BlogTagline() {
         _classCallCheck(this, BlogTagline);
@@ -42937,8 +42980,8 @@ var BlogTagline = function (_React$Component3) {
     return BlogTagline;
 }(_react2.default.Component);
 
-var MainTitle = function (_React$Component4) {
-    _inherits(MainTitle, _React$Component4);
+var MainTitle = function (_React$Component5) {
+    _inherits(MainTitle, _React$Component5);
 
     function MainTitle() {
         _classCallCheck(this, MainTitle);
@@ -42951,16 +42994,11 @@ var MainTitle = function (_React$Component4) {
         value: function render() {
             var style = {
                 color: 'white',
+                width: '40vw',
+                backgroundColor: '#333',
                 fontFamily: 'Amita',
-                fontSize: 'x-large'
-            };
-
-            var left = {
-                textAlign: 'right'
-            };
-
-            var right = {
-                textAlign: 'right'
+                fontSize: 'x-large',
+                textAlign: 'center'
             };
 
             return _react2.default.createElement(
@@ -42968,14 +43006,14 @@ var MainTitle = function (_React$Component4) {
                 { style: style },
                 _react2.default.createElement(
                     "h1",
-                    { style: left },
+                    null,
                     "Alex McLeod"
                 ),
                 _react2.default.createElement("p", null),
                 _react2.default.createElement("p", null),
                 _react2.default.createElement(
                     "h3",
-                    { style: right },
+                    null,
                     "Full-stack Web Developer Specializing in React"
                 )
             );
@@ -42985,8 +43023,8 @@ var MainTitle = function (_React$Component4) {
     return MainTitle;
 }(_react2.default.Component);
 
-var Divider = function (_React$Component5) {
-    _inherits(Divider, _React$Component5);
+var Divider = function (_React$Component6) {
+    _inherits(Divider, _React$Component6);
 
     function Divider() {
         _classCallCheck(this, Divider);
@@ -43012,8 +43050,8 @@ var Divider = function (_React$Component5) {
     return Divider;
 }(_react2.default.Component);
 
-var Title = function (_React$Component6) {
-    _inherits(Title, _React$Component6);
+var Title = function (_React$Component7) {
+    _inherits(Title, _React$Component7);
 
     function Title() {
         _classCallCheck(this, Title);
@@ -43039,7 +43077,7 @@ var Title = function (_React$Component6) {
                     null,
                     "About Me"
                 ),
-                _react2.default.createElement("a", { name: "about" }),
+                _react2.default.createElement("a", { name: "about", id: "about" }),
                 _react2.default.createElement(Divider, null)
             );
         }
@@ -43048,8 +43086,8 @@ var Title = function (_React$Component6) {
     return Title;
 }(_react2.default.Component);
 
-var Image = function (_React$Component7) {
-    _inherits(Image, _React$Component7);
+var Image = function (_React$Component8) {
+    _inherits(Image, _React$Component8);
 
     function Image() {
         _classCallCheck(this, Image);
@@ -43076,8 +43114,8 @@ var Image = function (_React$Component7) {
     return Image;
 }(_react2.default.Component);
 
-var TextBoxPast = function (_React$Component8) {
-    _inherits(TextBoxPast, _React$Component8);
+var TextBoxPast = function (_React$Component9) {
+    _inherits(TextBoxPast, _React$Component9);
 
     function TextBoxPast() {
         _classCallCheck(this, TextBoxPast);
@@ -43103,8 +43141,8 @@ var TextBoxPast = function (_React$Component8) {
     return TextBoxPast;
 }(_react2.default.Component);
 
-var TextBoxPresent = function (_React$Component9) {
-    _inherits(TextBoxPresent, _React$Component9);
+var TextBoxPresent = function (_React$Component10) {
+    _inherits(TextBoxPresent, _React$Component10);
 
     function TextBoxPresent() {
         _classCallCheck(this, TextBoxPresent);
@@ -43130,8 +43168,8 @@ var TextBoxPresent = function (_React$Component9) {
     return TextBoxPresent;
 }(_react2.default.Component);
 
-var TextBoxCTA = function (_React$Component10) {
-    _inherits(TextBoxCTA, _React$Component10);
+var TextBoxCTA = function (_React$Component11) {
+    _inherits(TextBoxCTA, _React$Component11);
 
     function TextBoxCTA() {
         _classCallCheck(this, TextBoxCTA);
@@ -43174,8 +43212,8 @@ var TextBoxCTA = function (_React$Component10) {
     return TextBoxCTA;
 }(_react2.default.Component);
 
-var SkillList = function (_React$Component11) {
-    _inherits(SkillList, _React$Component11);
+var SkillList = function (_React$Component12) {
+    _inherits(SkillList, _React$Component12);
 
     function SkillList() {
         _classCallCheck(this, SkillList);
@@ -43266,8 +43304,8 @@ var SkillList = function (_React$Component11) {
     return SkillList;
 }(_react2.default.Component);
 
-var Projects = function (_React$Component12) {
-    _inherits(Projects, _React$Component12);
+var Projects = function (_React$Component13) {
+    _inherits(Projects, _React$Component13);
 
     function Projects() {
         _classCallCheck(this, Projects);
@@ -43278,12 +43316,6 @@ var Projects = function (_React$Component12) {
     _createClass(Projects, [{
         key: "render",
         value: function render() {
-            var style = {
-                display: 'flex',
-                flexFlow: 'row wrap',
-                justifyContent: 'space-around'
-            };
-
             var center = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
@@ -43291,10 +43323,17 @@ var Projects = function (_React$Component12) {
                 textAlign: 'center'
             };
 
+            var style = {
+                display: 'flex',
+                flexFlow: 'column',
+                justifyContent: 'space-around',
+                alignItems: 'center'
+            };
+
             return _react2.default.createElement(
                 "div",
                 { style: center },
-                _react2.default.createElement("a", { name: "work" }),
+                _react2.default.createElement("a", { name: "work", id: "work" }),
                 _react2.default.createElement(Divider, null),
                 _react2.default.createElement(
                     "h2",
@@ -43320,8 +43359,8 @@ var Projects = function (_React$Component12) {
     return Projects;
 }(_react2.default.Component);
 
-var ProjectImage = function (_React$Component13) {
-    _inherits(ProjectImage, _React$Component13);
+var ProjectImage = function (_React$Component14) {
+    _inherits(ProjectImage, _React$Component14);
 
     function ProjectImage() {
         _classCallCheck(this, ProjectImage);
@@ -43333,14 +43372,22 @@ var ProjectImage = function (_React$Component13) {
         key: "render",
         value: function render() {
             var style = {
-                width: '200px',
-                height: '150px',
+                maxWidth: '421px',
+                maxHeight: '317px',
                 paddingBottom: '15px'
+            };
+
+            var box = {
+                width: '25vw',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                display: 'flex',
+                justifyContent: 'center'
             };
 
             return _react2.default.createElement(
                 "div",
-                null,
+                { style: box },
                 _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: this.props.route },
@@ -43353,8 +43400,8 @@ var ProjectImage = function (_React$Component13) {
     return ProjectImage;
 }(_react2.default.Component);
 
-var Contact = function (_React$Component14) {
-    _inherits(Contact, _React$Component14);
+var Contact = function (_React$Component15) {
+    _inherits(Contact, _React$Component15);
 
     function Contact() {
         _classCallCheck(this, Contact);
@@ -43397,7 +43444,7 @@ var Contact = function (_React$Component14) {
                 _react2.default.createElement(
                     "div",
                     { style: center },
-                    _react2.default.createElement("a", { name: "contact" }),
+                    _react2.default.createElement("a", { name: "contact", id: "contact" }),
                     _react2.default.createElement(Divider, null),
                     _react2.default.createElement(
                         "h2",
@@ -43420,8 +43467,8 @@ var Contact = function (_React$Component14) {
     return Contact;
 }(_react2.default.Component);
 
-var SocialIcon = function (_React$Component15) {
-    _inherits(SocialIcon, _React$Component15);
+var SocialIcon = function (_React$Component16) {
+    _inherits(SocialIcon, _React$Component16);
 
     function SocialIcon() {
         _classCallCheck(this, SocialIcon);
@@ -43449,8 +43496,8 @@ var SocialIcon = function (_React$Component15) {
     return SocialIcon;
 }(_react2.default.Component);
 
-var Header = function (_React$Component16) {
-    _inherits(Header, _React$Component16);
+var Header = function (_React$Component17) {
+    _inherits(Header, _React$Component17);
 
     function Header() {
         _classCallCheck(this, Header);
@@ -43476,6 +43523,14 @@ var Header = function (_React$Component16) {
                 borderRight: "1px solid #bbb"
             };
 
+            var buttonSty = {
+                display: 'block',
+                color: 'white',
+                textAlign: 'center',
+                padding: '14px 16px',
+                cursor: 'pointer'
+            };
+
             return _react2.default.createElement(
                 "div",
                 null,
@@ -43484,28 +43539,28 @@ var Header = function (_React$Component16) {
                     { style: style },
                     _react2.default.createElement(
                         "li",
-                        { style: liStyle },
+                        { style: liStyle, className: "lihover" },
                         _react2.default.createElement(
-                            "a",
-                            { href: "#about", activeClassName: ".active" },
+                            _SmoothScroll.SmoothScroll,
+                            { id: "about", style: buttonSty, activeClassName: "active" },
                             "ABOUT"
                         )
                     ),
                     _react2.default.createElement(
                         "li",
-                        { style: liStyle },
+                        { style: liStyle, className: "lihover" },
                         _react2.default.createElement(
-                            "a",
-                            { href: "#work", activeClassName: ".active" },
+                            _SmoothScroll.SmoothScroll,
+                            { id: "work", style: buttonSty, activeClassName: "active" },
                             "WORK"
                         )
                     ),
                     _react2.default.createElement(
                         "li",
-                        { style: liStyle },
+                        { style: liStyle, className: "lihover" },
                         _react2.default.createElement(
-                            "a",
-                            { href: "#contact", activeClassName: ".active" },
+                            _SmoothScroll.SmoothScroll,
+                            { id: "contact", style: buttonSty, activeClassName: "active" },
                             "CONTACT"
                         )
                     ),
@@ -43556,6 +43611,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* 
     Thanks to Sia at stackoverflow:
    'https://stackoverflow.com/questions/34345722/enforcing-scrolltotop-behavior-using-react-router'
+   
+   This component scrolls the focus of the screen on route change to top left.
 */
 var ScrollToTop = function (_Component) {
     _inherits(ScrollToTop, _Component);
@@ -43588,6 +43645,135 @@ var ScrollToTop = function (_Component) {
 }(_react.Component);
 
 exports.default = (0, _reactRouterDom.withRouter)(ScrollToTop);
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.SmoothScroll = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* This component is based on the one by
+    Brian at CodePen
+    
+    Updated to use class format of declaring
+    React Components
+*/
+var SmoothScroll = exports.SmoothScroll = function (_Component) {
+	_inherits(SmoothScroll, _Component);
+
+	function SmoothScroll(props) {
+		_classCallCheck(this, SmoothScroll);
+
+		var _this = _possibleConstructorReturn(this, (SmoothScroll.__proto__ || Object.getPrototypeOf(SmoothScroll)).call(this, props));
+
+		_this.handleClick = _this.handleClick.bind(_this);
+		return _this;
+	}
+
+	_createClass(SmoothScroll, [{
+		key: "handleClick",
+		value: function handleClick() {
+			smoothScroll.scrollTo(this.props.id + '');
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"span",
+				{ onClick: this.handleClick, style: this.props.style },
+				this.props.children
+			);
+		}
+	}]);
+
+	return SmoothScroll;
+}(_react.Component);
+
+var smoothScroll = {
+	timer: null,
+
+	stop: function stop() {
+		clearTimeout(this.timer);
+	},
+
+	scrollTo: function scrollTo(id, callback) {
+		var settings = {
+			duration: 1000,
+			easing: {
+				outQuint: function outQuint(x, t, b, c, d) {
+					return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+				}
+			}
+		};
+		var percentage;
+		var startTime;
+		var node = document.getElementById(id);
+		var nodeTop = node.offsetTop;
+		var nodeHeight = node.offsetHeight;
+		var body = document.body;
+		var html = document.documentElement;
+		var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+		var windowHeight = window.innerHeight;
+		var offset = window.pageYOffset;
+		var delta = nodeTop - offset;
+		var bottomScrollableY = height - windowHeight;
+		var targetY = bottomScrollableY < delta ? bottomScrollableY - (height - nodeTop - nodeHeight + offset) : delta;
+
+		startTime = Date.now();
+		percentage = 0;
+
+		if (this.timer) {
+			clearInterval(this.timer);
+		}
+
+		function step() {
+			var yScroll;
+			var elapsed = Date.now() - startTime;
+
+			if (elapsed > settings.duration) {
+				clearTimeout(this.timer);
+			}
+
+			percentage = elapsed / settings.duration;
+
+			if (percentage > 1) {
+				clearTimeout(this.timer);
+
+				if (callback) {
+					callback();
+				}
+			} else {
+				yScroll = settings.easing.outQuint(0, elapsed, offset, targetY, settings.duration);
+				window.scrollTo(0, yScroll);
+				this.timer = setTimeout(step, 10);
+			}
+		}
+
+		this.timer = setTimeout(step, 10);
+	}
+};
 
 /***/ })
 /******/ ]);

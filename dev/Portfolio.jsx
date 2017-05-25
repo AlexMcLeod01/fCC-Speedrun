@@ -2,6 +2,7 @@ import React from "react";
 import {render} from "react-dom";
 import {Link} from "react-router-dom";
 import { Button } from "./Button.jsx";
+import { SmoothScroll } from "./SmoothScroll.jsx";
 
 export class Portfolio extends React.Component {
     render () {
@@ -40,6 +41,27 @@ class Container extends React.Component {
             alignItems: 'center'
         };
         
+        return (
+            <div style={back}>
+                <TitleBar/>
+                <BlogTagline/>
+                <Title/>
+                <div style={Object.assign({}, textArea, flex)}>
+                    <Image img="Boom.jpg"/>
+                    <TextBoxPast/>
+                    <TextBoxPresent/>
+                    <TextBoxCTA/>
+                    <SkillList/>
+                </div>
+                <Projects/>
+                <Contact/>
+            </div>
+        );
+    }
+}
+
+class TitleBar extends React.Component {
+    render () {
         const titleStyle = {
             width: '98.25vw',
             height: '75vh',
@@ -49,28 +71,17 @@ class Container extends React.Component {
             flexFlow: 'row no-wrap',
             justifyContent: 'space-around',
             alignItems: 'center',
+            /* Playing around with a different title bar
             backgroundColor: '#D3D3D3',
             background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
             background: '-moz-linear-gradient(#d3d3d3, #545454)',
-            background: 'linear-gradient(#d3d3d3, #545454)',
+            background: 'linear-gradient(#d3d3d3, #545454)',*/
+            backgroundImage: 'url(../images/titlepic.jpg)'
         };
         
         return (
-            <div style={back}>
-                <div style={titleStyle}>
-                    <MainTitle/>
-                    <Image img="Boom.jpg"/>
-                </div>
-                <BlogTagline/>
-                <Title/>
-                <div style={Object.assign({}, textArea, flex)}>
-                    <TextBoxPast/>
-                    <TextBoxPresent/>
-                    <TextBoxCTA/>
-                    <SkillList/>
-                </div>
-                <Projects/>
-                <Contact/>
+            <div style={titleStyle}>
+                <MainTitle/>
             </div>
         );
     }
@@ -95,24 +106,19 @@ class MainTitle extends React.Component {
     render () {
         const style = {
             color: 'white',
+            width: '40vw',
+            backgroundColor: '#333',
             fontFamily: 'Amita',
-            fontSize: 'x-large'
+            fontSize: 'x-large',
+            textAlign: 'center',
         };
-        
-        const left = {
-            textAlign: 'right'
-        };
-        
-        const right = {
-            textAlign: 'right'
-        }
         
         return (
             <div style={style}>
-                <h1 style={left}>Alex McLeod</h1>
+                <h1>Alex McLeod</h1>
                 <p></p>
                 <p></p>
-                <h3 style={right}>Full-stack Web Developer Specializing in React</h3>
+                <h3>Full-stack Web Developer Specializing in React</h3>
             </div>
         );
     }
@@ -147,7 +153,7 @@ class Title extends React.Component {
         return(
             <div style={style}>
                 <h1>About Me</h1>
-                <a name="about"/>
+                <a name="about" id="about"/>
                 <Divider/>
             </div>
         );
@@ -249,12 +255,6 @@ class SkillList extends React.Component {
 
 class Projects extends React.Component {
     render () {
-        const style = {
-            display: 'flex',
-            flexFlow: 'row wrap',
-            justifyContent: 'space-around'
-        }
-        
         const center = {
             marginLeft: 'auto',
             marginRight: 'auto',
@@ -262,9 +262,17 @@ class Projects extends React.Component {
             textAlign: 'center',
         };
         
+        const style = {
+            display: 'flex',
+            flexFlow: 'column',
+            justifyContent: 'space-around',
+            alignItems: 'center'
+        };
+        
+        
         return (
             <div style={center}>
-                <a name="work"/>
+                <a name="work" id="work"/>
                 <Divider/>
                 <h2>My Work</h2>
                 <div style={style}>
@@ -285,13 +293,21 @@ class Projects extends React.Component {
 class ProjectImage extends React.Component {
     render () {
         const style = {
-            width: '200px',
-            height: '150px',
+            maxWidth: '421px',
+            maxHeight: '317px',
             paddingBottom: '15px'
-        }
+        };
+        
+        const box = {
+            width: '25vw',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            display: 'flex',
+            justifyContent: 'center'
+        };
         
         return (
-            <div>
+            <div style={box}>
                 <Link to={this.props.route}>
                     <img src={this.props.img} style={style}/>
                 </Link>
@@ -331,7 +347,7 @@ class Contact extends React.Component {
         return (
             <div style={back}>
                 <div style={center}>
-                    <a name="contact"/>
+                    <a name="contact" id="contact"/>
                     <Divider/>
                     <h2>Contact Me!</h2>
                     <div style={style}>
@@ -379,12 +395,20 @@ class Header extends React.Component {
             borderRight: "1px solid #bbb"
         };
         
+        const buttonSty = {
+            display: 'block',
+            color: 'white',
+            textAlign: 'center',
+            padding: '14px 16px',
+            cursor: 'pointer'
+        };
+        
         return (
             <div>
                 <ul style={style}>
-                    <li style={liStyle}><a href="#about" activeClassName='.active'>ABOUT</a></li>
-                    <li style={liStyle}><a href="#work" activeClassName='.active'>WORK</a></li>
-                    <li style={liStyle}><a href="#contact" activeClassName='.active'>CONTACT</a></li>
+                    <li style={liStyle} className='lihover'><SmoothScroll id="about" style={buttonSty} activeClassName='active'>ABOUT</SmoothScroll></li>
+                    <li style={liStyle} className='lihover'><SmoothScroll id="work" style={buttonSty} activeClassName='active'>WORK</SmoothScroll></li>
+                    <li style={liStyle} className='lihover'><SmoothScroll id="contact" style={buttonSty} activeClassName='active'>CONTACT</SmoothScroll></li>
                     <li style={liStyle}><a href="https://javascriptjunky.wordpress.com">BLOG</a></li>
                 </ul>
             </div>

@@ -12,13 +12,16 @@ export class Weather extends React.Component {
             lon: 0,
             city: 0,
             State: 0,
-            country: 0,
             temp: 0,
-            icon: 0
+            tFah: 0,
+            tCel: 0,
+            icon: 0,
+            fahren: 1
         }
         this.getLocation = this.getLocation.bind(this);
         this.getCity = this.getCity.bind(this);
         this.getWeather = this.getWeather.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     componentDidMount() {
         this.getLocation();
@@ -29,7 +32,7 @@ export class Weather extends React.Component {
             this.getLocation();
         } else if (this.state.city === 0) {
             this.getCity();
-        } else {
+        } else if (this.state.icon === 0) {
             this.getWeather();
         }
     }
@@ -58,25 +61,41 @@ export class Weather extends React.Component {
         $.getJSON(geocodeURL, function(data) {
             var obj = data.results[0].address_components;
             that.setState({
-                city: obj[3].short_name,
+                city: obj[2].short_name,
                 State: obj[5].short_name,
-                country: obj[6].short_name
             });
         });
     }
     
     getWeather() {
         const API_KEY = "ac3602900b117851d300d71e6a7329ec";
-        const URL = "https://api.darksky.net/forecast/" + API_KEY + "/" + this.state.lat + "," + this.state.lon;
+        const URL = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + API_KEY + "/" + this.state.lat + "," + this.state.lon;
         var that = this;
-        fetch(URL, {mode: 'no-cors'})
+        fetch(URL)
             .then(function(res) {return res.json().then(function(data) {
                 var obj = data.currently;
                 that.setState({
-                    temp: obj.temperature,
+                    temp: obj.temperature + "\xB0F",
+                    tFah: obj.temperature,
+                    tCel: fahToCel(obj.temperature),
                     icon: obj.icon
                 })
             })})
+    }
+    
+    handleClick() {
+        if (this.state.fahren === 1) {
+            var T = this.state.temp;
+            this.setState({
+                temp: this.state.tCel + "\xB0C",
+                fahren: 0
+            })
+        } else {
+            this.setState({
+                temp: this.state.tFah + "\xB0F",
+                fahren: 1
+            })
+        }
     }
     
     render () {        
@@ -85,8 +104,8 @@ export class Weather extends React.Component {
                 <Header/>
                 <Title text="Local Weather"/>
                 <Icon icon={this.state.icon}/>
-                <Temperature temp={this.state.temp}/>
-                <Location city={this.state.city} State={this.state.State} country={this.state.country}/>
+                <Temperature temp={this.state.temp} handleClick={this.handleClick}/>
+                <Location city={this.state.city} State={this.state.State}/>
                 <Powered/>
             </div>            
         );
@@ -98,7 +117,8 @@ class Icon extends React.Component {
         const style = {
             display: 'block',
             textAlign: 'center',
-            marginTop: '60px'
+            marginTop: '60px',
+            fontSize: '90px'
         };
         
         var icon;
@@ -164,7 +184,7 @@ class Temperature extends React.Component {
         };
         
         return (
-            <div id="current-temp" style={style}>{this.props.temp}
+            <div id="current-temp" style={style} onClick={this.props.handleClick}>{this.props.temp}
             </div>
         );
     }
@@ -175,12 +195,13 @@ class Location extends React.Component {
         const style = {
             textAlign: 'center',
             marginTop: '20px',
+            marginBottom: '50px',
             fontSize: '30px'
         };
         
         return (
             <div id="location" style={style}>
-                {this.props.city + ", " + this.props.State + ", " + this.props.country}
+                {this.props.city + ", " + this.props.State}
             </div>
         );
     }
@@ -190,14 +211,15 @@ class Powered extends React.Component {
     render () {
         const style = {
             fontSize: 'small',
-            marginTop: '100px',
+            marginTop: '25vh',
+            width: '25vw',
+            textAlign: 'center',
             marginLeft: 'auto',
-            marginRight: 'auto',
-            textAlign: 'center'
+            marginRight: 'auto'
         };
         
         return (
-            <div><a href="https://darksky.net/poweredby/">Powered By Dark Sky</a></div>
+            <div style={style}><a href="https://darksky.net/poweredby/">Powered By Dark Sky</a></div>
         );
     }
 }
@@ -209,13 +231,10 @@ class Powered extends React.Component {
     
     I may or may not have changed some of it by the time this project gets uploaded
 */
-function kelvinToCel(kel) {
-  return Math.round(10 * (kel - 273.15))/10;
+function fahToCel(fah) {
+    console.log(fah);
+    return Math.round(10 * (fah - 32) * (5/9))/10;
 }
-function kelvinToFah(kel) {
-  return Math.round(10 * ((kelvinToCel(kel) * 1.8) + 32))/10;
-}
-
 /*
       function updateTemp() {
         if (stat) {

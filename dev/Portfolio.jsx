@@ -95,7 +95,7 @@ class BlogTagline extends React.Component {
         
         return (
             <div style={style}>
-                <h3>Get Hooked on Javascript With Me on <a href="javascriptjunky.wordpress.com">My Blog</a></h3>
+                <h3>Get Hooked on Javascript With Me on <a href="https://javascriptjunky.wordpress.com">My Blog</a></h3>
             </div>
         );
     }

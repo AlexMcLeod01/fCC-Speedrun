@@ -42944,7 +42944,7 @@ var BlogTagline = function (_React$Component4) {
                     "Get Hooked on Javascript With Me on ",
                     _react2.default.createElement(
                         "a",
-                        { href: "javascriptjunky.wordpress.com" },
+                        { href: "https://javascriptjunky.wordpress.com" },
                         "My Blog"
                     )
                 )

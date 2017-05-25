@@ -62,7 +62,6 @@ class Container extends React.Component {
 class TitleBar extends React.Component {
     render () {
         const titleStyle = {
-            width: '98.25vw',
             height: '75vh',
             marginLeft: 'auto',
             marginRight: 'auto',
@@ -75,7 +74,8 @@ class TitleBar extends React.Component {
             background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
             background: '-moz-linear-gradient(#d3d3d3, #545454)',
             background: 'linear-gradient(#d3d3d3, #545454)',*/
-            backgroundImage: 'url(../images/titlepic.jpg)'
+            backgroundImage: 'url(../images/titlepic.jpg)',
+            backgroundSize: 'cover'
         };
         
         return (

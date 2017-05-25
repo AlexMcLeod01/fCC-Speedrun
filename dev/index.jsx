@@ -86,7 +86,6 @@ class App extends React.Component {
             backgroundColor: '#FFFFFF',
             color: 'black',
             height: '200vh',
-            width: '98.25vw',
             fontSize: 'large',
             fontFamily: 'Amiko'
         };

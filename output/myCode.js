@@ -23833,7 +23833,6 @@ var App = function (_React$Component2) {
                 backgroundColor: '#FFFFFF',
                 color: 'black',
                 height: '200vh',
-                width: '98.25vw',
                 fontSize: 'large',
                 fontFamily: 'Amiko'
             };
@@ -42892,7 +42891,6 @@ var TitleBar = function (_React$Component3) {
         key: "render",
         value: function render() {
             var titleStyle = {
-                width: '98.25vw',
                 height: '75vh',
                 marginLeft: 'auto',
                 marginRight: 'auto',
@@ -42905,7 +42903,8 @@ var TitleBar = function (_React$Component3) {
                 background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
                 background: '-moz-linear-gradient(#d3d3d3, #545454)',
                 background: 'linear-gradient(#d3d3d3, #545454)',*/
-                backgroundImage: 'url(../images/titlepic.jpg)'
+                backgroundImage: 'url(../images/titlepic.jpg)',
+                backgroundSize: 'cover'
             };
 
             return _react2.default.createElement(

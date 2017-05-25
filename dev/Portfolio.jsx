@@ -29,13 +29,12 @@ class Container extends React.Component {
         const textArea = {
             marginLeft: 'auto',
             marginRight: 'auto',
+            marginTop: '50px',
+            
             fontSize: 'large',
-            display: 'flex',
             width: '50vw',
-            marginTop: '50px'
-        };
-        
-        const flex = {
+            
+            display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
             alignItems: 'center'
@@ -46,7 +45,7 @@ class Container extends React.Component {
                 <TitleBar/>
                 <BlogTagline/>
                 <Title/>
-                <div style={Object.assign({}, textArea, flex)}>
+                <div style={textArea}>
                     <Image img="Boom.jpg"/>
                     <TextBoxPast/>
                     <TextBoxPresent/>
@@ -108,7 +107,7 @@ class MainTitle extends React.Component {
             color: 'white',
             width: '40vw',
             backgroundColor: '#333',
-            fontFamily: 'Amita',
+            fontFamily: 'Amarante',
             fontSize: 'x-large',
             textAlign: 'center',
         };
@@ -146,7 +145,7 @@ class Title extends React.Component {
         const style = {
             textAlign: 'center',
             color: 'black',
-            fontFamily: 'Amita',
+            fontFamily: 'Amarante',
             paddingTop: '50px'
         };
         
@@ -154,7 +153,6 @@ class Title extends React.Component {
             <div style={style}>
                 <h1>About Me</h1>
                 <a name="about" id="about"/>
-                <Divider/>
             </div>
         );
     }
@@ -215,39 +213,50 @@ class TextBoxCTA extends React.Component {
 class SkillList extends React.Component {
     render () {
         const style = {
-            width: '25vw',
+            width: '50vw',
             textAlign: 'center'
         };
         
         const listSty = {
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             flexWrap: 'wrap',
             justfiyContent: 'space-between',
             alignItems: 'space-between',
-            height: '90px',
-            width: '25vw',
+            width: '40vw',
             textAlign: 'left',
             fontFamily: 'Advent Pro'
         }
         
-        const liSty = {
-            marginBottom: '5px'
-        }
-        
         return (
             <div style={style}>
-                <h3>LOOK WHAT I CAN DO</h3>
+                <h3>Skills</h3>
                 <ul style={listSty}>
-                    <li style={liSty} className="fa fa-chevron-right">HTML</li>
-                    <li style={liSty} className="fa fa-chevron-right">CSS</li>
-                    <li style={liSty} className="fa fa-chevron-right">JavaScript</li>
-                    <li style={liSty} className="fa fa-chevron-right">ES2015</li>
-                    <li style={liSty} className="fa fa-chevron-right">ReactJS</li>
-                    <li style={liSty} className="fa fa-chevron-right">NodeJS</li>
-                    <li style={liSty} className="fa fa-chevron-right">ExpressJS</li>
-                    <li style={liSty} className="fa fa-chevron-right">MongoDB</li>
+                    <SkillIcon img="../images/React.png" alt="ReactJS"/>
+                    <SkillIcon img="../images/HTML.png" alt="HTML5"/>
+                    <SkillIcon img="../images/css.png" alt="CSS3"/>
+                    <SkillIcon img="../images/es6.png" alt="Javascript/ES2015"/>
+                    <SkillIcon img="../images/nodejs.png" alt="NodeJS"/>
+                    <SkillIcon img="../images/mongodb.png" alt="MongoDB"/>
+                    <SkillIcon img="../images/git.png" alt="git"/>
+                    <SkillIcon img="../images/jquery.png" alt="jQuery"/>
                 </ul>
+            </div>
+        );
+    }
+}
+
+class SkillIcon extends React.Component {
+    render () {
+        const style = {
+            width: '100px',
+            height: '100px',
+            borderRadius: '5px'
+        };
+        
+        return (
+            <div>
+                <img src={this.props.img} alt={this.props.alt} style={style}/>
             </div>
         );
     }
@@ -258,8 +267,12 @@ class Projects extends React.Component {
         const center = {
             marginLeft: 'auto',
             marginRight: 'auto',
+            marginTop: '50px',
+            
             width: '75vw',
+            
             textAlign: 'center',
+            fontFamily: 'Amarante'
         };
         
         const style = {
@@ -273,8 +286,7 @@ class Projects extends React.Component {
         return (
             <div style={center}>
                 <a name="work" id="work"/>
-                <Divider/>
-                <h2>My Work</h2>
+                <h1>My Work</h1>
                 <div style={style}>
                     <ProjectImage img="../images/tribute.png" route="/tribute"/>
                     <ProjectImage img="../images/randquote.png" route="/randquote"/>
@@ -331,7 +343,7 @@ class Contact extends React.Component {
         const center = {
             marginLeft: 'auto',
             marginRight: 'auto',
-            marginTop: '20px',
+            marginTop: '50px',
             textAlign: 'center',
             width: '30vw'
         };
@@ -342,14 +354,15 @@ class Contact extends React.Component {
             background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
             background: '-moz-linear-gradient(#d3d3d3, #545454)',
             background: 'linear-gradient(#d3d3d3, #545454)',
+            fontFamily: 'Amarante',
+            marginTop: '50px'
         }
         
         return (
             <div style={back}>
                 <div style={center}>
                     <a name="contact" id="contact"/>
-                    <Divider/>
-                    <h2>Contact Me!</h2>
+                    <h1>Contact Me!</h1>
                     <div style={style}>
                         <SocialIcon link="mailto:AlexMcLeod01+portfolio@gmail.com" img="../images/email.png" alt="Email Me!"/>
                         <SocialIcon link="https://github.com/AlexMcLeod01" img="../images/Github.png" alt="Follow me on Github!"/>

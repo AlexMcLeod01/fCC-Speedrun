@@ -80,16 +80,6 @@ class Main extends React.Component {
     }
 }
 
-class Projects extends React.Component {
-    render () {
-        return (
-            <div>
-                <Header/>
-            </div>
-        );
-    }
-}
-
 class App extends React.Component {
     render () {
         const style = {
@@ -98,7 +88,7 @@ class App extends React.Component {
             height: '200vh',
             width: '98.25vw',
             fontSize: 'large',
-            fontFamily: 'Advent Pro'
+            fontFamily: 'Amiko'
         };
         
         return (

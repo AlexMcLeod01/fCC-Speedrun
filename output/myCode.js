@@ -2688,7 +2688,7 @@ var Title = exports.Title = function (_React$Component) {
         key: "render",
         value: function render() {
             var style = {
-                fontFamily: 'Amita',
+                fontFamily: 'Amarante',
                 fontSize: "28px",
                 textAlign: 'center',
                 paddingTop: '30px'
@@ -23817,31 +23817,8 @@ var Main = function (_React$Component) {
     return Main;
 }(_react2.default.Component);
 
-var Projects = function (_React$Component2) {
-    _inherits(Projects, _React$Component2);
-
-    function Projects() {
-        _classCallCheck(this, Projects);
-
-        return _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
-    }
-
-    _createClass(Projects, [{
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(_Header.Header, null)
-            );
-        }
-    }]);
-
-    return Projects;
-}(_react2.default.Component);
-
-var App = function (_React$Component3) {
-    _inherits(App, _React$Component3);
+var App = function (_React$Component2) {
+    _inherits(App, _React$Component2);
 
     function App() {
         _classCallCheck(this, App);
@@ -23858,7 +23835,7 @@ var App = function (_React$Component3) {
                 height: '200vh',
                 width: '98.25vw',
                 fontSize: 'large',
-                fontFamily: 'Advent Pro'
+                fontFamily: 'Amiko'
             };
 
             return _react2.default.createElement(
@@ -42867,13 +42844,12 @@ var Container = function (_React$Component2) {
             var textArea = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                fontSize: 'large',
-                display: 'flex',
-                width: '50vw',
-                marginTop: '50px'
-            };
+                marginTop: '50px',
 
-            var flex = {
+                fontSize: 'large',
+                width: '50vw',
+
+                display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 alignItems: 'center'
@@ -42887,7 +42863,7 @@ var Container = function (_React$Component2) {
                 _react2.default.createElement(Title, null),
                 _react2.default.createElement(
                     "div",
-                    { style: Object.assign({}, textArea, flex) },
+                    { style: textArea },
                     _react2.default.createElement(Image, { img: "Boom.jpg" }),
                     _react2.default.createElement(TextBoxPast, null),
                     _react2.default.createElement(TextBoxPresent, null),
@@ -42996,7 +42972,7 @@ var MainTitle = function (_React$Component5) {
                 color: 'white',
                 width: '40vw',
                 backgroundColor: '#333',
-                fontFamily: 'Amita',
+                fontFamily: 'Amarante',
                 fontSize: 'x-large',
                 textAlign: 'center'
             };
@@ -43065,7 +43041,7 @@ var Title = function (_React$Component7) {
             var style = {
                 textAlign: 'center',
                 color: 'black',
-                fontFamily: 'Amita',
+                fontFamily: 'Amarante',
                 paddingTop: '50px'
             };
 
@@ -43077,8 +43053,7 @@ var Title = function (_React$Component7) {
                     null,
                     "About Me"
                 ),
-                _react2.default.createElement("a", { name: "about", id: "about" }),
-                _react2.default.createElement(Divider, null)
+                _react2.default.createElement("a", { name: "about", id: "about" })
             );
         }
     }]);
@@ -43225,24 +43200,19 @@ var SkillList = function (_React$Component12) {
         key: "render",
         value: function render() {
             var style = {
-                width: '25vw',
+                width: '50vw',
                 textAlign: 'center'
             };
 
             var listSty = {
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 flexWrap: 'wrap',
                 justfiyContent: 'space-between',
                 alignItems: 'space-between',
-                height: '90px',
-                width: '25vw',
+                width: '40vw',
                 textAlign: 'left',
                 fontFamily: 'Advent Pro'
-            };
-
-            var liSty = {
-                marginBottom: '5px'
             };
 
             return _react2.default.createElement(
@@ -43251,51 +43221,19 @@ var SkillList = function (_React$Component12) {
                 _react2.default.createElement(
                     "h3",
                     null,
-                    "LOOK WHAT I CAN DO"
+                    "Skills"
                 ),
                 _react2.default.createElement(
                     "ul",
                     { style: listSty },
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "HTML"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "CSS"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "JavaScript"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "ES2015"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "ReactJS"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "NodeJS"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "ExpressJS"
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liSty, className: "fa fa-chevron-right" },
-                        "MongoDB"
-                    )
+                    _react2.default.createElement(SkillIcon, { img: "../images/React.png", alt: "ReactJS" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/HTML.png", alt: "HTML5" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/css.png", alt: "CSS3" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/es6.png", alt: "Javascript/ES2015" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/nodejs.png", alt: "NodeJS" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/mongodb.png", alt: "MongoDB" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/git.png", alt: "git" }),
+                    _react2.default.createElement(SkillIcon, { img: "../images/jquery.png", alt: "jQuery" })
                 )
             );
         }
@@ -43304,8 +43242,37 @@ var SkillList = function (_React$Component12) {
     return SkillList;
 }(_react2.default.Component);
 
-var Projects = function (_React$Component13) {
-    _inherits(Projects, _React$Component13);
+var SkillIcon = function (_React$Component13) {
+    _inherits(SkillIcon, _React$Component13);
+
+    function SkillIcon() {
+        _classCallCheck(this, SkillIcon);
+
+        return _possibleConstructorReturn(this, (SkillIcon.__proto__ || Object.getPrototypeOf(SkillIcon)).apply(this, arguments));
+    }
+
+    _createClass(SkillIcon, [{
+        key: "render",
+        value: function render() {
+            var style = {
+                width: '100px',
+                height: '100px',
+                borderRadius: '5px'
+            };
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement("img", { src: this.props.img, alt: this.props.alt, style: style })
+            );
+        }
+    }]);
+
+    return SkillIcon;
+}(_react2.default.Component);
+
+var Projects = function (_React$Component14) {
+    _inherits(Projects, _React$Component14);
 
     function Projects() {
         _classCallCheck(this, Projects);
@@ -43319,8 +43286,12 @@ var Projects = function (_React$Component13) {
             var center = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
+                marginTop: '50px',
+
                 width: '75vw',
-                textAlign: 'center'
+
+                textAlign: 'center',
+                fontFamily: 'Amarante'
             };
 
             var style = {
@@ -43334,9 +43305,8 @@ var Projects = function (_React$Component13) {
                 "div",
                 { style: center },
                 _react2.default.createElement("a", { name: "work", id: "work" }),
-                _react2.default.createElement(Divider, null),
                 _react2.default.createElement(
-                    "h2",
+                    "h1",
                     null,
                     "My Work"
                 ),
@@ -43359,8 +43329,8 @@ var Projects = function (_React$Component13) {
     return Projects;
 }(_react2.default.Component);
 
-var ProjectImage = function (_React$Component14) {
-    _inherits(ProjectImage, _React$Component14);
+var ProjectImage = function (_React$Component15) {
+    _inherits(ProjectImage, _React$Component15);
 
     function ProjectImage() {
         _classCallCheck(this, ProjectImage);
@@ -43400,8 +43370,8 @@ var ProjectImage = function (_React$Component14) {
     return ProjectImage;
 }(_react2.default.Component);
 
-var Contact = function (_React$Component15) {
-    _inherits(Contact, _React$Component15);
+var Contact = function (_React$Component16) {
+    _inherits(Contact, _React$Component16);
 
     function Contact() {
         _classCallCheck(this, Contact);
@@ -43427,7 +43397,7 @@ var Contact = function (_React$Component15) {
             var center = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                marginTop: '20px',
+                marginTop: '50px',
                 textAlign: 'center',
                 width: '30vw'
             };
@@ -43436,7 +43406,7 @@ var Contact = function (_React$Component15) {
                 width: '98.25vw',
                 backgroundColor: '#D3D3D3',
                 background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))'
-            }, _defineProperty(_back, "background", '-moz-linear-gradient(#d3d3d3, #545454)'), _defineProperty(_back, "background", 'linear-gradient(#d3d3d3, #545454)'), _back);
+            }, _defineProperty(_back, "background", '-moz-linear-gradient(#d3d3d3, #545454)'), _defineProperty(_back, "background", 'linear-gradient(#d3d3d3, #545454)'), _defineProperty(_back, "fontFamily", 'Amarante'), _defineProperty(_back, "marginTop", '50px'), _back);
 
             return _react2.default.createElement(
                 "div",
@@ -43445,9 +43415,8 @@ var Contact = function (_React$Component15) {
                     "div",
                     { style: center },
                     _react2.default.createElement("a", { name: "contact", id: "contact" }),
-                    _react2.default.createElement(Divider, null),
                     _react2.default.createElement(
-                        "h2",
+                        "h1",
                         null,
                         "Contact Me!"
                     ),
@@ -43467,8 +43436,8 @@ var Contact = function (_React$Component15) {
     return Contact;
 }(_react2.default.Component);
 
-var SocialIcon = function (_React$Component16) {
-    _inherits(SocialIcon, _React$Component16);
+var SocialIcon = function (_React$Component17) {
+    _inherits(SocialIcon, _React$Component17);
 
     function SocialIcon() {
         _classCallCheck(this, SocialIcon);
@@ -43496,8 +43465,8 @@ var SocialIcon = function (_React$Component16) {
     return SocialIcon;
 }(_react2.default.Component);
 
-var Header = function (_React$Component17) {
-    _inherits(Header, _React$Component17);
+var Header = function (_React$Component18) {
+    _inherits(Header, _React$Component18);
 
     function Header() {
         _classCallCheck(this, Header);

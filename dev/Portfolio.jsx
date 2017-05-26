@@ -3,6 +3,7 @@ import {render} from "react-dom";
 import {Link} from "react-router-dom";
 import { Button } from "./Button.jsx";
 import { SmoothScroll } from "./SmoothScroll.jsx";
+import MediaQuery from "react-responsive";
 
 export class Portfolio extends React.Component {
     render () {
@@ -30,7 +31,11 @@ class Container extends React.Component {
             marginLeft: 'auto',
             marginRight: 'auto',
             marginTop: '50px',
-            
+        };
+        
+        const sizeL = {
+            marginLeft: 'auto',
+            marginRight: 'auto',
             fontSize: 'large',
             width: '50vw',
             
@@ -38,7 +43,19 @@ class Container extends React.Component {
             flexDirection: 'column',
             justifyContent: 'space-between',
             alignItems: 'center'
-        };
+        }
+        
+        const sizeS = {
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            fontSize: 'x-large',
+            width: '75vw',
+            
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        }
         
         return (
             <div style={back}>
@@ -46,11 +63,20 @@ class Container extends React.Component {
                 <BlogTagline/>
                 <Title/>
                 <div style={textArea}>
-                    <Image img="Boom.jpg"/>
-                    <TextBoxPast/>
-                    <TextBoxPresent/>
-                    <TextBoxCTA/>
-                    <SkillList/>
+                    <MediaQuery maxWidth={700} style={sizeS}>
+                        <Image img="Boom.jpg"/>
+                        <TextBoxPast/>
+                        <TextBoxPresent/>
+                        <TextBoxCTA/>
+                        <SkillList/>
+                    </MediaQuery>
+                    <MediaQuery minWidth={700} style={sizeL}>
+                        <Image img="Boom.jpg"/>
+                        <TextBoxPast/>
+                        <TextBoxPresent/>
+                        <TextBoxCTA/>
+                        <SkillList/>
+                    </MediaQuery>
                 </div>
                 <Projects/>
                 <Contact/>
@@ -59,28 +85,44 @@ class Container extends React.Component {
     }
 }
 
+/* This is the Title portion of the site */
 class TitleBar extends React.Component {
-    render () {
-        const titleStyle = {
-            height: '75vh',
+    render () {    
+        const sizeL = {
             marginLeft: 'auto',
             marginRight: 'auto',
             display: 'flex',
             flexFlow: 'row no-wrap',
             justifyContent: 'space-around',
             alignItems: 'center',
-            /* Playing around with a different title bar
-            backgroundColor: '#D3D3D3',
-            background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
-            background: '-moz-linear-gradient(#d3d3d3, #545454)',
-            background: 'linear-gradient(#d3d3d3, #545454)',*/
+            height: '75vh',
+            backgroundImage: 'url(../images/titlepic.jpg)',
+            backgroundSize: 'cover'
+        };
+        
+        const sizeS = {
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            display: 'flex',
+            flexFlow: 'row no-wrap',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            height: '50vh',
             backgroundImage: 'url(../images/titlepic.jpg)',
             backgroundSize: 'cover'
         };
         
         return (
-            <div style={titleStyle}>
-                <MainTitle/>
+            <div>
+                <MediaQuery maxWidth={700}>
+                    {(matches) => {
+                        if (matches) {
+                            return (<div style={sizeS}><MainTitle/></div>);
+                        } else {
+                            return (<div style={sizeL}><MainTitle/></div>);
+                        }
+                    }}
+                </MediaQuery>
             </div>
         );
     }
@@ -105,11 +147,11 @@ class MainTitle extends React.Component {
     render () {
         const style = {
             color: 'white',
-            width: '40vw',
             backgroundColor: '#333',
             fontFamily: 'Amarante',
             fontSize: 'x-large',
             textAlign: 'center',
+            width: '40vw'
         };
         
         return (
@@ -123,6 +165,7 @@ class MainTitle extends React.Component {
     }
 }
 
+/* This divider component is unused, but once was used */
 class Divider extends React.Component {
     render () {
         const style = {
@@ -140,6 +183,7 @@ class Divider extends React.Component {
     }
 }
 
+/* This is the top of the About Me section */
 class Title extends React.Component {
     render () {
         const style = {
@@ -160,19 +204,33 @@ class Title extends React.Component {
 
 class Image extends React.Component {
     render () {
-        const style = {
-            width: '20vw',
+        const sizeL = {
             borderRadius: '50%',
-        };
+            width: '20vw'
+        }
+        
+        const sizeS = {
+            borderRadius: '50%',
+            width: '50vw'
+        }
         
         return (
             <div>
-                <img style={style} src={"../images/"+this.props.img}/>
+                <MediaQuery maxWidth={700}>
+                    {(matches) => {
+                        if (matches) {
+                            return <img style={sizeS} src={"../images/"+this.props.img}/>;
+                        } else {
+                            return <img style={sizeL} src={"../images/"+this.props.img}/>;
+                        }
+                    }}
+                </MediaQuery>
             </div>
         );
     }
 }
 
+/* This is the body text */
 class TextBoxPast extends React.Component {
     render () {
         return (
@@ -194,40 +252,18 @@ class TextBoxPresent extends React.Component {
 }
 
 class TextBoxCTA extends React.Component {
-    render () {
-        const style = {
-            width: '50vw',
-            textAlign: 'left'
-        };
-        
+    render () {        
         return (
-            <div style={style}>
+            <div>
                 <p>At my <a href="javascriptjunky.wordpress.com">blog</a>, I break down the lessons I learn as I develop various projects, or learn about new Javascript features and frameworks. On this site, I have samples of my work. You could also <a href="mailto:alexmcleod01+portfolio@gmail.com">contact</a> me if you are looking for a web developer who specializes in React.</p>
             </div>
         );
     }
 }
 
-
-
+/* This is the Skill List */
 class SkillList extends React.Component {
-    render () {
-        const style = {
-            width: '50vw',
-            textAlign: 'center'
-        };
-        
-        const listSty = {
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justfiyContent: 'space-between',
-            alignItems: 'space-between',
-            width: '40vw',
-            textAlign: 'left',
-            fontFamily: 'Advent Pro'
-        }
-        
+    getContent (listSty, style) {
         return (
             <div style={style}>
                 <h3>Skills</h3>
@@ -244,24 +280,67 @@ class SkillList extends React.Component {
             </div>
         );
     }
+    
+    render () {
+        const styleL = {
+            width: '50vw',
+            textAlign: 'center'
+        };
+        
+        const styleS = {
+            width: '75vw',
+            textAlign: 'center'
+        }
+        
+        const listSty = {
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justfiyContent: 'space-between',
+            alignItems: 'space-between',
+            textAlign: 'left',
+            fontFamily: 'Advent Pro'
+        }
+        
+        return (
+            <div>
+                <MediaQuery maxWidth={700}>
+                    {(matches) => {
+                        if (matches) {
+                            return this.getContent(listSty, styleS);
+                        } else {
+                            return this.getContent(listSty, styleL);
+                        }
+                    }}
+                </MediaQuery>
+            </div>
+        );
+    }
 }
 
 class SkillIcon extends React.Component {
     render () {
         const style = {
-            width: '100px',
-            height: '100px',
+            width: '100%',
+            maxWidth: '100px',
+            maxHeight: '100px',
             borderRadius: '5px'
         };
         
+        const sizing = {
+            width: '25%',
+            maxWidth: '100px'
+        }
+        
         return (
-            <div>
+            <div style={sizing}>
                 <img src={this.props.img} alt={this.props.alt} style={style}/>
             </div>
         );
     }
 }
 
+/* This is the Projects List */
 class Projects extends React.Component {
     render () {
         const center = {
@@ -305,13 +384,14 @@ class Projects extends React.Component {
 class ProjectImage extends React.Component {
     render () {
         const style = {
+            width: '100%',
             maxWidth: '421px',
             maxHeight: '317px',
             paddingBottom: '15px'
         };
         
         const box = {
-            width: '25vw',
+            width: '80vw',
             marginRight: 'auto',
             marginLeft: 'auto',
             display: 'flex',
@@ -328,6 +408,8 @@ class ProjectImage extends React.Component {
     }
 }
 
+
+/* This is the Contact Me section */
 class Contact extends React.Component {
     render () {
         const style = {
@@ -391,6 +473,7 @@ class SocialIcon extends React.Component {
     }
 }
 
+/* This is the Header */
 class Header extends React.Component {
     render () {
         const style = {

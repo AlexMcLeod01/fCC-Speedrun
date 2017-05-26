@@ -42866,7 +42866,7 @@ var Container = function (_React$Component2) {
             var sizeS = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                fontSize: 'medium',
+                fontSize: 'small',
                 width: '75vw',
 
                 display: 'flex',
@@ -43001,9 +43001,9 @@ var BlogTagline = function (_React$Component4) {
                 "div",
                 { style: style },
                 _react2.default.createElement(
-                    "h3",
+                    "h4",
                     null,
-                    "Get Hooked on Javascript With Me on ",
+                    "Get Hooked on Javascript With Me at ",
                     _react2.default.createElement(
                         "a",
                         { href: "https://javascriptjunky.wordpress.com" },
@@ -43042,7 +43042,7 @@ var MainTitle = function (_React$Component5) {
                 color: 'white',
                 backgroundColor: '#333',
                 fontFamily: 'Amarante',
-                fontSize: 'small',
+                fontSize: 'medium',
                 textAlign: 'center',
                 width: '75vw'
             };
@@ -43145,7 +43145,7 @@ var Title = function (_React$Component7) {
                 "div",
                 { style: style },
                 _react2.default.createElement(
-                    "h1",
+                    "h3",
                     null,
                     "About Me"
                 ),
@@ -43341,12 +43341,16 @@ var SkillList = function (_React$Component12) {
             var _this14 = this;
 
             var styleL = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
                 width: '50vw',
                 textAlign: 'center'
             };
 
             var styleS = {
-                width: '75vw',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '80vw',
                 textAlign: 'center'
             };
 
@@ -43359,7 +43363,7 @@ var SkillList = function (_React$Component12) {
                 justfiyContent: 'space-between',
                 alignItems: 'space-between',
                 textAlign: 'left',
-                fontFamily: 'Advent Pro'
+                fontFamily: 'Amiko'
             };
 
             return _react2.default.createElement(
@@ -43456,7 +43460,7 @@ var Projects = function (_React$Component14) {
                 { style: center },
                 _react2.default.createElement("a", { name: "work", id: "work" }),
                 _react2.default.createElement(
-                    "h1",
+                    "h3",
                     null,
                     "My Work"
                 ),
@@ -43541,7 +43545,7 @@ var Contact = function (_React$Component16) {
             var style = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                width: '204px',
+                width: '30vw',
                 display: 'flex',
                 flexDirection: 'row',
                 justfiyContent: 'center',
@@ -43549,6 +43553,7 @@ var Contact = function (_React$Component16) {
             };
 
             var center = {
+                display: 'block',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 marginTop: '50px',
@@ -43557,7 +43562,7 @@ var Contact = function (_React$Component16) {
             };
 
             var back = (_back = {
-                width: '98.25vw',
+                width: '100%',
                 backgroundColor: '#D3D3D3',
                 background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))'
             }, _defineProperty(_back, "background", '-moz-linear-gradient(#d3d3d3, #545454)'), _defineProperty(_back, "background", 'linear-gradient(#d3d3d3, #545454)'), _defineProperty(_back, "fontFamily", 'Amarante'), _defineProperty(_back, "marginTop", '50px'), _back);
@@ -43570,7 +43575,7 @@ var Contact = function (_React$Component16) {
                     { style: center },
                     _react2.default.createElement("a", { name: "contact", id: "contact" }),
                     _react2.default.createElement(
-                        "h1",
+                        "h3",
                         null,
                         "Contact Me!"
                     ),
@@ -43603,15 +43608,20 @@ var SocialIcon = function (_React$Component17) {
         key: "render",
         value: function render() {
             var style = {
-                width: '50px',
-                height: '50px',
+                width: '25%'
+            };
+
+            var imSty = {
+                width: '100%',
+                maxWidth: '50px',
+                maxHeight: '50px',
                 borderRadius: '5px'
             };
 
             return _react2.default.createElement(
                 "a",
                 { href: this.props.link, style: style },
-                _react2.default.createElement("img", { src: this.props.img, alt: this.props.alt, style: style })
+                _react2.default.createElement("img", { src: this.props.img, alt: this.props.alt, style: imSty })
             );
         }
     }]);

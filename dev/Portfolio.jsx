@@ -49,7 +49,7 @@ class Container extends React.Component {
         const sizeS = {
             marginLeft: 'auto',
             marginRight: 'auto',
-            fontSize: 'medium',
+            fontSize: 'small',
             width: '75vw',
             
             display: 'flex',
@@ -138,7 +138,7 @@ class BlogTagline extends React.Component {
         
         return (
             <div style={style}>
-                <h3>Get Hooked on Javascript With Me on <a href="https://javascriptjunky.wordpress.com">My Blog</a></h3>
+                <h4>Get Hooked on Javascript With Me at <a href="https://javascriptjunky.wordpress.com">My Blog</a></h4>
             </div>
         );
     }
@@ -159,7 +159,7 @@ class MainTitle extends React.Component {
             color: 'white',
             backgroundColor: '#333',
             fontFamily: 'Amarante',
-            fontSize: 'small',
+            fontSize: 'medium',
             textAlign: 'center',
             width: '75vw'
         }
@@ -213,7 +213,7 @@ class Title extends React.Component {
         
         return(
             <div style={style}>
-                <h1>About Me</h1>
+                <h3>About Me</h3>
                 <a name="about" id="about"/>
             </div>
         );
@@ -301,12 +301,16 @@ class SkillList extends React.Component {
     
     render () {
         const styleL = {
+            marginLeft: 'auto',
+            marginRight: 'auto',
             width: '50vw',
             textAlign: 'center'
         };
         
         const styleS = {
-            width: '75vw',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80vw',
             textAlign: 'center'
         }
         
@@ -319,7 +323,7 @@ class SkillList extends React.Component {
             justfiyContent: 'space-between',
             alignItems: 'space-between',
             textAlign: 'left',
-            fontFamily: 'Advent Pro'
+            fontFamily: 'Amiko'
         }
         
         return (
@@ -385,7 +389,7 @@ class Projects extends React.Component {
         return (
             <div style={center}>
                 <a name="work" id="work"/>
-                <h1>My Work</h1>
+                <h3>My Work</h3>
                 <div style={style}>
                     <ProjectImage img="../images/tribute.png" route="/tribute"/>
                     <ProjectImage img="../images/randquote.png" route="/randquote"/>
@@ -435,7 +439,7 @@ class Contact extends React.Component {
         const style = {
             marginLeft: 'auto',
             marginRight: 'auto',
-            width: '204px',
+            width: '30vw',
             display: 'flex',
             flexDirection: 'row',
             justfiyContent: 'center',
@@ -443,6 +447,7 @@ class Contact extends React.Component {
         };
         
         const center = {
+            display: 'block',
             marginLeft: 'auto',
             marginRight: 'auto',
             marginTop: '50px',
@@ -451,7 +456,7 @@ class Contact extends React.Component {
         };
         
         const back = {
-            width: '98.25vw',
+            width: '100%',
             backgroundColor: '#D3D3D3',
             background: '-webkit-gradient(linear, 0 0, 0 0, from(#d3d3d3), to(#545454))',
             background: '-moz-linear-gradient(#d3d3d3, #545454)',
@@ -464,7 +469,7 @@ class Contact extends React.Component {
             <div style={back}>
                 <div style={center}>
                     <a name="contact" id="contact"/>
-                    <h1>Contact Me!</h1>
+                    <h3>Contact Me!</h3>
                     <div style={style}>
                         <SocialIcon link="mailto:AlexMcLeod01+portfolio@gmail.com" img="../images/email.png" alt="Email Me!"/>
                         <SocialIcon link="https://github.com/AlexMcLeod01" img="../images/Github.png" alt="Follow me on Github!"/>
@@ -480,14 +485,19 @@ class Contact extends React.Component {
 class SocialIcon extends React.Component {
     render () {
         const style = {
-            width: '50px',
-            height: '50px',
-            borderRadius: '5px'
+            width: '25%'
         };
+        
+        const imSty = {
+            width: '100%',
+            maxWidth: '50px',
+            maxHeight: '50px',
+            borderRadius: '5px'
+        }
         
         return (
             <a href={this.props.link} style={style}>
-                <img src={this.props.img} alt={this.props.alt} style={style}/>
+                <img src={this.props.img} alt={this.props.alt} style={imSty}/>
             </a>
         );
     }

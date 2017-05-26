@@ -42841,7 +42841,8 @@ var Container = function (_React$Component2) {
             };
 
             var back = {
-                backgroundColor: '#FFFFFF'
+                backgroundColor: '#FFFFFF',
+                width: '100%'
             };
 
             var textArea = {
@@ -42865,7 +42866,7 @@ var Container = function (_React$Component2) {
             var sizeS = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                fontSize: 'x-large',
+                fontSize: 'medium',
                 width: '75vw',
 
                 display: 'flex',
@@ -43037,20 +43038,49 @@ var MainTitle = function (_React$Component5) {
                 width: '40vw'
             };
 
+            var styleS = {
+                color: 'white',
+                backgroundColor: '#333',
+                fontFamily: 'Amarante',
+                fontSize: 'small',
+                textAlign: 'center',
+                width: '75vw'
+            };
+
             return _react2.default.createElement(
                 "div",
-                { style: style },
+                null,
                 _react2.default.createElement(
-                    "h1",
-                    null,
-                    "Alex McLeod"
+                    _reactResponsive2.default,
+                    { maxWidth: 700, style: styleS },
+                    _react2.default.createElement(
+                        "h1",
+                        null,
+                        "Alex McLeod"
+                    ),
+                    _react2.default.createElement("p", null),
+                    _react2.default.createElement("p", null),
+                    _react2.default.createElement(
+                        "h3",
+                        null,
+                        "Full-stack Web Developer Specializing in React"
+                    )
                 ),
-                _react2.default.createElement("p", null),
-                _react2.default.createElement("p", null),
                 _react2.default.createElement(
-                    "h3",
-                    null,
-                    "Full-stack Web Developer Specializing in React"
+                    _reactResponsive2.default,
+                    { minWidth: 701, style: style },
+                    _react2.default.createElement(
+                        "h1",
+                        null,
+                        "Alex McLeod"
+                    ),
+                    _react2.default.createElement("p", null),
+                    _react2.default.createElement("p", null),
+                    _react2.default.createElement(
+                        "h3",
+                        null,
+                        "Full-stack Web Developer Specializing in React"
+                    )
                 )
             );
         }
@@ -43321,6 +43351,8 @@ var SkillList = function (_React$Component12) {
             };
 
             var listSty = {
+                marginLeft: 'auto',
+                marginRight: 'auto',
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
@@ -43467,7 +43499,7 @@ var ProjectImage = function (_React$Component15) {
             };
 
             var box = {
-                width: '80vw',
+                width: '80%',
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 display: 'flex',
@@ -43602,6 +43634,8 @@ var Header = function (_React$Component18) {
     _createClass(Header, [{
         key: "render",
         value: function render() {
+
+            /* The Large screen versions */
             var style = {
                 listStyleType: 'none',
                 margin: '0',
@@ -43624,47 +43658,104 @@ var Header = function (_React$Component18) {
                 padding: '14px 16px',
                 cursor: 'pointer'
             };
+            /* The Small Screen Versions */
+            var buttonStyS = {
+                display: 'block',
+                color: 'white',
+                textAlign: 'center',
+                padding: '4px 6px',
+                cursor: 'pointer',
+                fontSize: 'small'
+            };
 
             return _react2.default.createElement(
                 "div",
                 null,
                 _react2.default.createElement(
-                    "ul",
-                    { style: style },
+                    _reactResponsive2.default,
+                    { minWidth: 701 },
                     _react2.default.createElement(
-                        "li",
-                        { style: liStyle, className: "lihover" },
+                        "ul",
+                        { style: style },
                         _react2.default.createElement(
-                            _SmoothScroll.SmoothScroll,
-                            { id: "about", style: buttonSty, activeClassName: "active" },
-                            "ABOUT"
+                            "li",
+                            { style: liStyle, className: "lihover" },
+                            _react2.default.createElement(
+                                _SmoothScroll.SmoothScroll,
+                                { id: "about", style: buttonSty, activeClassName: "active" },
+                                "ABOUT"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            { style: liStyle, className: "lihover" },
+                            _react2.default.createElement(
+                                _SmoothScroll.SmoothScroll,
+                                { id: "work", style: buttonSty, activeClassName: "active" },
+                                "WORK"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            { style: liStyle, className: "lihover" },
+                            _react2.default.createElement(
+                                _SmoothScroll.SmoothScroll,
+                                { id: "contact", style: buttonSty, activeClassName: "active" },
+                                "CONTACT"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            { style: liStyle },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "https://javascriptjunky.wordpress.com" },
+                                "BLOG"
+                            )
                         )
-                    ),
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactResponsive2.default,
+                    { maxWidth: 700 },
                     _react2.default.createElement(
-                        "li",
-                        { style: liStyle, className: "lihover" },
+                        "ul",
+                        { style: style },
                         _react2.default.createElement(
-                            _SmoothScroll.SmoothScroll,
-                            { id: "work", style: buttonSty, activeClassName: "active" },
-                            "WORK"
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liStyle, className: "lihover" },
+                            "li",
+                            { style: liStyle, className: "lihover" },
+                            _react2.default.createElement(
+                                _SmoothScroll.SmoothScroll,
+                                { id: "about", style: buttonStyS, activeClassName: "active" },
+                                "ABOUT"
+                            )
+                        ),
                         _react2.default.createElement(
-                            _SmoothScroll.SmoothScroll,
-                            { id: "contact", style: buttonSty, activeClassName: "active" },
-                            "CONTACT"
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        { style: liStyle },
+                            "li",
+                            { style: liStyle, className: "lihover" },
+                            _react2.default.createElement(
+                                _SmoothScroll.SmoothScroll,
+                                { id: "work", style: buttonStyS, activeClassName: "active" },
+                                "WORK"
+                            )
+                        ),
                         _react2.default.createElement(
-                            "a",
-                            { href: "https://javascriptjunky.wordpress.com" },
-                            "BLOG"
+                            "li",
+                            { style: liStyle, className: "lihover" },
+                            _react2.default.createElement(
+                                _SmoothScroll.SmoothScroll,
+                                { id: "contact", style: buttonStyS, activeClassName: "active" },
+                                "CONTACT"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            { style: liStyle },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "https://javascriptjunky.wordpress.com" },
+                                "BLOG"
+                            )
                         )
                     )
                 )

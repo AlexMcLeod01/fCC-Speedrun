@@ -24,7 +24,8 @@ class Container extends React.Component {
         };
         
         const back = {
-            backgroundColor: '#FFFFFF'
+            backgroundColor: '#FFFFFF',
+            width: '100%'
         };
         
         const textArea = {
@@ -48,7 +49,7 @@ class Container extends React.Component {
         const sizeS = {
             marginLeft: 'auto',
             marginRight: 'auto',
-            fontSize: 'x-large',
+            fontSize: 'medium',
             width: '75vw',
             
             display: 'flex',
@@ -154,12 +155,29 @@ class MainTitle extends React.Component {
             width: '40vw'
         };
         
+        const styleS = {
+            color: 'white',
+            backgroundColor: '#333',
+            fontFamily: 'Amarante',
+            fontSize: 'small',
+            textAlign: 'center',
+            width: '75vw'
+        }
+        
         return (
-            <div style={style}>
-                <h1>Alex McLeod</h1>
-                <p></p>
-                <p></p>
-                <h3>Full-stack Web Developer Specializing in React</h3>
+            <div>
+                <MediaQuery maxWidth={700} style={styleS}>
+                    <h1>Alex McLeod</h1>
+                    <p></p>
+                    <p></p>
+                    <h3>Full-stack Web Developer Specializing in React</h3>
+                </MediaQuery>
+                <MediaQuery minWidth={701} style={style}>
+                    <h1>Alex McLeod</h1>
+                    <p></p>
+                    <p></p>
+                    <h3>Full-stack Web Developer Specializing in React</h3>
+                </MediaQuery>
             </div>
         );
     }
@@ -293,6 +311,8 @@ class SkillList extends React.Component {
         }
         
         const listSty = {
+            marginLeft: 'auto',
+            marginRight: 'auto',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
@@ -391,7 +411,7 @@ class ProjectImage extends React.Component {
         };
         
         const box = {
-            width: '80vw',
+            width: '80%',
             marginRight: 'auto',
             marginLeft: 'auto',
             display: 'flex',
@@ -476,6 +496,8 @@ class SocialIcon extends React.Component {
 /* This is the Header */
 class Header extends React.Component {
     render () {
+        
+        /* The Large screen versions */
         const style = {
             listStyleType: 'none',
             margin: '0',
@@ -498,15 +520,34 @@ class Header extends React.Component {
             padding: '14px 16px',
             cursor: 'pointer'
         };
+        /* The Small Screen Versions */
+        const buttonStyS = {
+            display: 'block',
+            color: 'white',
+            textAlign: 'center',
+            padding: '4px 6px',
+            cursor: 'pointer',
+            fontSize: 'small'
+        };
         
         return (
             <div>
-                <ul style={style}>
-                    <li style={liStyle} className='lihover'><SmoothScroll id="about" style={buttonSty} activeClassName='active'>ABOUT</SmoothScroll></li>
-                    <li style={liStyle} className='lihover'><SmoothScroll id="work" style={buttonSty} activeClassName='active'>WORK</SmoothScroll></li>
-                    <li style={liStyle} className='lihover'><SmoothScroll id="contact" style={buttonSty} activeClassName='active'>CONTACT</SmoothScroll></li>
-                    <li style={liStyle}><a href="https://javascriptjunky.wordpress.com">BLOG</a></li>
-                </ul>
+                <MediaQuery minWidth={701}>
+                    <ul style={style}>
+                        <li style={liStyle} className='lihover'><SmoothScroll id="about" style={buttonSty} activeClassName='active'>ABOUT</SmoothScroll></li>
+                        <li style={liStyle} className='lihover'><SmoothScroll id="work" style={buttonSty} activeClassName='active'>WORK</SmoothScroll></li>
+                        <li style={liStyle} className='lihover'><SmoothScroll id="contact" style={buttonSty} activeClassName='active'>CONTACT</SmoothScroll></li>
+                        <li style={liStyle}><a href="https://javascriptjunky.wordpress.com">BLOG</a></li>
+                    </ul>
+                </MediaQuery>
+                <MediaQuery maxWidth={700}>
+                    <ul style={style}>
+                        <li style={liStyle} className='lihover'><SmoothScroll id="about" style={buttonStyS} activeClassName='active'>ABOUT</SmoothScroll></li>
+                        <li style={liStyle} className='lihover'><SmoothScroll id="work" style={buttonStyS} activeClassName='active'>WORK</SmoothScroll></li>
+                        <li style={liStyle} className='lihover'><SmoothScroll id="contact" style={buttonStyS} activeClassName='active'>CONTACT</SmoothScroll></li>
+                        <li style={liStyle}><a href="https://javascriptjunky.wordpress.com">BLOG</a></li>
+                    </ul>
+                </MediaQuery>
             </div>
         );
     }

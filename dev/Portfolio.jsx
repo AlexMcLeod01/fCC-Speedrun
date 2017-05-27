@@ -284,16 +284,16 @@ class SkillList extends React.Component {
     getContent (listSty, style) {
         return (
             <div style={style}>
-                <h3>Skills</h3>
+                <h3>My Skills</h3>
                 <ul style={listSty}>
-                    <SkillIcon img="../images/React.png" alt="ReactJS"/>
-                    <SkillIcon img="../images/HTML.png" alt="HTML5"/>
-                    <SkillIcon img="../images/css.png" alt="CSS3"/>
-                    <SkillIcon img="../images/es6.png" alt="Javascript/ES2015"/>
-                    <SkillIcon img="../images/nodejs.png" alt="NodeJS"/>
-                    <SkillIcon img="../images/mongodb.png" alt="MongoDB"/>
-                    <SkillIcon img="../images/git.png" alt="git"/>
-                    <SkillIcon img="../images/jquery.png" alt="jQuery"/>
+                    <SkillIcon img="../images/React.png" alt="ReactJS">React: What this page and all the linked projects are made of</SkillIcon>
+                    <SkillIcon img="../images/es6.png" alt="Javascript/ES2015">ES2015: To make React easier to use</SkillIcon>
+                    <SkillIcon img="../images/nodejs.png" alt="NodeJS">Node: For creating backends in Javascript</SkillIcon>
+                    <SkillIcon img="../images/mongodb.png" alt="MongoDB">MongoDB: The standard database for this stack</SkillIcon>
+                    <SkillIcon img="../images/git.png" alt="git">git: Who doesn't use git these days?</SkillIcon>
+                    <SkillIcon img="../images/HTML.png" alt="HTML5">HTML</SkillIcon>
+                    <SkillIcon img="../images/css.png" alt="CSS3">CSS3</SkillIcon>
+                    <SkillIcon img="../images/jquery.png" alt="jQuery">jQuery: Because the internet needs duct-tape</SkillIcon>
                 </ul>
             </div>
         );
@@ -317,12 +317,12 @@ class SkillList extends React.Component {
         const listSty = {
             marginLeft: 'auto',
             marginRight: 'auto',
+            listStyleType: 'none',
             display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
+            flexFlow: 'row wrap',
             justfiyContent: 'space-between',
             alignItems: 'space-between',
-            textAlign: 'left',
+            textAlign: 'center',
             fontFamily: 'Amiko'
         }
         
@@ -357,9 +357,10 @@ class SkillIcon extends React.Component {
         }
         
         return (
-            <div style={sizing}>
+            <li style={sizing}>
                 <img src={this.props.img} alt={this.props.alt} style={style}/>
-            </div>
+                {this.props.children}
+            </li>
         );
     }
 }

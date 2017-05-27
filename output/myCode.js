@@ -43319,19 +43319,51 @@ var SkillList = function (_React$Component12) {
                 _react2.default.createElement(
                     "h3",
                     null,
-                    "Skills"
+                    "My Skills"
                 ),
                 _react2.default.createElement(
                     "ul",
                     { style: listSty },
-                    _react2.default.createElement(SkillIcon, { img: "../images/React.png", alt: "ReactJS" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/HTML.png", alt: "HTML5" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/css.png", alt: "CSS3" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/es6.png", alt: "Javascript/ES2015" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/nodejs.png", alt: "NodeJS" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/mongodb.png", alt: "MongoDB" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/git.png", alt: "git" }),
-                    _react2.default.createElement(SkillIcon, { img: "../images/jquery.png", alt: "jQuery" })
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/React.png", alt: "ReactJS" },
+                        "React: What this page and all the linked projects are made of"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/es6.png", alt: "Javascript/ES2015" },
+                        "ES2015: To make React easier to use"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/nodejs.png", alt: "NodeJS" },
+                        "Node: For creating backends in Javascript"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/mongodb.png", alt: "MongoDB" },
+                        "MongoDB: The standard database for this stack"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/git.png", alt: "git" },
+                        "git: Who doesn't use git these days?"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/HTML.png", alt: "HTML5" },
+                        "HTML"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/css.png", alt: "CSS3" },
+                        "CSS3"
+                    ),
+                    _react2.default.createElement(
+                        SkillIcon,
+                        { img: "../images/jquery.png", alt: "jQuery" },
+                        "jQuery: Because the internet needs duct-tape"
+                    )
                 )
             );
         }
@@ -43357,12 +43389,12 @@ var SkillList = function (_React$Component12) {
             var listSty = {
                 marginLeft: 'auto',
                 marginRight: 'auto',
+                listStyleType: 'none',
                 display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
+                flexFlow: 'row wrap',
                 justfiyContent: 'space-between',
                 alignItems: 'space-between',
-                textAlign: 'left',
+                textAlign: 'center',
                 fontFamily: 'Amiko'
             };
 
@@ -43412,9 +43444,10 @@ var SkillIcon = function (_React$Component13) {
             };
 
             return _react2.default.createElement(
-                "div",
+                "li",
                 { style: sizing },
-                _react2.default.createElement("img", { src: this.props.img, alt: this.props.alt, style: style })
+                _react2.default.createElement("img", { src: this.props.img, alt: this.props.alt, style: style }),
+                this.props.children
             );
         }
     }]);
